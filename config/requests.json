@@ -1,0 +1,39 @@
+{
+  "getUnassignedTickets": {
+    "schema": {
+      "method": "GET",
+      "host": "<%= iparam.domain %>.freshdesk.com",
+      "path": "/api/v2/tickets",
+      "query": {
+        "filter": "status:2 AND agent_id:null",
+        "per_page": "100"
+      },
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "assignTicket": {
+    "schema": {
+      "method": "PUT",
+      "host": "<%= iparam.domain %>.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getAgents": {
+    "schema": {
+      "method": "GET",
+      "host": "<%= iparam.domain %>.freshdesk.com",
+      "path": "/api/v2/agents",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
