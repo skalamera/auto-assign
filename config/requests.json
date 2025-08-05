@@ -2,14 +2,14 @@
   "getUnassignedTickets": {
     "schema": {
       "method": "GET",
-      "host": "<%= iparam.domain %>.freshdesk.com",
+      "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/tickets",
       "query": {
-        "filter": "status:2 AND agent_id:null",
+        "filter": "new_and_my_open",
         "per_page": "100"
       },
       "headers": {
-        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
         "Content-Type": "application/json"
       }
     }
@@ -17,10 +17,10 @@
   "assignTicket": {
     "schema": {
       "method": "PUT",
-      "host": "<%= iparam.domain %>.freshdesk.com",
+      "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/tickets/<%= context.ticket_id %>",
       "headers": {
-        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
         "Content-Type": "application/json"
       }
     }
@@ -28,10 +28,76 @@
   "getAgents": {
     "schema": {
       "method": "GET",
-      "host": "<%= iparam.domain %>.freshdesk.com",
+      "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/agents",
       "headers": {
-        "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getWestRegionGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000578161",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getCentralSoutheastGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000578164",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getNortheastRegionGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000578163",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getCentralSouthwestGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000578162",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getTriageGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000578235",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getSupportOpsGroup": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/groups/67000570681",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
         "Content-Type": "application/json"
       }
     }

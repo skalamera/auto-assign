@@ -1,31 +1,10 @@
 {
-  "service_interval": {
-    "display_name": "Check interval (minutes)",
-    "description": "How often the service should check for unassigned tickets (30-60 minutes)",
-    "type": "number",
-    "required": true,
-    "default_value": 30,
-    "min": 30,
-    "max": 60
-  },
-  "service_status": {
-    "display_name": "Service Status",
-    "description": "Enable or disable the automatic ticket assignment service",
-    "type": "toggle",
-    "required": true,
-    "default_value": true
-  },
-  "domain": {
-    "display_name": "Freshdesk Domain",
-    "description": "Your Freshdesk domain (e.g., 'company' from company.freshdesk.com)",
-    "type": "text",
-    "required": true
-  },
-  "apikey": {
-    "display_name": "API Key",
-    "description": "Your Freshdesk API key",
-    "type": "text",
-    "required": true,
-    "secure": true
-  }
+    "dummy_param": {
+        "display_name": "Installation Status",
+        "description": "This app requires no configuration",
+        "type": "text",
+        "required": false,
+        "default_value": "Auto-configured",
+        "visible": false
+    }
 }

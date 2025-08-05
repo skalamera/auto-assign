@@ -2,6 +2,12 @@
   "platform-version": "3.0",
   "modules": {
     "common": {
+      "location": {
+        "full_page_app": {
+          "url": "index.html",
+          "icon": "icon.svg"
+        }
+      },
       "events": {
         "onAppInstall": {
           "handler": "onAppInstallHandler"
@@ -10,67 +16,28 @@
           "handler": "onScheduledEventHandler"
         }
       },
-      "requests": {
-        "getUnassignedTickets": {
-          "schema": {
-            "method": "GET",
-            "host": "<%= iparam.domain %>.freshdesk.com",
-            "path": "/api/v2/tickets",
-            "query": {
-              "filter": "status:2 AND agent_id:null",
-              "per_page": "100"
-            },
-            "headers": {
-              "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
-              "Content-Type": "application/json"
-            }
-          }
-        },
-        "assignTicket": {
-          "schema": {
-            "method": "PUT",
-            "host": "<%= iparam.domain %>.freshdesk.com",
-            "path": "/api/v2/tickets/<%= context.ticket_id %>",
-            "headers": {
-              "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
-              "Content-Type": "application/json"
-            }
-          }
-        },
-        "getAgents": {
-          "schema": {
-            "method": "GET",
-            "host": "<%= iparam.domain %>.freshdesk.com",
-            "path": "/api/v2/agents",
-            "headers": {
-              "Authorization": "Basic <%= encode(iparam.apikey + ':X') %>",
-              "Content-Type": "application/json"
-            }
-          }
-        },
-        "updateSchedule": {
-          "schema": {
-            "method": "POST",
-            "body": {
-              "interval": "{{interval}}",
-              "status": "{{status}}"
-            }
-          }
-        }
+      "functions": {
+        "getLogs": {},
+        "clearLogs": {}
       },
-      "location": {
-        "full_page_app": {
-          "url": "index.html",
-          "icon": "styles/images/icon.svg"
-        }
+      "requests": {
+        "getUnassignedTickets": {},
+        "assignTicket": {},
+        "getAgents": {},
+        "getWestRegionGroup": {},
+        "getCentralSoutheastGroup": {},
+        "getNortheastRegionGroup": {},
+        "getCentralSouthwestGroup": {},
+        "getTriageGroup": {},
+        "getSupportOpsGroup": {}
       }
     },
     "support_ticket": {},
     "support_agent": {}
   },
   "engines": {
-    "node": "18.16.0",
-    "fdk": "9.1.0"
+    "node": "18.20.4",
+    "fdk": "9.5.2"
   },
   "app": {
     "tracking_id": "u644fvppvykcsn4ebxkw",

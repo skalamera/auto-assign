@@ -1,139 +1,389 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Ticket Assignment Configuration</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="https://static.freshdev.io/fdk/2.0/assets/freshworks.css">
-  <script src="{{{appclient}}}"></script>
-  <script src="scripts/app.js"></script>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    input[type="number"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    .toggle-container {
-      display: flex;
-      align-items: center;
-    }
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-      margin-right: 10px;
-    }
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #2196F3;
-    }
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-    .status-text {
-      font-weight: 500;
-    }
-    .btn-save {
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .btn-save:hover {
-      background-color: #0b7dda;
-    }
-    .notification {
-      padding: 10px;
-      margin-top: 20px;
-      border-radius: 4px;
-      display: none;
-    }
-    .success {
-      background-color: #dff0d8;
-      color: #3c763d;
-    }
-    .error {
-      background-color: #f2dede;
-      color: #a94442;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Assign Ticket Logs</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 8px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logs-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .logs-header {
+            background: #f8f9fa;
+            padding: 16px;
+            border-bottom: 1px solid #dee2e6;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .logs-content {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f3f4;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-timestamp {
+            color: #666;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        .log-type {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-right: 8px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .log-type-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .log-type-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .log-type-ticket_assigned {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .log-message {
+            color: #333;
+        }
+
+        .log-details {
+            margin-top: 6px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .auto-refresh {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Automatic Ticket Assignment Configuration</h1>
-    
-    <div class="form-group">
-      <label for="interval">Check Interval (30-60 minutes):</label>
-      <input type="number" id="interval" min="30" max="60" value="30">
+    <div class="header">
+        <h1>🎯 Auto-Assign Ticket Logs</h1>
+        <p>Real-time monitoring of automated ticket assignments</p>
     </div>
-    
-    <div class="form-group">
-      <label>Service Status:</label>
-      <div class="toggle-container">
-        <label class="toggle-switch">
-          <input type="checkbox" id="service-status" checked>
-          <span class="slider"></span>
-        </label>
-        <span class="status-text" id="status-text">Enabled</span>
-      </div>
+
+    <div class="stats" id="stats">
+        <div class="stat-card">
+            <div class="stat-value" id="totalLogs">-</div>
+            <div class="stat-label">Total Logs</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="assignedTickets">-</div>
+            <div class="stat-label">Tickets Assigned</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="errorCount">-</div>
+            <div class="stat-label">Errors</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="lastRun">-</div>
+            <div class="stat-label">Last Run</div>
+        </div>
     </div>
-    
-    <button class="btn-save" id="save-btn">Save Configuration</button>
-    
-    <div class="notification" id="notification"></div>
-  </div>
+
+    <div class="controls">
+        <button class="btn" onclick="loadLogs()">🔄 Refresh Logs</button>
+        <button class="btn btn-danger" onclick="clearLogs()">🗑️ Clear Logs</button>
+        <div class="auto-refresh">
+            <div class="status-indicator"></div>
+            Auto-refreshing every 10 seconds
+        </div>
+    </div>
+
+    <div class="logs-container">
+        <div class="logs-header">
+            📋 Recent Activity
+        </div>
+        <div class="logs-content" id="logsContent">
+            <div class="loading">Loading logs...</div>
+        </div>
+    </div>
+
+    <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+    <script>
+        let autoRefreshInterval;
+        let client;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function () {
+            app.initialized().then(function (_client) {
+                client = _client;
+                loadLogs();
+                startAutoRefresh();
+            }).catch(function (error) {
+                console.error('FDK initialization failed:', error);
+                document.getElementById('logsContent').innerHTML =
+                    '<div class="empty-state">❌ Failed to initialize app</div>';
+            });
+        });
+
+        // Load logs from the server
+        async function loadLogs() {
+            try {
+                const response = await client.request.invoke('getLogs', {});
+                if (response && response.logs) {
+                    displayLogs(response.logs);
+                    updateStats(response.logs);
+                } else {
+                    displayLogs([]);
+                    updateStats([]);
+                }
+            } catch (error) {
+                console.error('Error loading logs:', error);
+                document.getElementById('logsContent').innerHTML =
+                    '<div class="empty-state">❌ Error loading logs: ' + error.message + '</div>';
+            }
+        }
+
+        // Display logs in the UI
+        function displayLogs(logs) {
+            const container = document.getElementById('logsContent');
+
+            if (!logs || logs.length === 0) {
+                container.innerHTML = '<div class="empty-state">📭 No logs available</div>';
+                return;
+            }
+
+            // Sort logs by timestamp (newest first)
+            const sortedLogs = logs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            const logsHtml = sortedLogs.map(log => {
+                const timestamp = new Date(log.timestamp).toLocaleString();
+                const details = log.details && Object.keys(log.details).length > 0
+                    ? '<div class="log-details">' + JSON.stringify(log.details, null, 2) + '</div>'
+                    : '';
+
+                return `
+          <div class="log-entry">
+            <span class="log-timestamp">${timestamp}</span>
+            <span class="log-type log-type-${log.type}">${log.type}</span>
+            <span class="log-message">${log.message}</span>
+            ${details}
+          </div>
+        `;
+            }).join('');
+
+            container.innerHTML = logsHtml;
+        }
+
+        // Update statistics
+        function updateStats(logs) {
+            const totalLogs = logs.length;
+            const assignedTickets = logs.filter(log => log.type === 'ticket_assigned').length;
+            const errorCount = logs.filter(log => log.type === 'error').length;
+
+            // Get last run time
+            const lastRun = logs.length > 0
+                ? new Date(logs[logs.length - 1].timestamp).toLocaleTimeString()
+                : 'Never';
+
+            document.getElementById('totalLogs').textContent = totalLogs;
+            document.getElementById('assignedTickets').textContent = assignedTickets;
+            document.getElementById('errorCount').textContent = errorCount;
+            document.getElementById('lastRun').textContent = lastRun;
+        }
+
+        // Clear all logs
+        async function clearLogs() {
+            if (confirm('Are you sure you want to clear all logs?')) {
+                try {
+                    await client.request.invoke('clearLogs', {});
+                    loadLogs(); // Refresh the display
+                } catch (error) {
+                    console.error('Error clearing logs:', error);
+                    alert('Error clearing logs: ' + error.message);
+                }
+            }
+        }
+
+        // Auto-refresh functionality
+        function startAutoRefresh() {
+            autoRefreshInterval = setInterval(loadLogs, 10000); // Refresh every 10 seconds
+        }
+
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+        }
+
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                stopAutoRefresh();
+            } else {
+                startAutoRefresh();
+            }
+        });
+    </script>
+    <script src="scripts/app.js"></script>
 </body>
+
 </html>
