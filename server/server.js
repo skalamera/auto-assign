@@ -180,10 +180,9 @@ exports = {
         filteredLogs = logs.filter(log => log.type === args.type);
       }
 
-      // Limit number of logs if specified
-      if (args && args.limit) {
-        filteredLogs = filteredLogs.slice(-parseInt(args.limit));
-      }
+      // Limit number of logs - default to 100 most recent if not specified
+      const limit = args && args.limit ? parseInt(args.limit) : 100;
+      filteredLogs = filteredLogs.slice(-limit);
 
       const result = {
         success: true,
@@ -270,8 +269,40 @@ async function getUnassignedTickets() {
 async function getActiveAgents() {
   console.log('Fetching agents and groups sequentially to avoid rate limiting...');
 
-  // Fetch agents first
-  const agentsResponse = await $request.invokeTemplate('getAgents', {});
+  // Fetch all pages of agents
+  let allAgents = [];
+  let page = 1;
+  let hasMore = true;
+
+  while (hasMore) {
+    try {
+      console.log(`Fetching agents page ${page}...`);
+      const agentsResponse = page === 1
+        ? await $request.invokeTemplate('getAgents', {})
+        : await $request.invokeTemplate('getAgentsPage', { context: { page: page } });
+
+      const pageAgents = JSON.parse(agentsResponse.response);
+
+      if (pageAgents && pageAgents.length > 0) {
+        allAgents = allAgents.concat(pageAgents);
+        console.log(`Page ${page}: fetched ${pageAgents.length} agents (total so far: ${allAgents.length})`);
+
+        // If we got 100 agents, there might be more
+        if (pageAgents.length === 100) {
+          page++;
+        } else {
+          hasMore = false;
+        }
+      } else {
+        hasMore = false;
+      }
+    } catch (error) {
+      console.log(`No more agent pages or error on page ${page}:`, error.message);
+      hasMore = false;
+    }
+  }
+
+  console.log(`Total agents fetched: ${allAgents.length}`);
 
   // Fetch groups sequentially to avoid rate limiting
   console.log('Fetching group 1/6: West Region');
@@ -292,7 +323,7 @@ async function getActiveAgents() {
   console.log('Fetching group 6/6: Support Ops');
   const supportOpsGroup = await $request.invokeTemplate('getSupportOpsGroup', {});
 
-  const agents = JSON.parse(agentsResponse.response);
+  const agents = allAgents;
   const groups = [
     JSON.parse(westGroup.response),
     JSON.parse(southeastGroup.response),

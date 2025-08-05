@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Assign Ticket Logs</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Auto-Assign App Information</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -13,197 +12,113 @@
             padding: 20px;
             background-color: #f8f9fa;
             color: #333;
+            line-height: 1.6;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
             color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
         }
 
         .header p {
             margin: 8px 0 0 0;
             opacity: 0.9;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .controls {
-            display: flex;
-            gap: 10px;
+        .info-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.2s;
+        .info-section h2 {
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            color: #333;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
         }
 
-        .btn:hover {
-            background: #0056b3;
+        .info-section h3 {
+            margin: 20px 0 10px 0;
+            font-size: 16px;
+            color: #555;
         }
 
-        .btn-danger {
-            background: #dc3545;
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .btn-danger:hover {
-            background: #c82333;
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
         }
 
-        .btn:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1abc9c;
+            font-weight: bold;
         }
 
-        .stats {
+        .group-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-top: 15px;
         }
 
-        .stat-card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #007bff;
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .logs-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .logs-header {
+        .group-card {
             background: #f8f9fa;
-            padding: 16px;
-            border-bottom: 1px solid #dee2e6;
-            font-weight: 600;
-            color: #495057;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
         }
 
-        .logs-content {
-            max-height: 600px;
-            overflow-y: auto;
+        .group-card h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #1abc9c;
         }
 
-        .log-entry {
-            padding: 12px 16px;
-            border-bottom: 1px solid #f1f3f4;
-            font-family: 'Monaco', 'Consolas', monospace;
+        .group-card p {
+            margin: 0;
             font-size: 13px;
-            line-height: 1.4;
-        }
-
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-
-        .log-timestamp {
-            color: #666;
-            font-weight: 500;
-            margin-right: 8px;
-        }
-
-        .log-type {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-right: 8px;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .log-type-info {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-
-        .log-type-error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .log-type-ticket_assigned {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .log-message {
-            color: #333;
-        }
-
-        .log-details {
-            margin-top: 6px;
-            padding: 8px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            font-size: 12px;
             color: #666;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .auto-refresh {
+        .status-info {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #666;
+            gap: 10px;
+            padding: 15px;
+            background: #e8f8f5;
+            border-radius: 6px;
+            margin: 15px 0;
         }
 
         .status-indicator {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: #28a745;
+            background: #1abc9c;
             animation: pulse 2s infinite;
         }
 
@@ -220,170 +135,169 @@
                 opacity: 1;
             }
         }
+
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .note strong {
+            color: #856404;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <h1>🎯 Auto-Assign Ticket Logs</h1>
-        <p>Real-time monitoring of automated ticket assignments</p>
+        <img src="autoassign_logo.svg" alt="Auto-Assign"
+            style="width: 64px; height: 64px; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
+        <h1>Auto-Assign Ticket App</h1>
+        <p>Automated round-robin ticket assignment for Freshdesk</p>
     </div>
 
-    <div class="stats" id="stats">
-        <div class="stat-card">
-            <div class="stat-value" id="totalLogs">-</div>
-            <div class="stat-label">Total Logs</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="assignedTickets">-</div>
-            <div class="stat-label">Tickets Assigned</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="errorCount">-</div>
-            <div class="stat-label">Errors</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="lastRun">-</div>
-            <div class="stat-label">Last Run</div>
-        </div>
-    </div>
+    <div class="info-section">
+        <h2>📋 Overview</h2>
+        <p>The Auto-Assign app automatically distributes unassigned tickets to agents using a round-robin algorithm. It
+            runs every 5 minutes and ensures fair distribution of tickets across all agents in each group.</p>
 
-    <div class="controls">
-        <button class="btn" onclick="loadLogs()">🔄 Refresh Logs</button>
-        <button class="btn btn-danger" onclick="clearLogs()">🗑️ Clear Logs</button>
-        <div class="auto-refresh">
+        <div class="status-info">
             <div class="status-indicator"></div>
-            Auto-refreshing every 10 seconds
+            <span><strong>Status:</strong> The app is currently active and running on a 5-minute schedule</span>
+        </div>
+
+        <div class="note" style="margin-top: 15px;">
+            <strong>Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in <strong>"Open"
+                status</strong> to be eligible for automatic assignment.
         </div>
     </div>
 
-    <div class="logs-container">
-        <div class="logs-header">
-            📋 Recent Activity
-        </div>
-        <div class="logs-content" id="logsContent">
-            <div class="loading">Loading logs...</div>
+    <div class="info-section">
+        <h2>✨ Key Features</h2>
+        <ul class="feature-list">
+            <li>Automatic round-robin ticket assignment across all Regions/Groups</li>
+            <li>Persistent assignment tracking - remembers where it left off</li>
+            <li>Assigns any unassigned tickets to ALL agents in a group (no filtering)</li>
+            <li>Runs automatically every 5 minutes</li>
+            <li>Detailed logging for audit and troubleshooting</li>
+            <li>Fair distribution ensures every agent gets equal ticket load</li>
+        </ul>
+    </div>
+
+    <div class="info-section">
+        <h2>👥 Supported Groups</h2>
+        <p>The app handles ticket assignment for these 6 groups:</p>
+
+        <div class="group-grid">
+            <div class="group-card">
+                <h4>West Region</h4>
+                <p>ID: 67000578161</p>
+            </div>
+            <div class="group-card">
+                <h4>Central Southeast</h4>
+                <p>ID: 67000578164</p>
+            </div>
+            <div class="group-card">
+                <h4>Northeast Region</h4>
+                <p>ID: 67000578163</p>
+            </div>
+            <div class="group-card">
+                <h4>Central Southwest</h4>
+                <p>ID: 67000578162</p>
+            </div>
+            <div class="group-card">
+                <h4>Triage</h4>
+                <p>ID: 67000578235</p>
+            </div>
+            <div class="group-card">
+                <h4>Support Ops</h4>
+                <p>ID: 67000570681</p>
+            </div>
         </div>
     </div>
 
-    <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
-    <script>
-        let autoRefreshInterval;
-        let client;
+    <div class="info-section">
+        <h2>⚙️ How It Works</h2>
 
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', function () {
-            app.initialized().then(function (_client) {
-                client = _client;
-                loadLogs();
-                startAutoRefresh();
-            }).catch(function (error) {
-                console.error('FDK initialization failed:', error);
-                document.getElementById('logsContent').innerHTML =
-                    '<div class="empty-state">❌ Failed to initialize app</div>';
-            });
-        });
+        <h3>Assignment Process:</h3>
+        <ol>
+            <li>Every 5 minutes, the app checks for tickets that are:
+                <ul>
+                    <li>Unassigned (no agent currently assigned)</li>
+                    <li>In "Open" status</li>
+                    <li>Assigned to one of the 6 supported groups</li>
+                </ul>
+            </li>
+            <li>For each eligible ticket, it identifies the assigned group</li>
+            <li>It assigns the ticket to the next agent in that group's rotation</li>
+            <li>The round-robin index is saved and persists across runs</li>
+        </ol>
 
-        // Load logs from the server
-        async function loadLogs() {
-            try {
-                const response = await client.request.invoke('getLogs', {});
-                if (response && response.logs) {
-                    displayLogs(response.logs);
-                    updateStats(response.logs);
-                } else {
-                    displayLogs([]);
-                    updateStats([]);
-                }
-            } catch (error) {
-                console.error('Error loading logs:', error);
-                document.getElementById('logsContent').innerHTML =
-                    '<div class="empty-state">❌ Error loading logs: ' + error.message + '</div>';
-            }
-        }
+        <h3>Round-Robin Example:</h3>
+        <div class="code-block">
+            Group: Support Ops (4 agents)
+            - Ticket 1 → Agent A (index 0)
+            - Ticket 2 → Agent B (index 1)
+            - Ticket 3 → Agent C (index 2)
+            - Ticket 4 → Agent D (index 3)
+            - Ticket 5 → Agent A (index 0) ← Wraps around
+            - Ticket 6 → Agent B (index 1)
+            ...</div>
 
-        // Display logs in the UI
-        function displayLogs(logs) {
-            const container = document.getElementById('logsContent');
+        <div class="note">
+            <strong>Note:</strong> The app only processes tickets that are both <strong>unassigned</strong> AND in
+            <strong>"Open" status</strong>. Tickets in other statuses (New, Pending, Resolved, Closed) will not be
+            automatically assigned.
+        </div>
+    </div>
 
-            if (!logs || logs.length === 0) {
-                container.innerHTML = '<div class="empty-state">📭 No logs available</div>';
-                return;
-            }
+    <div class="info-section">
+        <h2>📊 Viewing Logs</h2>
+        <p>To view detailed assignment logs:</p>
+        <ol>
+            <li>Open the Freshdesk admin panel</li>
+            <li>Navigate to the app's log viewer</li>
+            <li>Select date range to view within Freshdesk and/or download the logs if desired</li>
+        </ol>
 
-            // Sort logs by timestamp (newest first)
-            const sortedLogs = logs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        <h3>Log Types:</h3>
+        <ul>
+            <li><strong>info</strong> - General information about app operations</li>
+            <li><strong>ticket_assigned</strong> - Successful ticket assignments with details</li>
+            <li><strong>error</strong> - Any errors encountered during assignment</li>
+        </ul>
+    </div>
 
-            const logsHtml = sortedLogs.map(log => {
-                const timestamp = new Date(log.timestamp).toLocaleString();
-                const details = log.details && Object.keys(log.details).length > 0
-                    ? '<div class="log-details">' + JSON.stringify(log.details, null, 2) + '</div>'
-                    : '';
+    <div class="info-section">
+        <h2>🔧 Troubleshooting</h2>
 
-                return `
-          <div class="log-entry">
-            <span class="log-timestamp">${timestamp}</span>
-            <span class="log-type log-type-${log.type}">${log.type}</span>
-            <span class="log-message">${log.message}</span>
-            ${details}
-          </div>
-        `;
-            }).join('');
+        <h3>Common Issues:</h3>
+        <ul>
+            <li><strong>Tickets not being assigned:</strong> Check if tickets have the correct group ID</li>
+            <li><strong>Uneven distribution:</strong> The app maintains separate round-robin counters for each group
+            </li>
+            <li><strong>Missing agents:</strong> Ensure agents are properly added to their groups in Freshdesk</li>
+        </ul>
 
-            container.innerHTML = logsHtml;
-        }
+        <div class="note">
+            <strong>Important:</strong> Only tickets assigned to one of the 6 supported groups will be auto-assigned.
+            Tickets without a group or in unsupported groups require manual assignment.
+        </div>
+    </div>
 
-        // Update statistics
-        function updateStats(logs) {
-            const totalLogs = logs.length;
-            const assignedTickets = logs.filter(log => log.type === 'ticket_assigned').length;
-            const errorCount = logs.filter(log => log.type === 'error').length;
-
-            // Get last run time
-            const lastRun = logs.length > 0
-                ? new Date(logs[logs.length - 1].timestamp).toLocaleTimeString()
-                : 'Never';
-
-            document.getElementById('totalLogs').textContent = totalLogs;
-            document.getElementById('assignedTickets').textContent = assignedTickets;
-            document.getElementById('errorCount').textContent = errorCount;
-            document.getElementById('lastRun').textContent = lastRun;
-        }
-
-        // Clear all logs
-        async function clearLogs() {
-            if (confirm('Are you sure you want to clear all logs?')) {
-                try {
-                    await client.request.invoke('clearLogs', {});
-                    loadLogs(); // Refresh the display
-                } catch (error) {
-                    console.error('Error clearing logs:', error);
-                    alert('Error clearing logs: ' + error.message);
-                }
-            }
-        }
-
-        // Auto-refresh functionality
-        function startAutoRefresh() {
-            autoRefreshInterval = setInterval(loadLogs, 10000); // Refresh every 10 seconds
-        }
-
-        function stopAutoRefresh() {
-            if (autoRefreshInterval) {
-                clearInterval(autoRefreshInterval);
-            }
-        }
-
-        // Handle page visibility changes
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                stopAutoRefresh();
-            } else {
-                startAutoRefresh();
-            }
-        });
-    </script>
-    <script src="scripts/app.js"></script>
 </body>
 
 </html>

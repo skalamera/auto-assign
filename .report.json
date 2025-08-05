@@ -12,27 +12,27 @@
     },
     {
       "severity": 1,
-      "value": "server\\server.js::261: possible deprecated API usage detected",
+      "value": "server\\server.js::260: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::270: Async function 'getActiveAgents' has a complexity of 9. Maximum allowed is 7.",
+      "value": "server\\server.js::269: Async function 'getActiveAgents' has a complexity of 15. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::271: possible deprecated API usage detected",
+      "value": "server\\server.js::270: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::331: possible deprecated API usage detected",
+      "value": "server\\server.js::362: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::362: Async function 'assignTicketsInRoundRobin' has a complexity of 10. Maximum allowed is 7.",
+      "value": "server\\server.js::393: Async function 'assignTicketsInRoundRobin' has a complexity of 10. Maximum allowed is 7.",
       "type": "lint"
     }
   ],
