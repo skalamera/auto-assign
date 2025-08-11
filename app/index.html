@@ -158,6 +158,271 @@
         .note strong {
             color: #856404;
         }
+
+        /* New styles for log viewer */
+        .log-viewer-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .file-upload-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .upload-btn {
+            background-color: #1abc9c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background-color: #16a085;
+        }
+
+        .clear-file-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .clear-file-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .file-name {
+            font-size: 14px;
+            color: #555;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f0f0f0;
+        }
+
+        .summary-stats,
+        .agent-summary,
+        .group-summary,
+        .filters-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-stats h4,
+        .agent-summary h4,
+        .group-summary h4,
+        .filters-section h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .stats-grid,
+        .agent-grid,
+        .group-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card,
+        .agent-card,
+        .group-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-number,
+        .agent-name,
+        .group-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1abc9c;
+            margin-bottom: 5px;
+        }
+
+        .stat-label,
+        .agent-label,
+        .group-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .filters-section .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .filters-section .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filters-section label {
+            font-size: 14px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .filters-section select,
+        .filters-section input[type="date"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .filters-section select:focus,
+        .filters-section input[type="date"]:focus {
+            outline: none;
+            border-color: #1abc9c;
+            box-shadow: 0 0 0 2px #1abc9c;
+        }
+
+        .clear-filters-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .clear-filters-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .timeline-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow-y: auto;
+            max-height: 400px;
+            /* Adjust as needed */
+        }
+
+        .timeline-event {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-event .event-type {
+            font-weight: bold;
+            color: #1abc9c;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #e8f8f5;
+        }
+
+        .timeline-event .event-details {
+            flex-grow: 1;
+        }
+
+        .timeline-event .event-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+
+        .timeline-event .event-message {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .timeline-event .event-details .event-time {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .timeline-event .event-details .event-message {
+            font-style: italic;
+            color: #666;
+        }
+
+        .date-range-display {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .date-range-display h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .date-range-info {
+            display: flex;
+            gap: 30px;
+            font-size: 16px;
+        }
+
+        .date-range-info span {
+            color: #555;
+        }
+
+        .date-range-info strong {
+            color: #333;
+        }
     </style>
 </head>
 
@@ -172,7 +437,8 @@
     <div class="info-section">
         <h2>📋 Overview</h2>
         <p>The Auto-Assign app automatically distributes unassigned tickets to agents using a round-robin algorithm. It
-            runs every 5 minutes and ensures fair distribution of tickets across all agents in each group.</p>
+            runs every 5 minutes, filters for tickets in "Open" or "Triage" status, and ensures fair distribution across
+            all agents in each group.</p>
 
         <div class="status-info">
             <div class="status-indicator"></div>
@@ -180,7 +446,8 @@
         </div>
 
         <div class="note" style="margin-top: 15px;">
-            <strong>Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in <strong>"Open"
+            <strong>Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in <strong>"Open" or
+                "Triage"
                 status</strong> to be eligible for automatic assignment.
         </div>
     </div>
@@ -190,7 +457,9 @@
         <ul class="feature-list">
             <li>Automatic round-robin ticket assignment across all Regions/Groups</li>
             <li>Persistent assignment tracking - remembers where it left off</li>
-            <li>Assigns any unassigned tickets to ALL agents in a group (no filtering)</li>
+            <li>Randomized starting positions for each group to prevent clustering</li>
+            <li>Filters for tickets in "Open" or "Triage" status only</li>
+            <li>Assigns unassigned tickets to ALL agents in a group (no agent filtering)</li>
             <li>Runs automatically every 5 minutes</li>
             <li>Detailed logging for audit and troubleshooting</li>
             <li>Fair distribution ensures every agent gets equal ticket load</li>
@@ -237,7 +506,7 @@
             <li>Every 5 minutes, the app checks for tickets that are:
                 <ul>
                     <li>Unassigned (no agent currently assigned)</li>
-                    <li>In "Open" status</li>
+                    <li>In "Open" or "Triage" status</li>
                     <li>Assigned to one of the 6 supported groups</li>
                 </ul>
             </li>
@@ -246,20 +515,34 @@
             <li>The round-robin index is saved and persists across runs</li>
         </ol>
 
+        <h3>Randomized Starting Positions:</h3>
+        <p>When a group first receives tickets, the app randomly selects which agent to start with. This prevents agents
+            who belong to multiple groups from receiving multiple tickets at once. For example:</p>
+        <ul>
+            <li>If Brad is in both Triage and West Region groups</li>
+            <li>Triage might start at index 3 (Kristi)</li>
+            <li>West Region might start at index 1 (Dayna)</li>
+            <li>This way Brad doesn't get the first ticket from both groups</li>
+        </ul>
+
         <h3>Round-Robin Example:</h3>
         <div class="code-block">
-            Group: Support Ops (4 agents)
-            - Ticket 1 → Agent A (index 0)
-            - Ticket 2 → Agent B (index 1)
-            - Ticket 3 → Agent C (index 2)
-            - Ticket 4 → Agent D (index 3)
-            - Ticket 5 → Agent A (index 0) ← Wraps around
-            - Ticket 6 → Agent B (index 1)
-            ...</div>
+            Group: Support Ops (4 agents) - Starting at random index 2
+            - Ticket 1 → Agent C (index 2) ← Random start
+            - Ticket 2 → Agent D (index 3)
+            - Ticket 3 → Agent A (index 0) ← Wraps around
+            - Ticket 4 → Agent B (index 1)
+            - Ticket 5 → Agent C (index 2)
+            - Ticket 6 → Agent D (index 3)
+            ...
+
+            Note: Each group starts at a random position to prevent agents
+            in multiple groups from getting tickets simultaneously.</div>
 
         <div class="note">
             <strong>Note:</strong> The app only processes tickets that are both <strong>unassigned</strong> AND in
-            <strong>"Open" status</strong>. Tickets in other statuses (New, Pending, Resolved, Closed) will not be
+            <strong>"Open" or "Triage" status</strong>. Tickets in other statuses (New, Pending, Resolved, Closed) will
+            not be
             automatically assigned.
         </div>
     </div>
@@ -279,6 +562,117 @@
             <li><strong>ticket_assigned</strong> - Successful ticket assignments with details</li>
             <li><strong>error</strong> - Any errors encountered during assignment</li>
         </ul>
+
+        <!-- Log File Uploader and Viewer -->
+        <div class="log-viewer-section">
+            <h3>📁 Upload and Analyze Log Files</h3>
+            <p>Upload a log file downloaded from Freshdesk to analyze ticket assignments and system activity:</p>
+
+            <div class="file-upload-container">
+                <input type="file" id="logFileInput" accept=".txt" style="display: none;">
+                <button id="uploadBtn" class="upload-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7,10 12,15 17,10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Choose Log File
+                </button>
+                <button id="clearFileBtn" class="clear-file-btn" style="display: none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18"></path>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Clear File
+                </button>
+                <span id="fileName" class="file-name"></span>
+            </div>
+
+            <!-- Date Range Display -->
+            <div id="dateRangeDisplay" class="date-range-display" style="display: none;">
+                <h4>📅 Log Date Range</h4>
+                <div class="date-range-info">
+                    <span><strong>From:</strong> <span id="minDate">-</span></span>
+                    <span><strong>To:</strong> <span id="maxDate">-</span></span>
+                </div>
+            </div>
+
+            <!-- Summary Statistics -->
+            <div id="summaryStats" class="summary-stats" style="display: none;">
+                <h4>📈 Summary Statistics</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalLogs">0</div>
+                        <div class="stat-label">Total Log Entries</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="ticketsAssigned">0</div>
+                        <div class="stat-label">Tickets Assigned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="uniqueAgents">0</div>
+                        <div class="stat-label">Unique Agents</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="uniqueGroups">0</div>
+                        <div class="stat-label">Groups Involved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalErrors">0</div>
+                        <div class="stat-label">Errors</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Assignment Summary -->
+            <div id="agentSummary" class="agent-summary" style="display: none;">
+                <h4>👥 Agent Assignment Summary</h4>
+                <div class="agent-grid" id="agentGrid"></div>
+            </div>
+
+            <!-- Group Assignment Summary -->
+            <div id="groupSummary" class="group-summary" style="display: none;">
+                <h4>🏢 Group Assignment Summary</h4>
+                <div class="group-stats-grid" id="groupStatsGrid"></div>
+            </div>
+
+            <!-- Filters -->
+            <div id="filters" class="filters-section" style="display: none;">
+                <h4>🔍 Filters</h4>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="logTypeFilter">Log Type:</label>
+                        <select id="logTypeFilter">
+                            <option value="">All Types</option>
+                            <option value="info">Info</option>
+                            <option value="ticket_assigned">Ticket Assigned</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="agentFilter">Agent:</label>
+                        <select id="agentFilter">
+                            <option value="">All Agents</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="groupFilter">Group:</label>
+                        <select id="groupFilter">
+                            <option value="">All Groups</option>
+                        </select>
+                    </div>
+
+                    <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div id="timeline" class="timeline-container" style="display: none;">
+                <h4>⏰ Event Timeline</h4>
+                <div class="timeline" id="timelineContent"></div>
+            </div>
+        </div>
     </div>
 
     <div class="info-section">
@@ -299,5 +693,664 @@
     </div>
 
 </body>
+
+<script>
+    // Log Viewer Functionality
+    class LogViewer {
+        constructor() {
+            this.logs = [];
+            this.filteredLogs = [];
+            this.agents = new Map();
+            this.groups = new Map();
+            this.groupNames = {
+                '67000578161': 'West Region',
+                '67000578164': 'Central Southeast',
+                '67000578163': 'Northeast Region',
+                '67000578162': 'Central Southwest',
+                '67000578235': 'Triage',
+                '67000570681': 'Support Ops'
+            };
+
+            this.initializeEventListeners();
+        }
+
+        initializeEventListeners() {
+            const uploadBtn = document.getElementById('uploadBtn');
+            const logFileInput = document.getElementById('logFileInput');
+            const clearFiltersBtn = document.getElementById('clearFilters');
+            const clearFileBtn = document.getElementById('clearFileBtn');
+
+            uploadBtn.addEventListener('click', () => logFileInput.click());
+            logFileInput.addEventListener('change', (e) => this.handleFileUpload(e));
+            clearFiltersBtn.addEventListener('click', () => this.clearFilters());
+            clearFileBtn.addEventListener('click', () => this.clearFile());
+
+            // Filter event listeners
+            document.getElementById('logTypeFilter').addEventListener('change', () => this.applyFilters());
+            document.getElementById('agentFilter').addEventListener('change', () => this.applyFilters());
+            document.getElementById('groupFilter').addEventListener('change', () => this.applyFilters());
+        }
+
+        async handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('clearFileBtn').style.display = 'inline-block'; // Show clear button
+
+            try {
+                const text = await file.text();
+                this.parseLogFile(text);
+                this.displayResults();
+            } catch (error) {
+                console.error('Error reading file:', error);
+                alert('Error reading the log file. Please make sure it\'s a valid text file.');
+            }
+        }
+
+        parseLogFile(text) {
+            try {
+                // Parse the JSON array
+                const logArray = JSON.parse(text);
+                this.logs = logArray.filter(log => log && log.timestamp && log.type);
+
+                // Extract ticket assignment details and agent/group information
+                this.extractAssignmentData();
+
+                console.log(`Parsed ${this.logs.length} log entries`);
+            } catch (error) {
+                console.error('Error parsing log file:', error);
+                alert('Error parsing the log file. Please make sure it\'s a valid JSON format.');
+            }
+        }
+
+        extractAssignmentData() {
+            this.agents.clear();
+            this.groups.clear();
+
+            console.log('Starting to extract assignment data from', this.logs.length, 'logs');
+
+            this.logs.forEach((log, index) => {
+                if (log.message && log.message.text) {
+                    // Look for ticket assignments in the message text
+                    this.extractAssignmentFromMessage(log, index);
+                }
+            });
+
+            console.log('Extraction complete. Found agents:', this.agents.size, 'groups:', this.groups.size);
+        }
+
+        extractAssignmentFromMessage(log, index) {
+            const messageText = log.message.text;
+
+            // Look for the embedded JSON data in "Creating log entry:" messages
+            if (messageText.includes('Creating log entry:')) {
+                // Find the start of the JSON object
+                const startIndex = messageText.indexOf('Creating log entry: {');
+                if (startIndex !== -1) {
+                    // Find the matching closing brace by counting braces
+                    let braceCount = 0;
+                    let endIndex = startIndex + 'Creating log entry: '.length;
+                    let jsonStart = endIndex;
+
+                    for (let i = jsonStart; i < messageText.length; i++) {
+                        if (messageText[i] === '{') {
+                            braceCount++;
+                        } else if (messageText[i] === '}') {
+                            braceCount--;
+                            if (braceCount === 0) {
+                                endIndex = i + 1;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (endIndex > jsonStart) {
+                        // Raw object-literal string from the log
+                        const rawObjectLiteral = messageText.substring(jsonStart, endIndex);
+
+                        try {
+                            // First, attempt strict JSON parse after transforming to valid JSON
+                            let jsonStr = rawObjectLiteral;
+                            // Quote keys at object boundaries only
+                            jsonStr = jsonStr.replace(/([\{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:/g, '$1"$2":');
+                            // Replace single quotes with double quotes
+                            jsonStr = jsonStr.replace(/'/g, '"');
+                            // Escape newlines
+                            jsonStr = jsonStr.replace(/\n/g, '\\n');
+                            // Remove trailing commas
+                            jsonStr = jsonStr.replace(/,(\s*[}\]])/g, '$1');
+
+                            console.log('After transformation, JSON string:', jsonStr);
+
+                            const logEntry = JSON.parse(jsonStr);
+                            this._handleParsedEmbeddedEntry(logEntry, log, index);
+                        } catch (e) {
+                            console.warn('Failed strict JSON parse at index', index, ':', e);
+                            console.warn('Attempting tolerant parse of object literal...');
+                            try {
+                                // Tolerant fallback: parse as JS object literal
+                                // Note: This runs in the page context. Only use with trusted local log files.
+                                // Wrap in parentheses to ensure expression context
+                                // eslint-disable-next-line no-new-func
+                                const logEntry = (new Function('"use strict"; return (' + rawObjectLiteral + ')'))();
+                                this._handleParsedEmbeddedEntry(logEntry, log, index);
+                            } catch (err) {
+                                console.warn('Fallback parse failed at index', index, ':', err);
+                                console.warn('JSON string was:', rawObjectLiteral);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        _handleParsedEmbeddedEntry(logEntry, log, index) {
+            try {
+                console.log('Parsed log entry at index', index, ':', logEntry.type, logEntry.message);
+                if (logEntry.type === 'ticket_assigned' && logEntry.details) {
+                    const details = logEntry.details;
+                    const ticketId = details.ticket_id;
+                    const agentName = details.agent_name;
+                    const groupId = details.group_id;
+                    const subject = details.ticket_subject || 'Unknown Subject';
+
+                    console.log('Found ticket assignment:', { ticketId, agentName, groupId, subject });
+
+                    if (ticketId && agentName && groupId) {
+                        if (!this.agents.has(agentName)) {
+                            this.agents.set(agentName, { count: 0, tickets: [] });
+                        }
+                        this.agents.get(agentName).count++;
+                        this.agents.get(agentName).tickets.push({
+                            id: ticketId,
+                            subject: subject,
+                            timestamp: log.timestamp,
+                            groupId: groupId
+                        });
+
+                        if (!this.groups.has(groupId)) {
+                            this.groups.set(groupId, { count: 0, tickets: [] });
+                        }
+                        this.groups.get(groupId).count++;
+                        this.groups.get(groupId).tickets.push({
+                            id: ticketId,
+                            subject: subject,
+                            timestamp: log.timestamp,
+                            agentName: agentName
+                        });
+
+                        console.log('Successfully tracked assignment for', agentName, 'in group', groupId);
+                    }
+                }
+            } catch (e) {
+                console.warn('Error handling parsed entry at index', index, ':', e);
+            }
+        }
+
+        displayResults() {
+            this.updateDateRange();
+            this.updateSummaryStats();
+            this.updateAgentSummary();
+            this.updateGroupSummary();
+            this.updateFilters();
+
+            // Set default filter to "Ticket Assigned"
+            document.getElementById('logTypeFilter').value = 'ticket_assigned';
+
+            this.updateTimeline();
+
+            // Show all sections
+            document.getElementById('dateRangeDisplay').style.display = 'block';
+            document.getElementById('summaryStats').style.display = 'block';
+            document.getElementById('agentSummary').style.display = 'block';
+            document.getElementById('groupSummary').style.display = 'block';
+            document.getElementById('filters').style.display = 'block';
+            document.getElementById('timeline').style.display = 'block';
+        }
+
+        updateDateRange() {
+            if (this.logs.length === 0) return;
+
+            // Find min and max dates
+            let minDate = new Date(this.logs[0].timestamp);
+            let maxDate = new Date(this.logs[0].timestamp);
+
+            this.logs.forEach(log => {
+                const logDate = new Date(log.timestamp);
+                if (logDate < minDate) minDate = logDate;
+                if (logDate > maxDate) maxDate = logDate;
+            });
+
+            // Format dates for display
+            const formatDate = (date) => {
+                return date.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+            };
+
+            document.getElementById('minDate').textContent = formatDate(minDate);
+            document.getElementById('maxDate').textContent = formatDate(maxDate);
+
+            console.log('Date range:', formatDate(minDate), 'to', formatDate(maxDate));
+        }
+
+        updateSummaryStats() {
+            const ticketAssignments = this.agents.size > 0 ?
+                Array.from(this.agents.values()).reduce((sum, agent) => sum + agent.count, 0) : 0;
+            const errors = this.logs.filter(log => log.type === 'error').length;
+
+            console.log('Updating summary stats:', {
+                totalLogs: this.logs.length,
+                ticketAssignments: ticketAssignments,
+                uniqueAgents: this.agents.size,
+                uniqueGroups: this.groups.size,
+                errors: errors
+            });
+
+            document.getElementById('totalLogs').textContent = this.logs.length;
+            document.getElementById('ticketsAssigned').textContent = ticketAssignments;
+            document.getElementById('uniqueAgents').textContent = this.agents.size;
+            document.getElementById('uniqueGroups').textContent = this.groups.size;
+            document.getElementById('totalErrors').textContent = errors;
+        }
+
+        updateAgentSummary() {
+            const agentGrid = document.getElementById('agentGrid');
+            agentGrid.innerHTML = '';
+
+            if (this.agents.size === 0) {
+                agentGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">No ticket assignments found</div>';
+                return;
+            }
+
+            // Sort agents by assignment count
+            const sortedAgents = Array.from(this.agents.entries())
+                .sort((a, b) => b[1].count - a[1].count)
+                .slice(0, 10); // Show top 10 agents
+
+            sortedAgents.forEach(([agentName, data]) => {
+                const agentCard = document.createElement('div');
+                agentCard.className = 'agent-card';
+                agentCard.innerHTML = `
+                    <div class="agent-name">${data.count}</div>
+                    <div class="agent-label">${agentName}</div>
+                `;
+                agentGrid.appendChild(agentCard);
+            });
+        }
+
+        updateGroupSummary() {
+            const groupStatsGrid = document.getElementById('groupStatsGrid');
+            groupStatsGrid.innerHTML = '';
+
+            if (this.groups.size === 0) {
+                groupStatsGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">No group assignments found</div>';
+                return;
+            }
+
+            this.groups.forEach((data, groupId) => {
+                const groupName = this.groupNames[groupId] || `Group ${groupId}`;
+                const groupCard = document.createElement('div');
+                groupCard.className = 'group-card';
+                groupCard.innerHTML = `
+                    <div class="group-name">${data.count}</div>
+                    <div class="group-label">${groupName}</div>
+                `;
+                groupStatsGrid.appendChild(groupCard);
+            });
+        }
+
+        updateFilters() {
+            // Update agent filter
+            const agentFilter = document.getElementById('agentFilter');
+            agentFilter.innerHTML = '<option value="">All Agents</option>';
+            this.agents.forEach((data, agentName) => {
+                const option = document.createElement('option');
+                option.value = agentName;
+                option.textContent = `${agentName} (${data.count})`;
+                agentFilter.appendChild(option);
+            });
+
+            // Update group filter
+            const groupFilter = document.getElementById('groupFilter');
+            groupFilter.innerHTML = '<option value="">All Groups</option>';
+            this.groups.forEach((data, groupId) => {
+                const groupName = this.groupNames[groupId] || `Group ${groupId}`;
+                const option = document.createElement('option');
+                option.value = groupId;
+                option.textContent = `${groupName} (${data.count})`;
+                groupFilter.appendChild(option);
+            });
+        }
+
+        updateTimeline() {
+            this.applyFilters();
+        }
+
+        applyFilters() {
+            const logTypeFilter = document.getElementById('logTypeFilter').value;
+            const agentFilter = document.getElementById('agentFilter').value;
+            const groupFilter = document.getElementById('groupFilter').value;
+
+            this.filteredLogs = this.logs.filter(log => {
+                // Only show meaningful events (ticket assignments, errors, and important info)
+                if (!this.isMeaningfulEvent(log)) return false;
+
+                // Log type filter
+                if (logTypeFilter) {
+                    if (logTypeFilter === 'ticket_assigned') {
+                        // For ticket_assigned filter, check if this is a ticket assignment
+                        if (!this.isTicketAssignment(log)) return false;
+                    } else if (log.type !== logTypeFilter) {
+                        return false;
+                    }
+                }
+
+                // Agent filter (for ticket assignments)
+                if (agentFilter && this.isTicketAssignment(log)) {
+                    const messageText = log.message?.text || '';
+                    if (!messageText.includes(`agent_name: '${agentFilter}'`)) return false;
+                }
+
+                // Group filter (for ticket assignments)
+                if (groupFilter && this.isTicketAssignment(log)) {
+                    const messageText = log.message?.text || '';
+                    if (!messageText.includes(`group_id: ${groupFilter}`)) return false;
+                }
+
+                return true;
+            });
+
+            this.renderTimeline();
+        }
+
+        isMeaningfulEvent(log) {
+            // Only show ticket assignments, errors, and important info messages
+            if (log.type === 'error') return true;
+            if (log.type === 'ticket_assigned') return true;
+
+            // For info messages, only show ticket assignments and important events
+            if (log.type === 'info' && log.message?.text) {
+                const messageText = log.message.text;
+
+                // Show ticket assignments
+                if (messageText.includes('Creating log entry:') && messageText.includes('ticket_assigned')) {
+                    return true;
+                }
+
+                // Show errors
+                if (messageText.includes('error') || messageText.includes('Error')) {
+                    return true;
+                }
+
+                // Show important completion messages
+                if (messageText.includes('Ticket assignment completed') ||
+                    messageText.includes('TICKET_ASSIGNED:')) {
+                    return true;
+                }
+
+                return false;
+            }
+
+            return false;
+        }
+
+        isTicketAssignment(log) {
+            if (log.type === 'ticket_assigned') return true;
+            if (log.type === 'info' && log.message?.text) {
+                return log.message.text.includes('Creating log entry:') &&
+                    log.message.text.includes('ticket_assigned');
+            }
+            return false;
+        }
+
+        renderTimeline() {
+            const timelineContent = document.getElementById('timelineContent');
+            timelineContent.innerHTML = '';
+
+            if (this.filteredLogs.length === 0) {
+                timelineContent.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No events match the current filters</div>';
+                return;
+            }
+
+            // Check if we're filtering for ticket assignments
+            const logTypeFilter = document.getElementById('logTypeFilter').value;
+            const isTicketAssignmentView = logTypeFilter === 'ticket_assigned';
+
+            if (isTicketAssignmentView) {
+                // Render as a table for ticket assignments
+                this.renderTicketAssignmentTable(timelineContent);
+            } else {
+                // Render as timeline for other views
+                this.renderTimelineEvents(timelineContent);
+            }
+        }
+
+        renderTicketAssignmentTable(container) {
+            // Extract ticket assignment details from filtered logs
+            const ticketAssignments = [];
+
+            this.filteredLogs.forEach(log => {
+                if (this.isTicketAssignment(log) && log.message?.text) {
+                    const messageText = log.message.text;
+                    if (messageText.includes('Creating log entry:')) {
+                        const startIndex = messageText.indexOf('Creating log entry: {');
+                        if (startIndex !== -1) {
+                            const jsonStart = startIndex + 'Creating log entry: '.length;
+                            let braceCount = 0;
+                            let endIndex = jsonStart;
+
+                            for (let i = jsonStart; i < messageText.length; i++) {
+                                if (messageText[i] === '{') braceCount++;
+                                else if (messageText[i] === '}') {
+                                    braceCount--;
+                                    if (braceCount === 0) {
+                                        endIndex = i + 1;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (endIndex > jsonStart) {
+                                try {
+                                    const rawObjectLiteral = messageText.substring(jsonStart, endIndex);
+                                    // eslint-disable-next-line no-new-func
+                                    const logEntry = (new Function('"use strict"; return (' + rawObjectLiteral + ')'))();
+
+                                    if (logEntry.type === 'ticket_assigned' && logEntry.details) {
+                                        ticketAssignments.push({
+                                            ticketId: logEntry.details.ticket_id,
+                                            subject: logEntry.details.ticket_subject || 'No subject',
+                                            agentName: logEntry.details.agent_name,
+                                            groupId: logEntry.details.group_id,
+                                            groupName: this.groupNames[logEntry.details.group_id] || `Group ${logEntry.details.group_id}`,
+                                            timestamp: log.timestamp
+                                        });
+                                    }
+                                } catch (e) {
+                                    console.warn('Failed to parse ticket assignment:', e);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Sort by timestamp (newest first)
+            ticketAssignments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            // Create table
+            const tableHtml = `
+                <style>
+                    .ticket-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        background: white;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .ticket-table th {
+                        background: #1abc9c;
+                        color: white;
+                        padding: 12px;
+                        text-align: left;
+                        font-weight: 600;
+                    }
+                    .ticket-table td {
+                        padding: 12px;
+                        border-bottom: 1px solid #eee;
+                    }
+                    .ticket-table tr:last-child td {
+                        border-bottom: none;
+                    }
+                    .ticket-table tr:hover {
+                        background: #f8f9fa;
+                    }
+                    .ticket-id {
+                        font-weight: 600;
+                        color: #1abc9c;
+                    }
+                </style>
+                <table class="ticket-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Subject</th>
+                            <th>Agent</th>
+                            <th>Group</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${ticketAssignments.map(ticket => `
+                            <tr>
+                                <td class="ticket-id">#${ticket.ticketId}</td>
+                                <td>${this.escapeHtml(ticket.subject)}</td>
+                                <td>${this.escapeHtml(ticket.agentName)}</td>
+                                <td>${this.escapeHtml(ticket.groupName)}</td>
+                                <td>${new Date(ticket.timestamp).toLocaleString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = ticketAssignments.length > 0 ? tableHtml :
+                '<div style="text-align: center; color: #666; padding: 20px;">No ticket assignments found</div>';
+        }
+
+        renderTimelineEvents(container) {
+            // Sort by timestamp (newest first)
+            const sortedLogs = [...this.filteredLogs].sort((a, b) =>
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+
+            sortedLogs.forEach(log => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'timeline-event';
+
+                const timestamp = new Date(log.timestamp);
+                const formattedTime = timestamp.toLocaleString();
+
+                let message = log.message?.text || 'No message';
+                let eventType = log.type;
+
+                // Clean up the message for display
+                if (message.includes('Creating log entry:')) {
+                    // Extract the actual log message from the JSON-like string
+                    const jsonMatch = message.match(/Creating log entry: ({.*})/);
+                    if (jsonMatch) {
+                        try {
+                            const logEntry = JSON.parse(jsonMatch[1].replace(/'/g, '"'));
+                            message = logEntry.message || message;
+                            eventType = logEntry.type || eventType;
+                        } catch (e) {
+                            // If parsing fails, use the original message
+                        }
+                    }
+                }
+
+                // Truncate long messages
+                if (message.length > 200) {
+                    message = message.substring(0, 200) + '...';
+                }
+
+                const typeColor = this.getTypeColor(eventType);
+
+                eventDiv.innerHTML = `
+                    <div class="event-type" style="background-color: ${typeColor}20; color: ${typeColor};">
+                        ${eventType.toUpperCase()}
+                    </div>
+                    <div class="event-details">
+                        <div class="event-time">${formattedTime}</div>
+                        <div class="event-message">${this.escapeHtml(message)}</div>
+                    </div>
+                `;
+
+                container.appendChild(eventDiv);
+            });
+        }
+
+        getTypeColor(type) {
+            switch (type) {
+                case 'ticket_assigned': return '#27ae60';
+                case 'error': return '#e74c3c';
+                case 'info': return '#3498db';
+                default: return '#95a5a6';
+            }
+        }
+
+        escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        clearFilters() {
+            document.getElementById('logTypeFilter').value = '';
+            document.getElementById('agentFilter').value = '';
+            document.getElementById('groupFilter').value = '';
+            this.applyFilters();
+        }
+
+        clearFile() {
+            // Reset data
+            this.logs = [];
+            this.filteredLogs = [];
+            this.agents.clear();
+            this.groups.clear();
+
+            // Reset UI
+            document.getElementById('fileName').textContent = '';
+            document.getElementById('clearFileBtn').style.display = 'none';
+            document.getElementById('logFileInput').value = ''; // Reset file input
+
+            // Hide all sections
+            document.getElementById('dateRangeDisplay').style.display = 'none';
+            document.getElementById('summaryStats').style.display = 'none';
+            document.getElementById('agentSummary').style.display = 'none';
+            document.getElementById('groupSummary').style.display = 'none';
+            document.getElementById('filters').style.display = 'none';
+            document.getElementById('timeline').style.display = 'none';
+
+            // Clear filters
+            this.clearFilters();
+
+            console.log('Log file cleared successfully');
+        }
+    }
+
+    // Initialize the log viewer when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        new LogViewer();
+    });
+</script>
 
 </html>

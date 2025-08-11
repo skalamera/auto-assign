@@ -5,7 +5,6 @@
       "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/tickets",
       "query": {
-        "filter": "new_and_my_open",
         "per_page": "100"
       },
       "headers": {
@@ -25,11 +24,42 @@
       }
     }
   },
+  "getUnassignedTicketsPage": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/search/tickets",
+      "query": {
+        "query": "(status:2 OR status:29) AND agent_id:null",
+        "page": "<%= context.page %>",
+        "per_page": "30"
+      },
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
   "getAgents": {
     "schema": {
       "method": "GET",
       "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/agents",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getAgentsPage": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/agents",
+      "query": {
+        "page": "<%= context.page %>",
+        "per_page": "100"
+      },
       "headers": {
         "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
         "Content-Type": "application/json"

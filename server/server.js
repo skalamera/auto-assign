@@ -243,26 +243,44 @@ async function isServiceEnabled() {
 
 // Helper function to get unassigned tickets
 async function getUnassignedTickets() {
-  const ticketsResponse = await $request.invokeTemplate('getUnassignedTickets', {});
-  const tickets = JSON.parse(ticketsResponse.response);
+  try {
+    console.log('Calling getUnassignedTickets API...');
+    const ticketsResponse = await $request.invokeTemplate('getUnassignedTickets', {});
+    console.log('API Response status:', ticketsResponse.status);
+    console.log('Full API Response:', JSON.stringify(ticketsResponse));
 
-  if (!tickets || tickets.length === 0) {
-    console.log('No tickets found');
-    return null;
+    if (ticketsResponse.status >= 400) {
+      console.error('API Error Response body:', ticketsResponse.response);
+      console.error('API Error headers:', ticketsResponse.headers);
+      throw new Error(`API returned status ${ticketsResponse.status}: ${ticketsResponse.response}`);
+    }
+
+    const tickets = JSON.parse(ticketsResponse.response);
+    console.log('Total tickets returned:', tickets.length);
+
+    if (!tickets || tickets.length === 0) {
+      console.log('No tickets found');
+      return null;
+    }
+
+    // Filter for unassigned tickets with status 2 (Open) or 29 (Triage)
+    const unassignedTickets = tickets.filter(ticket => {
+      const isUnassigned = !ticket.responder_id || ticket.responder_id === null;
+      const hasCorrectStatus = ticket.status === 2 || ticket.status === 29;
+      return isUnassigned && hasCorrectStatus;
+    });
+
+    if (unassignedTickets.length === 0) {
+      console.log('No unassigned tickets with Open or Triage status found');
+      return null;
+    }
+
+    console.log(`Found ${unassignedTickets.length} unassigned tickets with Open/Triage status out of ${tickets.length} total tickets`);
+    return unassignedTickets;
+  } catch (error) {
+    console.error('Error in getUnassignedTickets:', error);
+    throw error;
   }
-
-  // Filter out tickets that already have agents assigned
-  const unassignedTickets = tickets.filter(ticket =>
-    !ticket.responder_id || ticket.responder_id === null
-  );
-
-  if (unassignedTickets.length === 0) {
-    console.log('No unassigned tickets found (all tickets have agents assigned)');
-    return null;
-  }
-
-  console.log(`Found ${unassignedTickets.length} unassigned tickets out of ${tickets.length} total tickets`);
-  return unassignedTickets;
 }
 
 // Helper function to get all agents with their group memberships
@@ -456,8 +474,9 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
 
     // Get or initialize the agent index for this group
     if (!agentIndexByGroup[ticketGroupId]) {
-      agentIndexByGroup[ticketGroupId] = 0;
-      console.log(`Initializing round-robin index for group ${ticketGroupId} to 0`);
+      // Randomize the starting index to avoid same agents getting tickets from multiple groups
+      agentIndexByGroup[ticketGroupId] = Math.floor(Math.random() * groupAgents.length);
+      console.log(`Initializing round-robin index for group ${ticketGroupId} to ${agentIndexByGroup[ticketGroupId]} (randomized from 0-${groupAgents.length - 1})`);
     }
 
     // Get the next agent in rotation for this group
