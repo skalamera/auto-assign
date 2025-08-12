@@ -423,278 +423,602 @@
         .date-range-info strong {
             color: #333;
         }
+
+        /* Tabs */
+        .tabs {
+            margin-top: 10px;
+        }
+
+        .tab-headers {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            background: #f4f6f7;
+            border: 1px solid #e1e8eb;
+            border-bottom: none;
+            padding: 10px 14px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #1abc9c;
+            border-color: #dfe6e9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Activity table */
+        .activity-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .activity-controls .filter {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .activity-controls select,
+        .activity-controls input[type="date"] {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .purge-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .purge-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .activity-table th,
+        .activity-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .activity-table th {
+            background: #1abc9c;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .activity-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .result-pill {
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .result-success {
+            background: #e8f8f5;
+            color: #27ae60;
+        }
+
+        .result-failed {
+            background: #fdecea;
+            color: #c0392b;
+        }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <img src="autoassign_logo.svg" alt="Auto-Assign"
-            style="width: 64px; height: 64px; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
-        <h1>Auto-Assign Ticket App</h1>
-        <p>Automated round-robin ticket assignment for Freshdesk</p>
-    </div>
-
-    <div class="info-section">
-        <h2>📋 Overview</h2>
-        <p>The Auto-Assign app automatically distributes unassigned tickets to agents using a round-robin algorithm. It
-            runs every 5 minutes, filters for tickets in "Open" or "Triage" status, and ensures fair distribution across
-            all agents in each group.</p>
-
-        <div class="status-info">
-            <div class="status-indicator"></div>
-            <span><strong>Status:</strong> The app is currently active and running on a 5-minute schedule</span>
+    <div class="tabs">
+        <div class="tab-headers">
+            <button class="tab-btn active" data-tab="overview">App Overview</button>
+            <button class="tab-btn" data-tab="analyze">Analyze Logs</button>
+            <!-- Activity tab hidden for now -->
+            <!-- <button class="tab-btn" data-tab="activity">Activity</button> -->
         </div>
 
-        <div class="note" style="margin-top: 15px;">
-            <strong>Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in <strong>"Open" or
-                "Triage"
-                status</strong> to be eligible for automatic assignment.
-        </div>
-    </div>
+        <div id="tab-overview" class="tab-content active">
+            <div class="header">
+                <img src="autoassign_logo.svg" alt="Auto-Assign"
+                    style="width: 64px; height: 64px; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
+                <h1>Auto-Assign Ticket App</h1>
+                <p>Automated round-robin ticket assignment for Freshdesk</p>
+            </div>
 
-    <div class="info-section">
-        <h2>✨ Key Features</h2>
-        <ul class="feature-list">
-            <li>Automatic round-robin ticket assignment across all Regions/Groups</li>
-            <li>Persistent assignment tracking - remembers where it left off</li>
-            <li>Randomized starting positions for each group to prevent clustering</li>
-            <li>Filters for tickets in "Open" or "Triage" status only</li>
-            <li>Assigns unassigned tickets to ALL agents in a group (no agent filtering)</li>
-            <li>Runs automatically every 5 minutes</li>
-            <li>Detailed logging for audit and troubleshooting</li>
-            <li>Fair distribution ensures every agent gets equal ticket load</li>
-        </ul>
-    </div>
+            <div class="info-section">
+                <h2>📋 Overview</h2>
+                <p>The Auto-Assign app automatically distributes unassigned tickets to agents using a round-robin
+                    algorithm. It
+                    runs every 5 minutes, filters for tickets in "Open" or "Triage" status, and ensures fair
+                    distribution across
+                    all agents in each group.</p>
 
-    <div class="info-section">
-        <h2>👥 Supported Groups</h2>
-        <p>The app handles ticket assignment for these 6 groups:</p>
+                <div class="status-info">
+                    <div class="status-indicator"></div>
+                    <span><strong>Status:</strong> The app is currently active and running on a 5-minute schedule</span>
+                </div>
 
-        <div class="group-grid">
-            <div class="group-card">
-                <h4>West Region</h4>
-                <p>ID: 67000578161</p>
+                <div class="note" style="margin-top: 15px;">
+                    <strong>Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in
+                    <strong>"Open" or
+                        "Triage"
+                        status</strong> to be eligible for automatic assignment.
+                </div>
             </div>
-            <div class="group-card">
-                <h4>Central Southeast</h4>
-                <p>ID: 67000578164</p>
-            </div>
-            <div class="group-card">
-                <h4>Northeast Region</h4>
-                <p>ID: 67000578163</p>
-            </div>
-            <div class="group-card">
-                <h4>Central Southwest</h4>
-                <p>ID: 67000578162</p>
-            </div>
-            <div class="group-card">
-                <h4>Triage</h4>
-                <p>ID: 67000578235</p>
-            </div>
-            <div class="group-card">
-                <h4>Support Ops</h4>
-                <p>ID: 67000570681</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="info-section">
-        <h2>⚙️ How It Works</h2>
-
-        <h3>Assignment Process:</h3>
-        <ol>
-            <li>Every 5 minutes, the app checks for tickets that are:
-                <ul>
-                    <li>Unassigned (no agent currently assigned)</li>
-                    <li>In "Open" or "Triage" status</li>
-                    <li>Assigned to one of the 6 supported groups</li>
+            <div class="info-section">
+                <h2>✨ Key Features</h2>
+                <ul class="feature-list">
+                    <li>Automatic round-robin ticket assignment across all Regions/Groups</li>
+                    <li>Persistent assignment tracking - remembers where it left off</li>
+                    <li>Randomized starting positions for each group to prevent clustering</li>
+                    <li>Filters for tickets in "Open" or "Triage" status only</li>
+                    <li>Assigns unassigned tickets to ALL agents in a group (no agent filtering)</li>
+                    <li>Runs automatically every 5 minutes</li>
+                    <li>Detailed logging for audit and troubleshooting</li>
+                    <li>Fair distribution ensures every agent gets equal ticket load</li>
                 </ul>
-            </li>
-            <li>For each eligible ticket, it identifies the assigned group</li>
-            <li>It assigns the ticket to the next agent in that group's rotation</li>
-            <li>The round-robin index is saved and persists across runs</li>
-        </ol>
-
-        <h3>Randomized Starting Positions:</h3>
-        <p>When a group first receives tickets, the app randomly selects which agent to start with. This prevents agents
-            who belong to multiple groups from receiving multiple tickets at once. For example:</p>
-        <ul>
-            <li>If Brad is in both Triage and West Region groups</li>
-            <li>Triage might start at index 3 (Kristi)</li>
-            <li>West Region might start at index 1 (Dayna)</li>
-            <li>This way Brad doesn't get the first ticket from both groups</li>
-        </ul>
-
-        <h3>Round-Robin Example:</h3>
-        <div class="code-block">
-            Group: Support Ops (4 agents) - Starting at random index 2
-            - Ticket 1 → Agent C (index 2) ← Random start
-            - Ticket 2 → Agent D (index 3)
-            - Ticket 3 → Agent A (index 0) ← Wraps around
-            - Ticket 4 → Agent B (index 1)
-            - Ticket 5 → Agent C (index 2)
-            - Ticket 6 → Agent D (index 3)
-            ...
-
-            Note: Each group starts at a random position to prevent agents
-            in multiple groups from getting tickets simultaneously.</div>
-
-        <div class="note">
-            <strong>Note:</strong> The app only processes tickets that are both <strong>unassigned</strong> AND in
-            <strong>"Open" or "Triage" status</strong>. Tickets in other statuses (New, Pending, Resolved, Closed) will
-            not be
-            automatically assigned.
-        </div>
-    </div>
-
-    <div class="info-section">
-        <h2>📊 Viewing Logs</h2>
-        <p>To view detailed assignment logs:</p>
-        <ol>
-            <li>Open the Freshdesk admin panel</li>
-            <li>Navigate to the app's log viewer</li>
-            <li>Select date range to view within Freshdesk and/or download the logs if desired</li>
-        </ol>
-
-        <h3>Log Types:</h3>
-        <ul>
-            <li><strong>info</strong> - General information about app operations</li>
-            <li><strong>ticket_assigned</strong> - Successful ticket assignments with details</li>
-            <li><strong>error</strong> - Any errors encountered during assignment</li>
-        </ul>
-
-        <!-- Log File Uploader and Viewer -->
-        <div class="log-viewer-section">
-            <h3>📁 Upload and Analyze Log Files</h3>
-            <p>Upload a log file downloaded from Freshdesk to analyze ticket assignments and system activity:</p>
-
-            <div class="file-upload-container">
-                <input type="file" id="logFileInput" accept=".txt" style="display: none;">
-                <button id="uploadBtn" class="upload-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7,10 12,15 17,10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Choose Log File
-                </button>
-                <button id="clearFileBtn" class="clear-file-btn" style="display: none;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 6h18"></path>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
-                        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    </svg>
-                    Clear File
-                </button>
-                <span id="fileName" class="file-name"></span>
             </div>
 
-            <!-- Date Range Display -->
-            <div id="dateRangeDisplay" class="date-range-display" style="display: none;">
-                <h4>📅 Log Date Range</h4>
-                <div class="date-range-info">
-                    <span><strong>From:</strong> <span id="minDate">-</span></span>
-                    <span><strong>To:</strong> <span id="maxDate">-</span></span>
-                </div>
-            </div>
+            <div class="info-section">
+                <h2>👥 Supported Groups</h2>
+                <p>The app handles ticket assignment for these 6 groups:</p>
 
-            <!-- Summary Statistics -->
-            <div id="summaryStats" class="summary-stats" style="display: none;">
-                <h4>📈 Summary Statistics</h4>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalLogs">0</div>
-                        <div class="stat-label">Total Log Entries</div>
+                <div class="group-grid">
+                    <div class="group-card">
+                        <h4>West Region</h4>
+                        <p>ID: 67000578161</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="ticketsAssigned">0</div>
-                        <div class="stat-label">Tickets Assigned</div>
+                    <div class="group-card">
+                        <h4>Central Southeast</h4>
+                        <p>ID: 67000578164</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="uniqueAgents">0</div>
-                        <div class="stat-label">Unique Agents</div>
+                    <div class="group-card">
+                        <h4>Northeast Region</h4>
+                        <p>ID: 67000578163</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="uniqueGroups">0</div>
-                        <div class="stat-label">Groups Involved</div>
+                    <div class="group-card">
+                        <h4>Central Southwest</h4>
+                        <p>ID: 67000578162</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalErrors">0</div>
-                        <div class="stat-label">Errors</div>
+                    <div class="group-card">
+                        <h4>Triage</h4>
+                        <p>ID: 67000578235</p>
+                    </div>
+                    <div class="group-card">
+                        <h4>Support Ops</h4>
+                        <p>ID: 67000570681</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Agent Assignment Summary -->
-            <div id="agentSummary" class="agent-summary" style="display: none;">
-                <h4>👥 Agent Assignment Summary</h4>
-                <div class="agent-grid" id="agentGrid"></div>
-            </div>
+            <div class="info-section">
+                <h2>⚙️ How It Works</h2>
 
-            <!-- Group Assignment Summary -->
-            <div id="groupSummary" class="group-summary" style="display: none;">
-                <h4>🏢 Group Assignment Summary</h4>
-                <div class="group-stats-grid" id="groupStatsGrid"></div>
-            </div>
+                <h3>Assignment Process:</h3>
+                <ol>
+                    <li>Every 5 minutes, the app checks for tickets that are:
+                        <ul>
+                            <li>Unassigned (no agent currently assigned)</li>
+                            <li>In "Open" or "Triage" status</li>
+                            <li>Assigned to one of the 6 supported groups</li>
+                        </ul>
+                    </li>
+                    <li>For each eligible ticket, it identifies the assigned group</li>
+                    <li>It assigns the ticket to the next agent in that group's rotation</li>
+                    <li>The round-robin index is saved and persists across runs</li>
+                </ol>
 
-            <!-- Filters -->
-            <div id="filters" class="filters-section" style="display: none;">
-                <h4>🔍 Filters</h4>
-                <div class="filter-controls">
-                    <div class="filter-group">
-                        <label for="logTypeFilter">Log Type:</label>
-                        <select id="logTypeFilter">
-                            <option value="">All Types</option>
-                            <option value="info">Info</option>
-                            <option value="ticket_assigned">Ticket Assigned</option>
-                            <option value="error">Error</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="agentFilter">Agent:</label>
-                        <select id="agentFilter">
-                            <option value="">All Agents</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="groupFilter">Group:</label>
-                        <select id="groupFilter">
-                            <option value="">All Groups</option>
-                        </select>
-                    </div>
+                <h3>Randomized Starting Positions:</h3>
+                <p>When a group first receives tickets, the app randomly selects which agent to start with. This
+                    prevents agents
+                    who belong to multiple groups from receiving multiple tickets at once. For example:</p>
+                <ul>
+                    <li>If Brad is in both Triage and West Region groups</li>
+                    <li>Triage might start at index 3 (Kristi)</li>
+                    <li>West Region might start at index 1 (Dayna)</li>
+                    <li>This way Brad doesn't get the first ticket from both groups</li>
+                </ul>
 
-                    <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+                <h3>Round-Robin Example:</h3>
+                <div class="code-block">
+                    Group: Support Ops (4 agents) - Starting at random index 2
+                    - Ticket 1 → Agent C (index 2) ← Random start
+                    - Ticket 2 → Agent D (index 3)
+                    - Ticket 3 → Agent A (index 0) ← Wraps around
+                    - Ticket 4 → Agent B (index 1)
+                    - Ticket 5 → Agent C (index 2)
+                    - Ticket 6 → Agent D (index 3)
+                    ...
+
+                    Note: Each group starts at a random position to prevent agents
+                    in multiple groups from getting tickets simultaneously.</div>
+
+                <div class="note">
+                    <strong>Note:</strong> The app only processes tickets that are both <strong>unassigned</strong> AND
+                    in
+                    <strong>"Open" or "Triage" status</strong>. Tickets in other statuses (New, Pending, Resolved,
+                    Closed) will
+                    not be
+                    automatically assigned.
                 </div>
             </div>
 
-            <!-- Timeline -->
-            <div id="timeline" class="timeline-container" style="display: none;">
-                <h4>⏰ Event Timeline</h4>
-                <div class="timeline" id="timelineContent"></div>
+            <!-- Overview continues after Analyze Logs tab definition -->
+
+            <div class="info-section">
+                <h2>🔧 Troubleshooting</h2>
+
+                <h3>Common Issues:</h3>
+                <ul>
+                    <li><strong>Tickets not being assigned:</strong> Check if tickets have the correct group ID</li>
+                    <li><strong>Uneven distribution:</strong> The app maintains separate round-robin counters for each
+                        group
+                    </li>
+                    <li><strong>Missing agents:</strong> Ensure agents are properly added to their groups in Freshdesk
+                    </li>
+                </ul>
+
+                <div class="note">
+                    <strong>Important:</strong> Only tickets assigned to one of the 6 supported groups will be
+                    auto-assigned.
+                    Tickets without a group or in unsupported groups require manual assignment.
+                </div>
+            </div>
+        </div> <!-- end tab-overview -->
+
+        <div id="tab-analyze" class="tab-content">
+            <div class="info-section">
+                <h2>📊 Analyze Logs</h2>
+                <p>Upload and analyze log files downloaded from Freshdesk to view detailed ticket assignment activity
+                    and system events.</p>
+
+                <div class="note"
+                    style="margin: 20px 0; padding: 20px; background: #e8f8f5; border-left: 4px solid #1abc9c;">
+                    <h3 style="margin-top: 0; color: #1abc9c;">📋 How to Download Logs from Freshdesk</h3>
+                    <ol style="margin: 15px 0; padding-left: 20px;">
+                        <li><strong>Go to Admin Settings:</strong> Click on <strong>Admin</strong> in the left side navigation panel
+                        </li>
+                        <li><strong>Navigate to Apps:</strong> Click <strong>Apps</strong> → <strong>Manage
+                                Apps</strong> → <strong>Custom Apps</strong> tab</li>
+                        <li><strong>Find Auto-Assign:</strong> In the list of Custom Apps, locate <strong>Auto-Assign</strong>
+                        </li>
+                        <li><strong>Access Auto-Assign Settings:</strong> Click the <strong>Settings</strong> dropdown</li>
+                        <li><strong>Select Log:</strong> Click <strong>View Log</strong></li>
+                        <li><strong>Select Time Range:</strong> Choose your desired date range</li>
+                        <li><strong>Wait for Logs:</strong> Allow the logs to load and display</li>
+                        <li><strong>Export Logs:</strong> Click the <strong>Export icon (📥)</strong> at the top right
+                            of the logs panel to initiate the download</li>
+                    </ol>
+                    <p style="margin: 15px 0 0 0; font-style: italic; color: #666;">
+                        <strong>Note:</strong> The exported file will contain all log entries for the selected time
+                        period in JSON format.
+                    </p>
+                </div>
+
+                <h3>📈 What You Can Analyze</h3>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div
+                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #27ae60;">
+                        <h4 style="margin: 0 0 10px 0; color: #27ae60;">✅ Successful Assignments</h4>
+                        <p style="margin: 0; font-size: 14px;">Track which tickets were successfully assigned to agents
+                            and when</p>
+                    </div>
+                    <div
+                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #e74c3c;">
+                        <h4 style="margin: 0 0 10px 0; color: #e74c3c;">❌ Assignment Errors</h4>
+                        <p style="margin: 0; font-size: 14px;">Identify failed assignments and their error messages</p>
+                    </div>
+                    <div
+                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #3498db;">
+                        <h4 style="margin: 0 0 10px 0; color: #3498db;">📊 Agent Performance</h4>
+                        <p style="margin: 0; font-size: 14px;">See which agents received the most assignments</p>
+                    </div>
+                    <div
+                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #f39c12;">
+                        <h4 style="margin: 0 0 10px 0; color: #f39c12;">🏢 Group Activity</h4>
+                        <p style="margin: 0; font-size: 14px;">Analyze assignment patterns across different groups</p>
+                    </div>
+                </div>
+
+                <h3>📁 Upload and Analyze Log Files</h3>
+                <p>Once you have downloaded your log file from Freshdesk, upload it here to analyze ticket assignments
+                    and system activity:</p>
+
+                <div class="file-upload-container">
+                    <input type="file" id="logFileInput" accept=".txt" style="display: none;">
+                    <button id="uploadBtn" class="upload-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Choose Log File
+                    </button>
+                    <button id="clearFileBtn" class="clear-file-btn" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Clear File
+                    </button>
+                    <span id="fileName" class="file-name"></span>
+                </div>
+
+                <!-- Date Range Display -->
+                <div id="dateRangeDisplay" class="date-range-display" style="display: none;">
+                    <h4>📅 Log Date Range</h4>
+                    <div class="date-range-info">
+                        <span><strong>From:</strong> <span id="minDate">-</span></span>
+                        <span><strong>To:</strong> <span id="maxDate">-</span></span>
+                    </div>
+                </div>
+
+                <!-- Summary Statistics -->
+                <div id="summaryStats" class="summary-stats" style="display: none;">
+                    <h4>📈 Summary Statistics</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalLogs">0</div>
+                            <div class="stat-label">Total Log Entries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="ticketsAssigned">0</div>
+                            <div class="stat-label">Tickets Assigned</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="uniqueAgents">0</div>
+                            <div class="stat-label">Unique Agents</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="uniqueGroups">0</div>
+                            <div class="stat-label">Groups Involved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalErrors">0</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent Assignment Summary -->
+                <div id="agentSummary" class="agent-summary" style="display: none;">
+                    <h4>👥 Agent Assignment Summary</h4>
+                    <div class="agent-grid" id="agentGrid"></div>
+                </div>
+
+                <!-- Group Assignment Summary -->
+                <div id="groupSummary" class="group-summary" style="display: none;">
+                    <h4>🏢 Group Assignment Summary</h4>
+                    <div class="group-stats-grid" id="groupStatsGrid"></div>
+                </div>
+
+                <!-- Filters -->
+                <div id="filters" class="filters-section" style="display: none;">
+                    <h4>🔍 Filters</h4>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label for="logTypeFilter">Log Type:</label>
+                            <select id="logTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="info">Info</option>
+                                <option value="ticket_assigned">Ticket Assigned</option>
+                                <option value="error">Error</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="agentFilter">Agent:</label>
+                            <select id="agentFilter">
+                                <option value="">All Agents</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="groupFilter">Group:</label>
+                            <select id="groupFilter">
+                                <option value="">All Groups</option>
+                            </select>
+                        </div>
+
+                        <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div id="timeline" class="timeline-container" style="display: none;">
+                    <h4>⏰ Event Timeline</h4>
+                    <div class="timeline" id="timelineContent"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </div> <!-- end tab-analyze -->
 
-    <div class="info-section">
-        <h2>🔧 Troubleshooting</h2>
-
-        <h3>Common Issues:</h3>
-        <ul>
-            <li><strong>Tickets not being assigned:</strong> Check if tickets have the correct group ID</li>
-            <li><strong>Uneven distribution:</strong> The app maintains separate round-robin counters for each group
-            </li>
-            <li><strong>Missing agents:</strong> Ensure agents are properly added to their groups in Freshdesk</li>
-        </ul>
-
-        <div class="note">
-            <strong>Important:</strong> Only tickets assigned to one of the 6 supported groups will be auto-assigned.
-            Tickets without a group or in unsupported groups require manual assignment.
-        </div>
-    </div>
+    <!-- Activity tab content hidden for now -->
+    <!-- <div id="tab-activity" class="tab-content">
+            <div class="info-section">
+                <h2>🗂️ Activity</h2>
+                <p>View all ticket assignment attempts stored by the app. Data is retained for one month and can be
+                    cleared manually.</p>
+                <div class="activity-controls">
+                    <button id="purgeActivityBtn" class="purge-btn">Clear Stored Activity</button>
+                    <div class="filter">
+                        <label>Agent</label>
+                        <select id="activityAgentFilter">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label>Group</label>
+                        <select id="activityGroupFilter">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label>Result</label>
+                        <select id="activityResultFilter">
+                            <option value="">All</option>
+                            <option value="Success">Success</option>
+                            <option value="Failed">Failed</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label>From</label>
+                        <input type="date" id="activityFromDate" />
+                    </div>
+                    <div class="filter">
+                        <label>To</label>
+                        <input type="date" id="activityToDate" />
+                    </div>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="activity-table" id="activityTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="attempted_at">Date/Time</th>
+                                <th data-sort="ticket_id">Ticket ID</th>
+                                <th data-sort="ticket_subject">Subject</th>
+                                <th data-sort="agent_name">Agent</th>
+                                <th data-sort="group_name">Group</th>
+                                <th data-sort="result">Result</th>
+                                <th>Error Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityTbody">
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top:8px; color:#666;" id="activityMeta"></div>
+            </div>
+        </div> --> <!-- end tab-activity -->
+    </div> <!-- end tabs -->
 
 </body>
 
 <script>
+    // Freshdesk client init and Tab handling + Log Viewer + Activity Viewer
+    let client = null;
+    let clientInitPromise = null;
+
+    async function initFreshdeskClient() {
+        // Check if client is already initialized
+        if (client) return client;
+
+        // Check if client is already initialized by app.js
+        if (window.client) {
+            console.log('Using already initialized client from window.client');
+            client = window.client;
+            return client;
+        }
+
+        // Prevent multiple initialization attempts
+        if (clientInitPromise) {
+            return clientInitPromise;
+        }
+
+        clientInitPromise = (async () => {
+            try {
+                // Wait for app.js to potentially set window.client
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                if (window.client) {
+                    console.log('Client initialized by app.js after wait');
+                    client = window.client;
+                    return client;
+                }
+
+                // Try standard Freshdesk app initialization
+                if (window.app && typeof window.app.initialized === 'function') {
+                    console.log('Initializing Freshdesk client...');
+                    const _client = await window.app.initialized();
+                    console.log('Client initialized successfully');
+                    client = _client;
+                    window.client = _client; // Make it available globally
+                    return client;
+                }
+            } catch (e) {
+                console.error('Failed to initialize Freshdesk client:', e);
+            }
+
+            console.warn('Freshdesk client not available. Activity tab functionality will be limited.');
+            return null;
+        })();
+
+        return clientInitPromise;
+    }
+
+    function setupTabs() {
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                const tab = btn.getAttribute('data-tab');
+                document.getElementById(`tab-${tab}`).classList.add('active');
+            });
+        });
+    }
+
+    async function invokeServer(functionName, args) {
+        if (!client) {
+            console.log('Client not set, attempting to initialize...');
+            await initFreshdeskClient();
+        }
+        if (!client) {
+            console.error('Client still not initialized after init attempt');
+            return { success: false, error: 'Client not initialized' };
+        }
+        try {
+            console.log(`Invoking server function: ${functionName} with args:`, args);
+            const result = await client.request.invoke(functionName, args || {});
+            console.log(`Server function ${functionName} result:`, result);
+            return result;
+        } catch (e) {
+            console.error(`invokeServer error for ${functionName}:`, e);
+            return { success: false, error: e.message };
+        }
+    }
+
     // Log Viewer Functionality
     class LogViewer {
         constructor() {
@@ -1347,9 +1671,267 @@
         }
     }
 
-    // Initialize the log viewer when the page loads
+    // Activity Viewer Functionality
+    class ActivityViewer {
+        constructor() {
+            this.groupNames = {
+                '67000578161': 'West Region',
+                '67000578164': 'Central Southeast',
+                '67000578163': 'Northeast Region',
+                '67000578162': 'Central Southwest',
+                '67000578235': 'Triage',
+                '67000570681': 'Support Ops'
+            };
+            this.attempts = [];
+            this.sortKey = 'attempted_at';
+            this.sortDir = 'desc';
+            this.initializeEventListeners();
+        }
+
+        initializeEventListeners() {
+            const purgeBtn = document.getElementById('purgeActivityBtn');
+            purgeBtn?.addEventListener('click', async () => {
+                await initFreshdeskClient();
+                if (!client) {
+                    alert('This action requires running inside Freshdesk (client not initialized).');
+                    return;
+                }
+                if (!confirm('Clear all stored activity? This cannot be undone.')) return;
+                const res = await invokeServer('clearAssignmentActivity');
+                if (res && res.success) {
+                    await this.fetchAndRender();
+                } else {
+                    alert('Failed to clear activity: ' + (res?.error || 'Unknown error'));
+                }
+            });
+
+            ['activityAgentFilter', 'activityGroupFilter', 'activityResultFilter', 'activityFromDate', 'activityToDate']
+                .forEach(id => document.getElementById(id)?.addEventListener('change', () => this.render()));
+
+            // Sorting
+            document.querySelectorAll('#activityTable th[data-sort]')
+                .forEach(th => th.addEventListener('click', () => {
+                    const key = th.getAttribute('data-sort');
+                    if (this.sortKey === key) {
+                        this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        this.sortKey = key;
+                        this.sortDir = 'asc';
+                    }
+                    this.render();
+                }));
+        }
+
+        async fetchAndRender() {
+            console.log('ActivityViewer.fetchAndRender() called');
+            await initFreshdeskClient();
+            const disabledUI = !client;
+            const table = document.getElementById('activityTable');
+            const meta = document.getElementById('activityMeta');
+            const purgeBtn = document.getElementById('purgeActivityBtn');
+
+            console.log('Client status:', client ? 'initialized' : 'not initialized');
+
+            if (disabledUI) {
+                console.log('Client not available, showing disabled UI');
+                this.attempts = [];
+                if (purgeBtn) purgeBtn.disabled = true;
+                if (meta) meta.textContent = 'Activity requires Freshdesk runtime. Open this app inside Freshdesk (or use fdk preview) to view and manage stored activity.';
+                if (table) table.classList.add('disabled');
+                this.render();
+                return;
+            }
+
+            if (purgeBtn) purgeBtn.disabled = false;
+
+            try {
+                console.log('Fetching assignment activity...');
+                const res = await invokeServer('getAssignmentActivity', {});
+                console.log('getAssignmentActivity response:', res);
+
+                if (!res || !res.success) {
+                    console.warn('Unable to fetch activity:', res?.error || 'Unknown error');
+                    this.attempts = [];
+                    if (meta) meta.textContent = 'Error loading activity: ' + (res?.error || 'Unknown error');
+                } else {
+                    this.attempts = Array.isArray(res.attempts) ? res.attempts : [];
+                    console.log(`Loaded ${this.attempts.length} assignment attempts`);
+                }
+            } catch (error) {
+                console.error('Error fetching activity:', error);
+                this.attempts = [];
+                if (meta) meta.textContent = 'Error loading activity: ' + error.message;
+            }
+
+            this.populateFilters();
+            this.render();
+        }
+
+        populateFilters() {
+            const agentSet = new Set();
+            const groupCounts = new Map();
+            this.attempts.forEach(a => {
+                if (a.agent_name) agentSet.add(a.agent_name);
+                const g = a.group_id != null ? String(a.group_id) : '';
+                if (!groupCounts.has(g)) groupCounts.set(g, 0);
+                groupCounts.set(g, groupCounts.get(g) + 1);
+            });
+            const agentSel = document.getElementById('activityAgentFilter');
+            const groupSel = document.getElementById('activityGroupFilter');
+            if (agentSel) {
+                const current = agentSel.value;
+                agentSel.innerHTML = '<option value="">All</option>' +
+                    Array.from(agentSet).sort().map(n => `<option value="${this.escape(n)}">${this.escape(n)}</option>`).join('');
+                agentSel.value = current || '';
+            }
+            if (groupSel) {
+                const currentG = groupSel.value;
+                const options = Array.from(groupCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]))
+                    .map(([gid]) => gid ? `<option value="${gid}">${this.escape(this.groupNames[gid] || `Group ${gid}`)}</option>` : '')
+                    .join('');
+                groupSel.innerHTML = '<option value="">All</option>' + options;
+                groupSel.value = currentG || '';
+            }
+        }
+
+        filtered() {
+            const agent = document.getElementById('activityAgentFilter')?.value || '';
+            const group = document.getElementById('activityGroupFilter')?.value || '';
+            const result = document.getElementById('activityResultFilter')?.value || '';
+            const from = document.getElementById('activityFromDate')?.value || '';
+            const to = document.getElementById('activityToDate')?.value || '';
+            const fromTs = from ? new Date(from).getTime() : null;
+            const toTs = to ? new Date(to).getTime() + (24 * 60 * 60 * 1000 - 1) : null; // end of day
+            return this.attempts.filter(a => {
+                if (agent && (a.agent_name || '') !== agent) return false;
+                if (group && String(a.group_id) !== group) return false;
+                if (result && (a.result || '') !== result) return false;
+                const ts = new Date(a.attempted_at).getTime();
+                if (fromTs && ts < fromTs) return false;
+                if (toTs && ts > toTs) return false;
+                return true;
+            });
+        }
+
+        render() {
+            console.log('ActivityViewer.render() called with', this.attempts.length, 'total attempts');
+            let rows = this.filtered();
+            const key = this.sortKey;
+            const dir = this.sortDir === 'asc' ? 1 : -1;
+            rows.sort((a, b) => {
+                const av = key === 'attempted_at' ? new Date(a.attempted_at).getTime() : (a[key] || '');
+                const bv = key === 'attempted_at' ? new Date(b.attempted_at).getTime() : (b[key] || '');
+                if (av < bv) return -1 * dir;
+                if (av > bv) return 1 * dir;
+                return 0;
+            });
+
+            const tbody = document.getElementById('activityTbody');
+            const meta = document.getElementById('activityMeta');
+            if (!tbody) {
+                console.error('Activity table tbody not found');
+                return;
+            }
+
+            if (rows.length === 0 && this.attempts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No assignment attempts found. Attempts are recorded when the auto-assign scheduler runs.</td></tr>';
+            } else if (rows.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No attempts match the current filters</td></tr>';
+            } else {
+                tbody.innerHTML = rows.map(a => `
+                    <tr>
+                        <td>${new Date(a.attempted_at).toLocaleString()}</td>
+                        <td>#${this.escape(String(a.ticket_id))}</td>
+                        <td>${this.escape(a.ticket_subject || '')}</td>
+                        <td>${this.escape(a.agent_name || '')}</td>
+                        <td>${this.escape(a.group_name || (a.group_id ? 'Group ' + a.group_id : ''))}</td>
+                        <td><span class="result-pill ${a.result === 'Success' ? 'result-success' : 'result-failed'}">${a.result}</span></td>
+                        <td>${a.result === 'Failed' ? this.escape(a.error_message || '') : ''}</td>
+                    </tr>
+                `).join('');
+            }
+
+            if (meta && !meta.textContent.startsWith('Error') && !meta.textContent.includes('requires Freshdesk')) {
+                meta.textContent = `${rows.length} of ${this.attempts.length} attempts`;
+            }
+        }
+
+        escape(text) {
+            const d = document.createElement('div');
+            d.textContent = text;
+            return d.innerHTML;
+        }
+    }
+
+    // Initialize when the page loads
     document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded - initializing app UI');
+        setupTabs();
         new LogViewer();
+
+        // Activity tab initialization commented out for now
+        /*
+        // Initialize ActivityViewer after ensuring client is ready
+        let activityViewerInitialized = false;
+        const initActivityViewer = async () => {
+            if (activityViewerInitialized) {
+                console.log('ActivityViewer already initialized, skipping');
+                return;
+            }
+            
+            console.log('Attempting to initialize ActivityViewer...');
+            try {
+                const clientReady = await initFreshdeskClient();
+                const av = new ActivityViewer();
+                activityViewerInitialized = true;
+                
+                if (clientReady) {
+                    console.log('Client is ready, fetching activity data...');
+                    await av.fetchAndRender();
+                } else {
+                    console.log('Client not available, showing limited UI');
+                    av.fetchAndRender(); // Will show disabled state
+                }
+            } catch (error) {
+                console.error('Error initializing ActivityViewer:', error);
+                activityViewerInitialized = false; // Reset on error
+            }
+        };
+
+        // Try multiple times with increasing delays
+        const tryInit = async (attempt = 1) => {
+            if (attempt > 3) {
+                console.log('Max initialization attempts reached');
+                await initActivityViewer();
+                return;
+            }
+            
+            // Check if client is already available
+            if (window.client) {
+                console.log(`Client found on attempt ${attempt}`);
+                await initActivityViewer();
+                return;
+            }
+            
+            // Wait and try again
+            const delay = attempt * 1500; // 1.5s, 3s, 4.5s
+            console.log(`Waiting ${delay}ms before attempt ${attempt + 1}`);
+            setTimeout(() => tryInit(attempt + 1), delay);
+        };
+        
+        // Start initialization attempts
+        tryInit();
+        
+        // Also listen for the custom event from app.js
+        window.addEventListener('freshdesk-client-ready', async (event) => {
+            console.log('Received freshdesk-client-ready event');
+            if (event.detail && event.detail.client) {
+                window.client = event.detail.client;
+                client = event.detail.client;
+                await initActivityViewer();
+            }
+        });
+        */
     });
 </script>
 

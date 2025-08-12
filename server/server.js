@@ -9,6 +9,22 @@ let agentIndexByGroup = {};
 // Temporary in-memory log storage
 let inMemoryLogs = [];
 
+// Group name map for readable activity entries
+const GROUP_NAMES_BY_ID = {
+  67000578161: 'West Region',
+  67000578164: 'Central Southeast',
+  67000578163: 'Northeast Region',
+  67000578162: 'Central Southwest',
+  67000578235: 'Triage',
+  67000570681: 'Support Ops'
+};
+
+// Key for assignment attempts storage
+const ASSIGNMENT_ATTEMPTS_DB_KEY = 'assignment_attempts_v1';
+
+// Retention window in days for assignment attempts
+const ASSIGNMENT_ATTEMPTS_RETENTION_DAYS = 31;
+
 // Helper function to get existing logs
 async function getExistingLogs() {
   // Return in-memory logs
@@ -135,6 +151,9 @@ exports = {
     await addLog('info', 'Scheduled ticket assignment started');
 
     try {
+      // Purge old assignment attempts monthly (lightweight every run)
+      await purgeOldAssignmentAttempts();
+
       if (!await isServiceEnabled()) {
         await addLog('info', 'Service is disabled, skipping ticket assignment');
         return;
@@ -222,6 +241,55 @@ exports = {
     } catch (error) {
       console.error('Error clearing logs:', error);
       return { success: false, error: error.message, logs: [] };
+    }
+  },
+
+  // Return assignment attempt activity with optional filters
+  getAssignmentActivity: async function (args) {
+    try {
+      const filters = args || {};
+      const data = await getAssignmentAttemptsData();
+      let attempts = data.attempts || [];
+
+      // Apply filters
+      if (filters.agent_name) {
+        attempts = attempts.filter(a => (a.agent_name || '').toLowerCase() === String(filters.agent_name).toLowerCase());
+      }
+      if (filters.group_id) {
+        const gid = String(filters.group_id);
+        attempts = attempts.filter(a => String(a.group_id) === gid);
+      }
+      if (filters.result) {
+        const r = String(filters.result).toLowerCase();
+        attempts = attempts.filter(a => (a.result || '').toLowerCase() === r);
+      }
+      if (filters.date_from) {
+        const from = new Date(filters.date_from).getTime();
+        attempts = attempts.filter(a => new Date(a.attempted_at).getTime() >= from);
+      }
+      if (filters.date_to) {
+        const to = new Date(filters.date_to).getTime();
+        attempts = attempts.filter(a => new Date(a.attempted_at).getTime() <= to);
+      }
+
+      // Sort by attempted_at desc by default
+      attempts.sort((a, b) => new Date(b.attempted_at) - new Date(a.attempted_at));
+
+      return { success: true, attempts, total: attempts.length };
+    } catch (error) {
+      console.error('Error in getAssignmentActivity:', error);
+      return { success: false, error: error.message, attempts: [], total: 0 };
+    }
+  },
+
+  // Clear assignment attempt storage manually
+  clearAssignmentActivity: async function () {
+    try {
+      await $db.set(ASSIGNMENT_ATTEMPTS_DB_KEY, { attempts: [], updated_at: new Date().toISOString() });
+      return { success: true };
+    } catch (error) {
+      console.error('Error in clearAssignmentActivity:', error);
+      return { success: false, error: error.message };
     }
   }
 };
@@ -424,6 +492,15 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         ticket_id: ticket.id,
         ticket_subject: ticket.subject
       });
+      // Record attempt as failed (no group)
+      await addAssignmentAttemptEntry({
+        ticket_id: ticket.id,
+        ticket_subject: ticket.subject,
+        agent_name: null,
+        group_id: ticketGroupId,
+        result: 'Failed',
+        error_message: 'Ticket has no group assigned'
+      });
       continue;
     }
 
@@ -433,6 +510,15 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         ticket_id: ticket.id,
         group_id: ticketGroupId,
         ticket_subject: ticket.subject
+      });
+      // Record attempt as failed (unsupported group)
+      await addAssignmentAttemptEntry({
+        ticket_id: ticket.id,
+        ticket_subject: ticket.subject,
+        agent_name: null,
+        group_id: ticketGroupId,
+        result: 'Failed',
+        error_message: 'Unsupported group for auto-assignment'
       });
       continue;
     }
@@ -465,6 +551,15 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         group_id: ticketGroupId,
         ticket_subject: ticket.subject,
         total_agents_in_group: 0
+      });
+      // Record attempt as failed (no agents available)
+      await addAssignmentAttemptEntry({
+        ticket_id: ticket.id,
+        ticket_subject: ticket.subject,
+        agent_name: null,
+        group_id: ticketGroupId,
+        result: 'Failed',
+        error_message: 'No agents available in group'
       });
       continue;
     }
@@ -510,6 +605,16 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         total_agents_in_group: groupAgents.length
       });
 
+      // Record assignment attempt (success)
+      await addAssignmentAttemptEntry({
+        ticket_id: ticket.id,
+        ticket_subject: ticket.subject,
+        agent_name: agent.contact?.name || 'Unknown',
+        group_id: ticketGroupId,
+        result: 'Success',
+        error_message: null
+      });
+
     } catch (error) {
       console.error(`❌ Error assigning ticket #${ticket.id}:`, error);
       await addLog('error', `Failed to assign ticket #${ticket.id}`, {
@@ -518,6 +623,16 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         agent_name: agent.contact.name,
         group_id: ticketGroupId,
         error: error.message || 'Unknown error'
+      });
+
+      // Record assignment attempt (failure)
+      await addAssignmentAttemptEntry({
+        ticket_id: ticket.id,
+        ticket_subject: ticket.subject,
+        agent_name: agent.contact?.name || 'Unknown',
+        group_id: ticketGroupId,
+        result: 'Failed',
+        error_message: error.message || 'Unknown error'
       });
     }
 
@@ -538,6 +653,74 @@ async function saveAgentIndicesByGroup() {
   } catch (error) {
     console.error('Error saving agent indices:', error.message);
     // Continue execution even if save fails
+  }
+}
+
+// ----- Assignment Attempts Storage Helpers -----
+
+async function getAssignmentAttemptsData() {
+  try {
+    const existing = await $db.get(ASSIGNMENT_ATTEMPTS_DB_KEY);
+    if (existing && Array.isArray(existing.attempts)) {
+      return existing;
+    }
+  } catch (e) {
+    // Ignore missing key errors
+  }
+  return { attempts: [] };
+}
+
+async function addAssignmentAttemptEntry({ ticket_id, ticket_subject, agent_name, group_id, result, error_message }) {
+  try {
+    const data = await getAssignmentAttemptsData();
+    const attempts = Array.isArray(data.attempts) ? data.attempts : [];
+
+    const entry = {
+      ticket_id,
+      ticket_subject: ticket_subject || 'Unknown Subject',
+      agent_name: agent_name || 'Unknown',
+      group_id,
+      group_name: GROUP_NAMES_BY_ID[group_id] || `Group ${group_id}`,
+      attempted_at: new Date().toISOString(),
+      result: result === 'Success' ? 'Success' : 'Failed',
+      error_message: result === 'Failed' ? (error_message || 'Unknown error') : null
+    };
+
+    attempts.push(entry);
+
+    // Keep a reasonable upper bound to prevent unbounded growth
+    const MAX_ENTRIES = 10000;
+    if (attempts.length > MAX_ENTRIES) {
+      attempts.splice(0, attempts.length - MAX_ENTRIES);
+    }
+
+    await $db.set(ASSIGNMENT_ATTEMPTS_DB_KEY, { attempts, updated_at: new Date().toISOString() });
+  } catch (error) {
+    console.error('Error saving assignment attempt entry:', error);
+  }
+}
+
+async function purgeOldAssignmentAttempts() {
+  try {
+    const data = await getAssignmentAttemptsData();
+    const attempts = Array.isArray(data.attempts) ? data.attempts : [];
+    if (attempts.length === 0) return;
+
+    const now = Date.now();
+    const cutoffMs = ASSIGNMENT_ATTEMPTS_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+    const cutoffTime = now - cutoffMs;
+
+    const filtered = attempts.filter(a => {
+      const t = new Date(a.attempted_at).getTime();
+      return !Number.isNaN(t) && t >= cutoffTime;
+    });
+
+    if (filtered.length !== attempts.length) {
+      await $db.set(ASSIGNMENT_ATTEMPTS_DB_KEY, { attempts: filtered, updated_at: new Date().toISOString() });
+      console.log(`Purged ${attempts.length - filtered.length} old assignment attempts; kept ${filtered.length}`);
+    }
+  } catch (error) {
+    console.error('Error purging old assignment attempts:', error);
   }
 }
 

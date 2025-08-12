@@ -1,0 +1,498 @@
+XHR finished loading: GET "<URL>".
+1005:32:13.984 The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+1105:32:18.927 XHR finished loading: POST "<URL>".
+05:32:22.474 freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:13214 Fetch finished loading: GET "https://fassets.freshdesk.com/fw-tickets-mfe/components/registry.json".
+loadScript @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:13214
+(anonymous) @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:10878
+installModifier @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:10881
+install @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1771
+commit @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3956
+commit @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3959
+commit @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1596
+_renderRoots @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1709
+_renderRootsTransaction @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1714
+_revalidate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1715
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248
+05:32:23.499 /a/tickets/filters/open:1 Autofocus processing was blocked because a document already has a focused element.
+605:34:18.177 Fetch failed loading: POST "<URL>".
+05:32:24.232 vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449 XHR finished loading: POST "https://autorefreshv2-poduseast1.freshdesk.com/socket.io/?EIO=3&transport=polling&t=PYTdwqB&sid=DyIu1hxxeRMfJ1AOCzBK".
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5465
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+i @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5544
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5490
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+o @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5465
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5469
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5427
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5429
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5427
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5384
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5231
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5384
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5637
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5637
+emit @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29392
+socketHandShake @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9391
+_run @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4292
+_join @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+join @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4263
+p @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3309
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3310
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5646
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5639
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5378
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5350
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5232
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5378
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5423
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5408
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5470
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5534
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5534
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5445
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5453
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+XMLHttpRequest.send
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5444
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5459
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5445
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5453
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+XMLHttpRequest.send
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5444
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5459
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5457
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5468
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5406
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5397
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5394
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5368
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5366
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5366
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5159
+createSocket @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29397
+socketFor @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29403
+initSocket @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9389
+initializeAutoRefreshSocket @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9457
+init @ tickets-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1
+n @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2839
+f @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2754
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2760
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1365
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1648
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3820
+evaluate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3698
+evaluateSyscall @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3975
+evaluateInner @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3967
+evaluateOuter @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3967
+next @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4101
+execute @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4100
+handleException @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4030
+handleException @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4043
+throw @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4026
+evaluate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3764
+execute @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4026
+rerender @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4044
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1680
+E @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1991
+_renderRoots @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1709
+_renderRootsTransaction @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1714
+_revalidate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1715
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4252
+_runExpiredTimers @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4297
+setTimeout
+setTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4209
+_installTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4303
+_reinstallTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4301
+_later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4295
+later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4273
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3298
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22732
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248
+05:32:30.516 mfe-base-wc-nH-DK8ry.js:17 Fetch finished loading: GET "https://techsupport.benchmarkeducation.com/api/_/tickets?filter_ids=365659%2C353207%2Cunresolved%2C361903%2C365013&only=count".
+(anonymous) @ mfe-base-wc-nH-DK8ry.js:17
+get @ mfe-base-wc-nH-DK8ry.js:17
+Ue @ index-3v3CH80p.js:1
+o @ index-3v3CH80p.js:1
+o @ mfe-base-wc-nH-DK8ry.js:17
+k @ mfe-base-wc-nH-DK8ry.js:17
+start @ mfe-base-wc-nH-DK8ry.js:17
+fetch @ mfe-base-wc-nH-DK8ry.js:17
+L @ useQuery-8GL9EzTY.js:1
+setOptions @ useQuery-8GL9EzTY.js:1
+(anonymous) @ useQuery-8GL9EzTY.js:1
+Ho @ mfe-base-wc-nH-DK8ry.js:40
+en @ mfe-base-wc-nH-DK8ry.js:40
+(anonymous) @ mfe-base-wc-nH-DK8ry.js:40
+_ @ mfe-base-wc-nH-DK8ry.js:25
+F @ mfe-base-wc-nH-DK8ry.js:25
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:666
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:791
+y @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:789
+w @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:789
+05:32:55.434 freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:10881 FwMFEModifier destroyed
+05:32:55.836 /a/tickets/314105:1 Mixed Content: The page at 'https://techsupport.benchmarkeducation.com/a/tickets/314105' was loaded over HTTPS, but requested an insecure image 'http://usw2-track.atlassian.com/CI0/010101989af10481-d0ff37a2-a00e-4bf2-8eee-157668efed94-000000/CledCaOTm9q8AYWPixe6M-qkZiKVBPXEFrRoJkyXMjM=417'. This content should also be served over HTTPS.Understand this warning
+05:32:56.003 freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9404 Entering snapFresh to subscribe channel
+505:36:01.656 Fetch finished loading: GET "<URL>".
+05:32:56.481 p-602671b9.js:1  GET https://techsupport.benchmarkeducation.com/api/_/custom_objects/schemas/native 404 (Not Found)
+fetchApiData @ p-602671b9.js:1
+fetchNativeObjectLookup @ p-602671b9.js:1
+fetchObjectAssociations @ p-602671b9.js:1
+get @ p-438bb184.js:1
+(anonymous) @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:14986
+_resumeGenerator @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22398
+_handleResolvedContinueValue @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22406
+_proceed @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22399
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248Understand this error
+05:32:56.481 p-602671b9.js:1 An error has occured fetching endpoint - /schemas/native : 404
+05:32:56.636 p-602671b9.js:1  GET https://techsupport.benchmarkeducation.com/api/_/custom_objects/schemas/associations?target_object_id=1&target_object_type=NATIVE 404 (Not Found)
+fetchApiData @ p-602671b9.js:1
+fetchObjectAssociations @ p-602671b9.js:1
+await in fetchObjectAssociations
+get @ p-438bb184.js:1
+(anonymous) @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:14986
+_resumeGenerator @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22398
+_handleResolvedContinueValue @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22406
+_proceed @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22399
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248Understand this error
+05:32:56.637 p-602671b9.js:1 An error has occured fetching endpoint - /schemas/associations?target_object_id=1&target_object_type=NATIVE : 404
+05:32:56.757 p-602671b9.js:1  GET https://techsupport.benchmarkeducation.com/api/_/custom_objects/schemas/inverse-associations?source_object_id=1 404 (Not Found)
+fetchApiData @ p-602671b9.js:1
+fetchObjectAssociations @ p-602671b9.js:1
+await in fetchObjectAssociations
+get @ p-438bb184.js:1
+(anonymous) @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:14986
+_resumeGenerator @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22398
+_handleResolvedContinueValue @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22406
+_proceed @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22399
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248Understand this error
+05:32:56.757 p-602671b9.js:1 An error has occured fetching endpoint - /schemas/inverse-associations?source_object_id=1 : 404
+05:33:04.124 app.js:2 app.js loading started
+05:33:04.251 app.js:48 Failed to initialize app: ReferenceError: app is not defined
+    at init (app.js:43:5)
+    at app.js:51:3
+init @ app.js:48
+(anonymous) @ app.js:51Understand this error
+05:33:04.921 app.js:82 Window loaded, starting initialization
+05:33:04.921 app.js:124 Starting Freshworks client initialization
+05:33:04.987 heap_receiver.html:65 Started tracking with heap analytics
+05:33:05.006 app.js:131 Freshworks client initialized successfully
+05:33:05.007 vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686 Invalid Event
+overrideMethod @ hook.js:608
+subscribeEvent @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686
+on @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+process @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+eventHandler @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25742
+channel.port1.onmessage @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25737Understand this error
+05:33:05.009 vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686 Invalid Event
+overrideMethod @ hook.js:608
+subscribeEvent @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686
+on @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+process @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+eventHandler @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25742
+channel.port1.onmessage @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25737Understand this error
+05:33:05.009 vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686 Invalid Event
+overrideMethod @ hook.js:608
+subscribeEvent @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25686
+on @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+process @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25725
+eventHandler @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25742
+channel.port1.onmessage @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:25737Understand this error
+05:33:05.026 app.js:601 Assembly tracker field hidden
+05:33:05.027 app.js:663 App initialization - iparams retrieved: {freshdesk_subdomain: 'benchmarkeducationcompany'}
+05:33:05.027 app.js:668 Sanitized subdomain: benchmarkeducationcompany
+05:33:05.028 app.js:5 CloneTicket::DomainName => "benchmarkeducationcompany"
+05:33:05.037 app.js:218 Current user data: {loggedInUser: {…}}
+05:33:05.037 app.js:228 User role IDs: 67000255947,67000255946, isAdmin: true
+05:33:05.037 app.js:356 Current ticket data: {ticket: {…}}
+05:33:05.037 app.js:418 Ticket does not have special tags, hiding assembly tracker field
+05:33:05.039 app.js:7 CloneTicket::PrivateNoteSetting => true
+05:33:05.046 app.js:9 CloneTicket::TagSetting => true
+05:33:05.047 app.js:601 Assembly tracker field hidden
+05:33:05.047 app.js:339 Always hiding field cf_meeting_date
+05:33:05.049 app.js:218 Current user data: {loggedInUser: {…}}
+05:33:05.049 app.js:228 User role IDs: 67000255947,67000255946, isAdmin: true
+05:33:05.052 app.js:339 Always hiding field internal_group
+05:33:05.057 app.js:372 Explicitly showing admin-only field cf_qa for admin user
+05:33:05.059 app.js:339 Always hiding field cf_csat_feedback_received
+05:33:05.060 app.js:372 Explicitly showing admin-only field cf_outside_our_control for admin user
+05:33:05.062 app.js:339 Always hiding field cf_tracker_resolved
+05:33:05.063 app.js:372 Explicitly showing admin-only field cf_within_our_control for admin user
+05:33:05.063 app.js:339 Always hiding field cf_old_subfill
+05:33:05.065 app.js:372 Explicitly showing admin-only field cf_test for admin user
+05:33:05.065 app.js:443 Ticket source: 1, isPortalSource: false, isFeedbackWidgetSource: false, isAllowedSource: false
+05:33:05.065 app.js:446 Ticket is not from Portal or Feedback Widget source, hiding all custom fields except admin-only fields
+05:33:05.066 app.js:339 Always hiding field cf_summary_or_issue_description
+05:33:05.066 app.js:218 Current user data: {loggedInUser: {…}}
+05:33:05.066 app.js:228 User role IDs: 67000255947,67000255946, isAdmin: true
+05:33:05.066 app.js:284 Hiding bookings meeting date field because issue detail is NOT "Bookings Meeting"
+05:33:05.069 app.js:339 Always hiding field cf_jira_print_digital
+05:33:05.071 app.js:390 Final check: ensuring admin-only field cf_qa is visible for admin user
+05:33:05.071 app.js:339 Always hiding field cf_jira_version
+05:33:05.072 app.js:390 Final check: ensuring admin-only field cf_outside_our_control is visible for admin user
+05:33:05.072 app.js:339 Always hiding field cf_jira_copyright
+05:33:05.072 app.js:390 Final check: ensuring admin-only field cf_within_our_control is visible for admin user
+05:33:05.073 app.js:339 Always hiding field cf_sedcust_jira_resource
+05:33:05.073 app.js:390 Final check: ensuring admin-only field cf_test is visible for admin user
+05:33:05.074 app.js:339 Always hiding field cf_jira_product_name
+05:33:05.074 app.js:339 Always hiding field cf_jira_locale
+05:33:05.075 app.js:339 Always hiding field cf_jira_state_district_variation
+05:33:05.075 app.js:339 Always hiding field cf_jira_user_role
+1605:33:07.108 Fetch finished loading: POST "<URL>".
+05:33:05.086 app.js:312 Not hiding admin-only field cf_qa for admin user
+05:33:05.086 app.js:312 Not hiding admin-only field cf_outside_our_control for admin user
+05:33:05.086 app.js:312 Not hiding admin-only field cf_within_our_control for admin user
+05:33:05.086 app.js:312 Not hiding admin-only field cf_test for admin user
+05:33:05.087 app.js:326 All managed custom fields hidden (except admin fields for admin users)
+05:33:05.087 app.js:339 Always hiding field cf_meeting_date
+05:33:05.088 app.js:339 Always hiding field internal_group
+05:33:05.088 app.js:339 Always hiding field cf_csat_feedback_received
+05:33:05.088 app.js:339 Always hiding field cf_tracker_resolved
+05:33:05.089 app.js:339 Always hiding field cf_old_subfill
+05:33:05.089 app.js:339 Always hiding field cf_summary_or_issue_description
+05:33:05.090 app.js:339 Always hiding field cf_jira_print_digital
+05:33:05.090 app.js:339 Always hiding field cf_jira_version
+05:33:05.090 app.js:339 Always hiding field cf_jira_copyright
+05:33:05.090 app.js:339 Always hiding field cf_sedcust_jira_resource
+05:33:05.091 app.js:339 Always hiding field cf_jira_product_name
+05:33:05.091 app.js:339 Always hiding field cf_jira_locale
+05:33:05.091 app.js:339 Always hiding field cf_jira_state_district_variation
+05:33:05.092 app.js:339 Always hiding field cf_jira_user_role
+05:34:17.835 vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449 XHR finished loading: POST "https://autorefreshv2-poduseast1.freshdesk.com/socket.io/?EIO=3&transport=polling&t=PYTeMZC&sid=Gc2CL_l65Sc1qEhwC3BC".
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5465
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+i @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5544
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5490
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+o @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5479
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5465
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5469
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5427
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5429
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5427
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5384
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5231
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5384
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5637
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5637
+emit @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29392
+socketHandShake @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9391
+_run @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4292
+_join @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+join @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4263
+p @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3309
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3310
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5646
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5639
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5378
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5350
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5232
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5378
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5661
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5423
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5408
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5470
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5534
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5534
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5505
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5445
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5453
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+XMLHttpRequest.send
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5444
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5459
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5461
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5445
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5589
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5453
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+XMLHttpRequest.send
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5449
+a @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5441
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5442
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5444
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5459
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5457
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5468
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5406
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5397
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5394
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5368
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5366
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5366
+r @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:5159
+createSocket @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29397
+socketFor @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:29403
+initSocket @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9389
+initializeAutoRefreshSocket @ freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:9457
+init @ tickets-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1
+n @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2839
+f @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2754
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:2760
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1365
+create @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1648
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3820
+evaluate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3698
+evaluateSyscall @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3975
+evaluateInner @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3967
+evaluateOuter @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3967
+next @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4101
+execute @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4100
+handleException @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4030
+handleException @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4043
+throw @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4026
+evaluate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3764
+execute @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4026
+rerender @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4044
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1680
+E @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1991
+_renderRoots @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1709
+_renderRootsTransaction @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1714
+_revalidate @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:1715
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4252
+_runExpiredTimers @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4297
+setTimeout
+setTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4209
+_installTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4303
+_reinstallTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4301
+_later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4295
+later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4273
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3298
+updateRenderStates @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:20172
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:20171
+_resumeGenerator @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22398
+_handleResolvedContinueValue @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22406
+_proceed @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22399
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4252
+_runExpiredTimers @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4297
+setTimeout
+setTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4209
+_installTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4303
+_reinstallTimerTimeout @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4301
+_later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4295
+later @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4273
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:3298
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:22732
+invokeWithOnError @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4233
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4225
+flush @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4237
+_end @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4291
+(anonymous) @ vendor-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:4248
+05:35:48.379 mfe-base-wc-nH-DK8ry.js:17 Fetch finished loading: GET "https://techsupport.benchmarkeducation.com/api/_/tickets?filter_ids=353207%2Cunresolved%2C361903%2C365013&only=count".
+(anonymous) @ mfe-base-wc-nH-DK8ry.js:17
+get @ mfe-base-wc-nH-DK8ry.js:17
+Ue @ index-3v3CH80p.js:1
+o @ index-3v3CH80p.js:1
+o @ mfe-base-wc-nH-DK8ry.js:17
+k @ mfe-base-wc-nH-DK8ry.js:17
+start @ mfe-base-wc-nH-DK8ry.js:17
+fetch @ mfe-base-wc-nH-DK8ry.js:17
+L @ useQuery-8GL9EzTY.js:1
+fetch @ useQuery-8GL9EzTY.js:1
+refetch @ useQuery-8GL9EzTY.js:1
+(anonymous) @ index-3v3CH80p.js:1
+setTimeout
+F @ index-3v3CH80p.js:1
+onMessageCallback @ mfe-base-wc-nH-DK8ry.js:17
+05:36:01.552 freshdesk-d42c7433ba9da60929bddbb4153202628c5e85329247d108ba0e7eb01ab0f16d.js:10881 FwMFEModifier destroyed
+05:36:02.783 index.html?appId=356141:1806 DOMContentLoaded - initializing app UI
+05:36:03.399 index.html?appId=356141:1812 Initializing ActivityViewer...
+05:36:03.399 index.html?appId=356141:923 Freshdesk client not available in this environment. Activity tab will be limited.
+initFreshdeskClient @ index.html?appId=356141:923
+(anonymous) @ index.html?appId=356141:1814
+setTimeout
+(anonymous) @ index.html?appId=356141:1811Understand this warning
+05:36:03.399 index.html?appId=356141:1664 ActivityViewer.fetchAndRender() called
+05:36:03.399 index.html?appId=356141:923 Freshdesk client not available in this environment. Activity tab will be limited.
+initFreshdeskClient @ index.html?appId=356141:923
+fetchAndRender @ index.html?appId=356141:1665
+(anonymous) @ index.html?appId=356141:1816
+setTimeout
+(anonymous) @ index.html?appId=356141:1811Understand this warning
+05:36:03.399 index.html?appId=356141:1671 Client status: not initialized
+05:36:03.399 index.html?appId=356141:1674 Client not available, showing disabled UI
+05:36:03.400 index.html?appId=356141:1755 ActivityViewer.render() called with 0 total attempts

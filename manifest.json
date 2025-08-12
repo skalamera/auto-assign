@@ -18,7 +18,9 @@
       },
       "functions": {
         "getLogs": {},
-        "clearLogs": {}
+        "clearLogs": {},
+        "getAssignmentActivity": {},
+        "clearAssignmentActivity": {}
       },
       "requests": {
         "getUnassignedTickets": {},
