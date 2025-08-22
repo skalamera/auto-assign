@@ -7,67 +7,77 @@
     },
     {
       "severity": 1,
-      "value": "server\\server.js::164: Async method 'onScheduledEventHandler' has a complexity of 13. Maximum allowed is 7.",
+      "value": "server\\server.js::164: Async method 'onScheduledEventHandler' has a complexity of 16. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::240: possible deprecated API usage detected",
+      "value": "server\\server.js::195: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::323: Async method 'getAssignmentActivity' has a complexity of 9. Maximum allowed is 7.",
-      "type": "lint"
-    },
-    {
-      "severity": 1,
-      "value": "server\\server.js::372: Async method 'getWeekendReversions' has a complexity of 9. Maximum allowed is 7.",
-      "type": "lint"
-    },
-    {
-      "severity": 1,
-      "value": "server\\server.js::499: Async function 'getUnassignedTickets' has a complexity of 14. Maximum allowed is 7.",
-      "type": "lint"
-    },
-    {
-      "severity": 1,
-      "value": "server\\server.js::609: Async function 'getActiveAgents' has a complexity of 15. Maximum allowed is 7.",
-      "type": "lint"
-    },
-    {
-      "severity": 1,
-      "value": "server\\server.js::610: possible deprecated API usage detected",
+      "value": "server\\server.js::251: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::705: possible deprecated API usage detected",
+      "value": "server\\server.js::334: Async method 'getAssignmentActivity' has a complexity of 9. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::383: Async method 'getWeekendReversions' has a complexity of 9. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::510: Async function 'getUnassignedTickets' has a complexity of 14. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::624: Async function 'getActiveAgents' has a complexity of 15. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::625: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::736: Async function 'assignTicketsInRoundRobin' has a complexity of 14. Maximum allowed is 7.",
-      "type": "lint"
-    },
-    {
-      "severity": 1,
-      "value": "server\\server.js::819: possible deprecated API usage detected",
+      "value": "server\\server.js::720: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::944: Async function 'addAssignmentAttemptEntry' has a complexity of 11. Maximum allowed is 7.",
+      "value": "server\\server.js::751: Async function 'assignTicketsInRoundRobin' has a complexity of 14. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::1036: Function 'isWeekendTime' has a complexity of 8. Maximum allowed is 7.",
+      "value": "server\\server.js::834: possible deprecated API usage detected",
+      "type": "custom-js-lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::959: Async function 'addAssignmentAttemptEntry' has a complexity of 11. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::1208: Async function 'handleWeekendStatusReversion' has a complexity of 12. Maximum allowed is 7.",
+      "value": "server\\server.js::1051: Async function 'handleOvernightTicketReassignment' has a complexity of 9. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::1160: Function 'isWeekendTime' has a complexity of 8. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::1332: Async function 'handleWeekendStatusReversion' has a complexity of 12. Maximum allowed is 7.",
       "type": "lint"
     }
   ],

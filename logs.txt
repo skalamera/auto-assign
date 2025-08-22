@@ -1,99 +1,1010 @@
-Aug 22, 2025, 11:33:27 AM	14883	
-App installation started - CREATING COMBINED SCHEDULE
-
-Aug 22, 2025, 11:33:27 AM	14883	
-Installation payload: {"iparams":{"dummy_param":"Auto-configured"},"timestamp":1755876805,"region":"US","currentHost":{"subscribed_modules":["support_ticket","support_agent"],"endpoint_urls":{"freshdesk":"https://benchmarkeducationcompany.freshdesk.com"}},"event":"onAppInstall","app_settings":{},"workflow":"install"}
-
-Show more
-Aug 22, 2025, 11:33:27 AM	14883	
-No existing schedule to delete: Schedule not found
-
-Aug 22, 2025, 11:33:28 AM	14883	
-Combined schedule created successfully: {"status":200,"message":"Schedule created"}
-
-Aug 22, 2025, 11:33:28 AM	14883	
-App installed successfully with combined schedule (ticket assignment + weekend reversion)
-
-Aug 22, 2025, 11:34:28 AM	699ac	
-Running scheduled event handler
-
-Aug 22, 2025, 11:34:28 AM	699ac	
-Event payload: {"event":"onScheduledEvent","timestamp":1755876867890,"iparams":{"dummy_param":"Auto-configured"},"currentHost":{"endpoint_urls":{"freshdesk":"https://benchmarkeducationcompany.freshdesk.com"},"subscribed_modules":["support_ticket","support_agent"]},"data":{"operation":"combined_operations"},"region":"US","app_settings":{}}
-
-Show more
-Aug 22, 2025, 11:34:28 AM	699ac	
-Running combined operations (ticket assignment + weekend reversion)
-
-Aug 22, 2025, 11:34:28 AM	699ac	
-Creating log entry: { timestamp: '2025-08-22T15:34:28.737Z', type: 'info', message: 'Combined operations scheduled event started', details: {} }
-
-Aug 22, 2025, 11:34:29 AM	699ac	
-Retrieved existing logs, count: 0
-
-Aug 22, 2025, 11:34:29 AM	699ac	
-Logs stored in memory: { count: 1, latest: { timestamp: '2025-08-22T15:34:28.737Z', type: 'info', message: 'Combined operations scheduled event started', details: {} } }
-
-Aug 22, 2025, 11:34:29 AM	699ac	
-[2025-08-22T15:34:28.737Z] INFO: Combined operations scheduled event started
-
-Aug 22, 2025, 11:34:29 AM	699ac	
-Calling getUnassignedTickets API...
-
-Aug 22, 2025, 11:34:29 AM	699ac	
-Using updated_since filter: 2025-08-15T15:34:29.097Z
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-API Response status: 200
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Full API Response: {"status":200,"headers":{"date":"Fri, 22 Aug 2025 15:34:30 GMT","content-type":"application/json; charset=utf-8","transfer-encoding":"chunked","connection":"close","cf-ray":"97336f43cdd25707-IAD","status":"200 OK","pragma":"no-cache","x-request-id":"30f910b0-8ecf-9c7a-9882-c0381a053dab","x-freshdesk-api-version":"latest=v2; requested=v2","content-security-policy":"default-src 'self'; connect-src 'self' *.freshconnect.io/ *.freshsales.io/ *.freshworks.com/ *.freshdesk.com/ *.freshworksapi.com/ *.freshdeskusercontent.com/ *.freshdeskusercontent-euc.com/ *.freshdeskusercontent-in.com/ *.freshdeskusercontent-aus.com/ *.fconstage.io/ analytics.inlinemanual.com/__profile analytics.inlinemanual.com/__ptm backend.getbeamer.com/ heapanalytics.com/ d3h0owdjgzys62.cloudfront.net/ d2uy6ubiilaqku.cloudfront.net/assets/ dcdu85ocrj5q6.cloudfront.net/ dtdafz6i4gvv1.cloudfront.net/ d3r4aewxkdubw4.cloudfront.net/ d2lz1e868xzctj.cloudfront.net/ rum.haystack.es/freshdesk/analytics fonts.googleapis.com/ fonts.gstatic.com/ sentry.io/api/ wss://*.freshworksapi.com/ wss://*.freshdesk.com/ fg8vvsvnieiv3ej16jby.litix.io/ distillery.wistia.com/ pipedream.wistia.com/ freshworks.asknice.ly/ embedwistia-a.akamaihd.net/ embed-fastly.wistia.com/ maps.googleapis.com/ graph.microsoft.com/v1.0/ freshcaller-attachments.s3.amazonaws.com/production/ euc-freshcaller-attachments.s3.eu-central-1.amazonaws.com/production/ mec-freshcaller-attachments.s3.me-central-1.amazonaws.com/production/ au-freshcaller-attachments.s3-ap-southeast-2.amazonaws.com/production/ in-freshcaller-attachments.s3.ap-south-1.amazonaws.com/production/ pubsub.rtschannel.com/ api.fdcollab.com/ wss://pubsub.rtschannel.com/ cloudflareinsights.com/ data: blob: api.appcues.net/ wss://api.appcues.net/ fast.appcues.com/ cdn.jsdelivr.net/npm/@freshworks/crayons-icon@next/dist/ translate.googleapis.com/translate_a/t translate.googleapis.com/element/log fast.wistia.net/ fast.wistia.com/ embed-cloudfront.wistia.com/deliveries/ app.inlinemanual.com/ client-api.auryc.com/ *.
-
-Show more
-Aug 22, 2025, 11:34:30 AM	699ac	
-Total tickets returned: 100
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket date range: Newest updated 2025-08-22T15:26:55Z (ID: 316675), Oldest updated 2025-08-21T22:08:56Z (ID: 316558)
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Target ticket #315751 NOT found in this batch of tickets
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Target ticket #315751 was last updated on 2025-08-22T14:29:09Z
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Starting ticket filtering process...
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-No unassigned tickets with Open or Triage status found
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Sample tickets for debugging:
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket #316675: responder_id=null, status=5, group_id=67000578451
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket #316674: responder_id=67025683491, status=2, group_id=67000578164
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket #316673: responder_id=67054610590, status=2, group_id=67000578164
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket #316672: responder_id=67062102069, status=2, group_id=67000578163
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Ticket #316670: responder_id=67062102069, status=2, group_id=67000578162
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Creating log entry: { timestamp: '2025-08-22T15:34:30.779Z', type: 'info', message: 'No tickets found', details: {} }
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Retrieved existing logs, count: 1
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-Logs stored in memory: { count: 2, latest: { timestamp: '2025-08-22T15:34:30.779Z', type: 'info', message: 'No tickets found', details: {} } }
-
-Aug 22, 2025, 11:34:30 AM	699ac	
-[2025-08-22T15:34:30.779Z] INFO: No tickets found
-
+[
+	{
+		"timestamp": "Aug 22, 2025, 4:16:34 PM",
+		"id": "9e261",
+		"type": "info",
+		"message": {
+			"text": "App installation started - CREATING COMBINED SCHEDULE"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:16:34 PM",
+		"id": "9e261",
+		"type": "info",
+		"message": {
+			"text": "Installation payload: {\"iparams\":{\"dummy_param\":\"Auto-configured\"},\"timestamp\":1755893792,\"region\":\"US\",\"currentHost\":{\"subscribed_modules\":[\"support_ticket\",\"support_agent\"],\"endpoint_urls\":{\"freshdesk\":\"https://benchmarkeducationcompany.freshdesk.com\"}},\"event\":\"onAppInstall\",\"app_settings\":{},\"workflow\":\"install\"}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:16:35 PM",
+		"id": "9e261",
+		"type": "info",
+		"message": {
+			"text": "No existing schedule to delete: Schedule not found"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:16:35 PM",
+		"id": "9e261",
+		"type": "info",
+		"message": {
+			"text": "Combined schedule created successfully: {\"status\":200,\"message\":\"Schedule created\"}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:16:35 PM",
+		"id": "9e261",
+		"type": "info",
+		"message": {
+			"text": "App installed successfully with combined schedule (ticket assignment + weekend reversion)"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Running scheduled event handler"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Event payload: {\"event\":\"onScheduledEvent\",\"timestamp\":1755893855224,\"iparams\":{\"dummy_param\":\"Auto-configured\"},\"currentHost\":{\"endpoint_urls\":{\"freshdesk\":\"https://benchmarkeducationcompany.freshdesk.com\"},\"subscribed_modules\":[\"support_ticket\",\"support_agent\"]},\"data\":{\"operation\":\"combined_operations\"},\"region\":\"US\",\"app_settings\":{}}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Running combined operations (ticket assignment + weekend reversion)"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Creating log entry: {\n  timestamp: '2025-08-22T20:17:36.188Z',\n  type: 'info',\n  message: 'Combined operations scheduled event started',\n  details: {}\n}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Retrieved existing logs, count: 0"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-08-22T20:17:36.188Z',\n    type: 'info',\n    message: 'Combined operations scheduled event started',\n    details: {}\n  }\n}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "[2025-08-22T20:17:36.188Z] INFO: Combined operations scheduled event started"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Calling getUnassignedTickets API with pagination..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Using updated_since filter: 2025-08-08T20:17:36.268Z"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:36 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 1..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:37 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 1 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:37 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 1: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:37 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 2..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:38 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 2 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:38 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 2: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:38 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 3..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:39 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 3 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:39 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 3: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:39 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 4..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:41 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 4 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:41 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 4: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:41 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 5..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:42 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 5 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:42 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 5: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:42 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 6..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:43 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 6 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:43 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 6: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:43 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 7..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:45 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 7 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:45 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 7: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:45 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 8..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:46 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 8 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:46 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 8: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:46 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 9..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:47 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 9 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:47 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 9: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:47 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Found target ticket #315751 on page 9: responder_id=67040495929, status=37, group_id=67000578235, updated_at=2025-08-22T20:17:20Z"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:47 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 10..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:48 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 10 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:48 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 10: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:48 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 11..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:49 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 11 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:49 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 11: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:49 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 12..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:51 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 12 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:51 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 12: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:51 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 13..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:52 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 13 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:52 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 13: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:52 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 14..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:53 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 14 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:53 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 14: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:53 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 15..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:55 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 15 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:55 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 15: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:55 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 16..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:56 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 16 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:56 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 16: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:56 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 17..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:57 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 17 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:57 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Page 17: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:17:57 PM",
+		"id": "8bec9",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 18..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Running scheduled event handler"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Event payload: {\"event\":\"onScheduledEvent\",\"timestamp\":1755894001577,\"iparams\":{\"dummy_param\":\"Auto-configured\"},\"currentHost\":{\"endpoint_urls\":{\"freshdesk\":\"https://benchmarkeducationcompany.freshdesk.com\"},\"subscribed_modules\":[\"support_ticket\",\"support_agent\"]},\"data\":{\"operation\":\"combined_operations\"},\"region\":\"US\",\"app_settings\":{}}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Running combined operations (ticket assignment + weekend reversion)"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Creating log entry: {\n  timestamp: '2025-08-22T20:20:04.894Z',\n  type: 'info',\n  message: 'Combined operations scheduled event started',\n  details: {}\n}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Retrieved existing logs, count: 0"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-08-22T20:20:04.894Z',\n    type: 'info',\n    message: 'Combined operations scheduled event started',\n    details: {}\n  }\n}"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "[2025-08-22T20:20:04.894Z] INFO: Combined operations scheduled event started"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Calling getUnassignedTickets API with pagination..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Using updated_since filter: 2025-08-08T20:20:04.950Z"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:04 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 1..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:06 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 1 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:06 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 1: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:06 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 2..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:07 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 2 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:08 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 2: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:08 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 3..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:09 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 3 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:09 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 3: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:09 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 4..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:11 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 4 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:11 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 4: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:11 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 5..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:13 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 5 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:13 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 5: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:13 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 6..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:14 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 6 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:14 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 6: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:14 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 7..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:15 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 7 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:15 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 7: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:15 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 8..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:16 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 8 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:16 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 8: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:16 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 9..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:17 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 9 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:17 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 9: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:17 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Found target ticket #315751 on page 9: responder_id=67040495929, status=37, group_id=67000578235, updated_at=2025-08-22T20:17:20Z"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:17 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 10..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:18 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 10 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:18 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 10: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:18 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 11..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:20 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 11 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:20 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 11: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:20 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 12..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:21 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 12 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:21 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 12: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:21 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 13..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:22 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 13 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:22 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 13: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:22 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 14..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:23 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 14 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:23 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 14: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:23 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 15..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:24 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 15 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:24 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 15: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:24 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 16..."
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:26 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 16 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:26 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Page 16: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Aug 22, 2025, 4:20:26 PM",
+		"id": "a3c3d",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 17..."
+		}
+	}
+]

@@ -185,7 +185,18 @@ exports = {
         console.log(`Current time: ${now.toISOString()}, Weekend mode: ${isWeekend}`);
         await addLog('info', `Processing ${allTickets.length} total tickets - Weekend mode: ${isWeekend}`);
 
-        // Run weekend reversion check first (if it's weekend time)
+        // Check if it's the morning window for overnight ticket reassignment (7:02 AM - 7:15 AM EST)
+        const estDate = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+        const estHour = estDate.getHours();
+        const estMinute = estDate.getMinutes();
+        const isOvernightReassignmentWindow = (estHour === 7 && estMinute >= 2 && estMinute < 15);
+
+        if (isOvernightReassignmentWindow) {
+          await addLog('info', 'Morning reassignment window detected (7:02 AM - 7:15 AM EST) - checking for overnight tickets with unavailable agents');
+          await handleOvernightTicketReassignment(allTickets);
+        }
+
+        // Run weekend reversion check (if it's weekend time)
         if (isWeekend) {
           await addLog('info', 'Weekend detected - checking for Follow-up Required tickets to revert');
           await handleWeekendStatusReversion(allTickets);
@@ -500,10 +511,10 @@ async function getUnassignedTickets() {
   try {
     console.log('Calling getUnassignedTickets API with pagination...');
 
-    // Calculate date from 7 days ago for updated_since filter
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    const updatedSince = sevenDaysAgo.toISOString();
+    // Calculate date from 1 day ago for updated_since filter
+    const oneDayAgo = new Date();
+    oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+    const updatedSince = oneDayAgo.toISOString();
 
     console.log(`Using updated_since filter: ${updatedSince}`);
 
@@ -535,12 +546,19 @@ async function getUnassignedTickets() {
       if (pageTickets && pageTickets.length > 0) {
         allTickets = allTickets.concat(pageTickets);
 
-        // Check if we found our target ticket
+        // Check if we found our target tickets (for debugging)
         const targetTicket = pageTickets.find(ticket => ticket.id === 315751);
         if (targetTicket) {
           console.log(`Found target ticket #315751 on page ${page}: responder_id=${targetTicket.responder_id}, status=${targetTicket.status}, group_id=${targetTicket.group_id}, updated_at=${targetTicket.updated_at}`);
-          hasMore = false; // Stop searching once we find it
-        } else if (pageTickets.length < 100) {
+        }
+
+        // Check for ticket #306399 specifically
+        const ticket306399 = pageTickets.find(ticket => ticket.id === 306399);
+        if (ticket306399) {
+          console.log(`Found ticket #306399 on page ${page}: responder_id=${ticket306399.responder_id}, status=${ticket306399.status}, group_id=${ticket306399.group_id}, updated_at=${ticket306399.updated_at}`);
+        }
+
+        if (pageTickets.length < 100) {
           // If we got less than a full page, we've reached the end
           hasMore = false;
         } else {
@@ -560,12 +578,7 @@ async function getUnassignedTickets() {
       console.log(`Ticket date range: Newest updated ${newestTicket.updated_at} (ID: ${newestTicket.id}), Oldest updated ${oldestTicket.updated_at} (ID: ${oldestTicket.id})`);
     }
 
-    // Final check if ticket #315751 is in the combined batch
-    const targetTicket = allTickets.find(ticket => ticket.id === 315751);
-    if (!targetTicket) {
-      console.log('Target ticket #315751 NOT found in any of the fetched pages');
-      console.log('Target ticket #315751 was last updated on 2025-08-22T14:29:09Z');
-    }
+
 
     if (!allTickets || allTickets.length === 0) {
       console.log('No tickets found');
@@ -594,7 +607,9 @@ async function getUnassignedTickets() {
       allTickets.slice(0, 5).forEach(ticket => {
         console.log(`  Ticket #${ticket.id}: responder_id=${ticket.responder_id}, status=${ticket.status}, group_id=${ticket.group_id}`);
       });
-      return null;
+      // Still return all tickets for other operations like overnight reassignment
+      console.log('Returning all tickets for processing by other operations');
+      return allTickets;
     }
 
     console.log(`Found ${unassignedTickets.length} unassigned tickets with Open/Triage status out of ${allTickets.length} total tickets`);
@@ -1027,6 +1042,115 @@ async function createSchedule(interval) {
   } catch (error) {
     console.error('Error creating schedule:', error);
     throw error;
+  }
+}
+
+// ----- Overnight Ticket Reassignment Helpers -----
+
+// Handle overnight ticket reassignment for unavailable agents
+async function handleOvernightTicketReassignment(allTickets) {
+  try {
+    console.log('Starting overnight ticket reassignment process...');
+    await addLog('info', 'Overnight ticket reassignment process started');
+
+    // Filter tickets with "overnight" tag
+    const overnightTickets = allTickets.filter(ticket => {
+      return ticket.tags && ticket.tags.includes('overnight') && ticket.responder_id;
+    });
+
+    if (!overnightTickets || overnightTickets.length === 0) {
+      await addLog('info', 'No tickets with overnight tag and assigned agent found');
+      return;
+    }
+
+    console.log(`Found ${overnightTickets.length} tickets with overnight tag and assigned agents`);
+
+    let reassignedCount = 0;
+    let errorCount = 0;
+
+    for (const ticket of overnightTickets) {
+      try {
+        console.log(`Checking agent availability for ticket #${ticket.id} (Agent ID: ${ticket.responder_id})`);
+
+        // Fetch agent details to check availability
+        const agentResponse = await $request.invokeTemplate('getAgentDetails', {
+          context: { agent_id: ticket.responder_id }
+        });
+
+        if (agentResponse.status >= 400) {
+          console.error(`Failed to fetch agent ${ticket.responder_id} details:`, agentResponse.response);
+          errorCount++;
+          continue;
+        }
+
+        const agent = JSON.parse(agentResponse.response);
+        console.log(`Agent ${agent.contact.name} availability: ${agent.available}`);
+
+        // Check if agent is unavailable
+        if (agent.available === false) {
+          console.log(`Agent ${agent.contact.name} is unavailable, unassigning from ticket #${ticket.id}`);
+
+          // Unassign the ticket (keep the group, set agent to null)
+          const updateResponse = await $request.invokeTemplate('assignTicket', {
+            context: { ticket_id: ticket.id },
+            body: JSON.stringify({
+              responder_id: null,
+              group_id: ticket.group_id // Keep the existing group
+            })
+          });
+
+          if (updateResponse.status >= 400) {
+            console.error(`Failed to unassign ticket #${ticket.id}:`, updateResponse.response);
+            errorCount++;
+            continue;
+          }
+
+          // Add note explaining the reassignment
+          const noteBody = `🌙 **Overnight Ticket Reassignment** This ticket was automatically unassigned from ${agent.contact.name} because the agent is unavailable.`;
+
+          await $request.invokeTemplate('addTicketNote', {
+            context: { ticket_id: ticket.id },
+            body: JSON.stringify({
+              body: noteBody,
+              private: true
+            })
+          });
+
+          reassignedCount++;
+
+          await addLog('overnight_reassignment', `Ticket #${ticket.id} unassigned from unavailable agent`, {
+            ticket_id: ticket.id,
+            ticket_subject: ticket.subject,
+            agent_id: ticket.responder_id,
+            agent_name: agent.contact.name,
+            agent_available: false,
+            group_id: ticket.group_id
+          });
+
+          console.log(`✅ Successfully unassigned ticket #${ticket.id} from unavailable agent ${agent.contact.name}`);
+        }
+
+      } catch (error) {
+        console.error(`Error processing ticket #${ticket.id}:`, error);
+        errorCount++;
+        await addLog('error', `Error processing ticket #${ticket.id} for overnight reassignment`, {
+          ticket_id: ticket.id,
+          error: error.message
+        });
+      }
+    }
+
+    await addLog('info', `Overnight ticket reassignment completed. Reassigned: ${reassignedCount}, Errors: ${errorCount}`, {
+      total_processed: overnightTickets.length,
+      reassigned_count: reassignedCount,
+      error_count: errorCount
+    });
+
+    console.log(`Overnight ticket reassignment completed. Reassigned: ${reassignedCount}, Errors: ${errorCount}`);
+
+  } catch (error) {
+    console.error('Error in overnight ticket reassignment:', error);
+    await addLog('error', 'Error in overnight ticket reassignment process', { error: error.message });
   }
 }
 

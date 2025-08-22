@@ -689,7 +689,7 @@
 
             <div class="info-section">
                 <h2>📋 Overview</h2>
-                <p>The Auto-Assign Ticket Manager provides two key automated services for Freshdesk ticket management:
+                <p>The Auto-Assign Ticket Manager provides three key automated services for Freshdesk ticket management:
                 </p>
 
                 <div
@@ -699,7 +699,7 @@
                         <h3 style="margin-top: 0; color: #1abc9c;">🎯 Round-Robin Assignment</h3>
                         <p style="margin: 0; font-size: 14px;">Automatically distributes unassigned tickets to agents
                             using a fair round-robin algorithm. Runs every 5 minutes and ensures equal distribution
-                            across all agents in each group.</p>
+                            across all agents in each group. Adds "overnight" tag to assigned tickets.</p>
                     </div>
                     <div
                         style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
@@ -707,6 +707,13 @@
                         <p style="margin: 0; font-size: 14px;">Automatically reverts "Follow-up Required" tickets back
                             to their previous status during weekend hours (Friday 6 PM - Monday 7 AM EST) to ensure fair
                             customer service.</p>
+                    </div>
+                    <div
+                        style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #9b59b6;">
+                        <h3 style="margin-top: 0; color: #9b59b6;">🌙 Overnight Ticket Reassignment</h3>
+                        <p style="margin: 0; font-size: 14px;">Daily during 7:00-7:15 AM EST, automatically unassigns
+                            tickets with "overnight" tag from unavailable agents, allowing them to be reassigned during
+                            business hours.</p>
                     </div>
                 </div>
 
@@ -731,7 +738,7 @@
                         <div class="feature-card active" data-card="1">
                             <div class="card-header"
                                 style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
-                                <h3>🎯 Round-Robin Assignment</h3>
+                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🎯 Round-Robin Assignment</h3>
                             </div>
                             <div class="card-content">
                                 <ul class="feature-list">
@@ -740,6 +747,7 @@
                                     <li>Randomized starting positions for each group to prevent clustering</li>
                                     <li>Filters for tickets in "Open" or "Triage" status only</li>
                                     <li>Assigns unassigned tickets to ALL agents in a group (no agent filtering)</li>
+                                    <li>Automatically adds "overnight" tag to assigned tickets</li>
                                     <li>Runs automatically every 5 minutes</li>
                                     <li>Fair distribution ensures every agent gets equal ticket load</li>
                                 </ul>
@@ -750,7 +758,7 @@
                         <div class="feature-card" data-card="2">
                             <div class="card-header"
                                 style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
-                                <h3>🔄 Weekend Status Reversion</h3>
+                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🔄 Weekend Status Reversion</h3>
                             </div>
                             <div class="card-content">
                                 <ul class="feature-list">
@@ -765,8 +773,26 @@
                             </div>
                         </div>
 
-                        <!-- Card 3: Monitoring & Analytics -->
+                        <!-- Card 3: Overnight Ticket Reassignment -->
                         <div class="feature-card" data-card="3">
+                            <div class="card-header"
+                                style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🌙 Overnight Ticket Reassignment</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul class="feature-list">
+                                    <li>Every morning at ~7:00 AM EST, checks for tickets tagged with "overnight"</li>
+                                    <li>Fetches agent availability status via Freshdesk API</li>
+                                    <li>Automatically unassigns tickets from unavailable agents</li>
+                                    <li>Maintains group assignment for seamless reassignment</li>
+                                    <li>Adds explanatory private notes to unassigned tickets</li>
+                                    <li>Comprehensive logging and tracking of all reassignments</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Monitoring & Analytics -->
+                        <div class="feature-card" data-card="4">
                             <div class="card-header"
                                 style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
                                 <h3>📊 Monitoring & Analytics</h3>
@@ -777,7 +803,7 @@
                                     <li>Real-time weekend status indicator</li>
                                     <li>Comprehensive activity tracking and reporting</li>
                                     <li>Filterable logs and reversion history</li>
-                                    <li>Manual testing capabilities for both features</li>
+                                    <li>Manual testing capabilities for all features</li>
                                 </ul>
                             </div>
                         </div>
@@ -796,6 +822,7 @@
                             <span class="dot active" onclick="goToCard(1)"></span>
                             <span class="dot" onclick="goToCard(2)"></span>
                             <span class="dot" onclick="goToCard(3)"></span>
+                            <span class="dot" onclick="goToCard(4)"></span>
                         </div>
 
                         <button class="nav-btn next-btn" onclick="moveCarousel(1)">
@@ -869,6 +896,17 @@
                     <li>Logs the action for audit and tracking purposes</li>
                 </ol>
 
+                <h3>🌙 Overnight Reassignment Process:</h3>
+                <ol>
+                    <li>Daily between 7:00 AM - 7:15 AM EST, the app checks for tickets tagged with "overnight"</li>
+                    <li>For each overnight ticket with an assigned agent, it fetches the agent's availability status
+                    </li>
+                    <li>If the agent's "available" field is false, the ticket is automatically unassigned</li>
+                    <li>The ticket's group assignment is maintained to allow normal reassignment processes</li>
+                    <li>A private note is added explaining why the ticket was unassigned</li>
+                    <li>All reassignments are logged for tracking and audit purposes</li>
+                </ol>
+
                 <h3>Randomized Starting Positions:</h3>
                 <p>When a group first receives tickets, the app randomly selects which agent to start with. This
                     prevents agents
@@ -904,6 +942,17 @@
                     - The 48-hour timer effectively pauses during weekends
                     - Business hours resume Monday at 7:00 AM EST</div>
 
+                <h3>Overnight Reassignment Window:</h3>
+                <div class="code-block">
+                    Reassignment Window: Daily 7:00 AM - 7:15 AM EST
+
+                    During this window:
+                    - Tickets with "overnight" tag are checked for agent availability
+                    - Unavailable agents have their tickets automatically unassigned
+                    - Group assignments are maintained for seamless reassignment
+                    - Private notes explain the reassignment reason
+                    - Process runs early morning before business hours begin</div>
+
                 <div class="note">
                     <strong>Note:</strong> The assignment process only processes tickets that are both
                     <strong>unassigned</strong> AND
@@ -934,6 +983,18 @@
                         previous status cannot be determined</li>
                     <li><strong>No reversions in logs:</strong> Verify tickets have "Follow-up Required" status and are
                         in supported groups</li>
+                </ul>
+
+                <h3>Overnight Reassignment Issues:</h3>
+                <ul>
+                    <li><strong>Tickets not being reassigned:</strong> Check if tickets have the "overnight" tag and if
+                        it's during the 7:00-7:15 AM EST window</li>
+                    <li><strong>Agent still assigned:</strong> Verify the agent's "available" field is set to false in
+                        Freshdesk</li>
+                    <li><strong>No reassignments in logs:</strong> Ensure tickets are assigned to agents (not
+                        unassigned) and tagged with "overnight"</li>
+                    <li><strong>API errors:</strong> Check agent permissions and API access for fetching agent
+                        availability status</li>
                 </ul>
 
                 <div class="note">
@@ -2451,7 +2512,7 @@
 
     // Carousel functionality
     let currentCard = 1;
-    const totalCards = 3;
+    const totalCards = 4;
 
     function moveCarousel(direction) {
         currentCard += direction;

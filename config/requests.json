@@ -208,6 +208,17 @@
       }
     }
   },
+  "getAgentDetails": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/agents/<%= context.agent_id %>",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
   "addTicketTag": {
     "schema": {
       "method": "PUT",
