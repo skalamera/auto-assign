@@ -1,0 +1,108 @@
+{
+    "id": 67000671488,
+    "name": "status",
+    "label": "Status",
+    "description": "Ticket status",
+    "position": 5,
+    "required_for_closure": true,
+    "required_for_agents": false,
+    "type": "default_status",
+    "default": true,
+    "customers_can_edit": false,
+    "customers_can_filter": false,
+    "label_for_customers": "Status",
+    "required_for_customers": false,
+    "displayed_to_customers": true,
+    "created_at": "2021-01-04T20:46:06Z",
+    "updated_at": "2025-02-14T14:09:03Z",
+    "choices": {
+      "2": [
+        "Open",
+        "Open"
+      ],
+      "6": [
+        "Waiting on Customer",
+        "Awaiting Customer Response"
+      ],
+      "8": [
+        "Escalated",
+        "Escalated"
+      ],
+      "4": [
+        "Resolved",
+        "Resolved"
+      ],
+      "3": [
+        "Pending",
+        "Pending"
+      ],
+      "36": [
+        "Awaiting Internal Review",
+        "Awaiting Internal Review"
+      ],
+      "37": [
+        "Support Ops Review",
+        "Support Ops Review"
+      ],
+      "23": [
+        "Follow-up Required",
+        "Follow-up"
+      ],
+      "10": [
+        "Waiting on Support",
+        "Support Review"
+      ],
+      "33": [
+        "Bookings Meeting",
+        "Bookings Meeting"
+      ],
+      "29": [
+        "Triage",
+        "Triage"
+      ],
+      "5": [
+        "Closed",
+        "Closed"
+      ],
+      "30": [
+        "Pending Jira",
+        "Pending Jira"
+      ],
+      "22": [
+        "Created in JIRA",
+        "Escalated"
+      ],
+      "9": [
+        "Dev in Progress",
+        "In Progress"
+      ],
+      "14": [
+        "Editorial in Progress",
+        "In Progress"
+      ],
+      "25": [
+        "Support Review",
+        "Support Review"
+      ],
+      "15": [
+        "Closed in JIRA",
+        "Support Review"
+      ],
+      "11": [
+        "Resubmitted",
+        "In Progress"
+      ],
+      "26": [
+        "On Hold",
+        "In Progress"
+      ],
+      "27": [
+        "Backlog",
+        "Backlog"
+      ],
+      "28": [
+        "Closed - No Resolution",
+        "Closed - No Resolution"
+      ]
+    }
+  },

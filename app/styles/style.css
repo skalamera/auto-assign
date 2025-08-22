@@ -45,3 +45,91 @@ h1 {
 .info {
     color: #1976d2;
 }
+
+/* Weekend Status Indicator */
+.weekend-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.status-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #6c757d;
+    box-shadow: 0 0 0 4px rgba(108, 117, 125, 0.2);
+    animation: pulse 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.status-dot.weekend {
+    background-color: #dc3545;
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2);
+    animation: pulse-red 2s infinite;
+}
+
+.status-dot.business-hours {
+    background-color: #28a745;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.2);
+    animation: pulse-green 2s infinite;
+}
+
+.status-text {
+    font-weight: 600;
+    font-size: 16px;
+    color: #495057;
+}
+
+.status-time {
+    font-size: 14px;
+    color: #6c757d;
+    margin-left: auto;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(108, 117, 125, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(108, 117, 125, 0);
+    }
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}

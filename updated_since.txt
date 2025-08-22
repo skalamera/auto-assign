@@ -1,0 +1,28 @@
+List All Tickets
+get  /api/v2/tickets
+Use filters to view only specific tickets (those which match the criteria that you choose). By default, only tickets that have not been deleted or marked as spam will be returned, unless you use the 'deleted' filter.
+
+Note:
+1. By default, only tickets that have been created within the past 30 days will be returned. For older tickets, use the updated_since filter
+2. A maximum of 300 pages (30000 tickets) will be returned.
+3. When using filters, the query string must be URL encoded - see example
+4. Use 'include' to embed additional details in the response. Each include will consume an additional 2 credits. For example if you embed the stats information you will be charged a total of 3 API credits for the call.
+5. For accounts created after 2018-11-30, you will have to use include to get description.
+
+Filter by	Handle
+Predefined filters	/api/v2/tickets?filter=[filter_name]
+The various filters available are new_and_my_open, watching, spam, deleted.
+Requester	/api/v2/tickets?requester_id=[id]
+/api/v2/tickets?email=[requester_email]
+/api/v2/tickets?unique_external_id=[requester_unique_external_id]
+Example:
+/api/v2/tickets?email=superman@freshdesk.com
+/api/v2/tickets?email=bat%2Bman%40gmail.com   (URL encoded bat+man@gmail.com)
+Company ID	/api/v2/tickets?company_id=[id]
+Updated since	/api/v2/tickets?updated_since=2015-01-19T02:00:00Z
+Custom ticket views	Check out the Filter Tickets API
+Sort by	Handle
+created_at, due_by, updated_at, status	/api/v2/tickets?order_by=created_at
+Default sort order is created_at
+asc, desc	/api/v2/tickets?order_type=asc
+Default sort order type is desc

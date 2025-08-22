@@ -20,7 +20,10 @@
         "getLogs": {},
         "clearLogs": {},
         "getAssignmentActivity": {},
-        "clearAssignmentActivity": {}
+        "clearAssignmentActivity": {},
+        "getWeekendReversions": {},
+        "clearWeekendReversions": {},
+        "testWeekendReversion": {}
       },
       "requests": {
         "getUnassignedTickets": {},
@@ -31,7 +34,13 @@
         "getNortheastRegionGroup": {},
         "getCentralSouthwestGroup": {},
         "getTriageGroup": {},
-        "getSupportOpsGroup": {}
+        "getSupportOpsGroup": {},
+        "getFollowUpRequiredTickets": {},
+        "updateTicketStatus": {},
+        "addTicketNote": {},
+        "getTicketHistory": {},
+        "getSpecificTicket": {},
+        "addTicketTag": {}
       }
     },
     "support_ticket": {},

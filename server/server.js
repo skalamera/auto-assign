@@ -25,6 +25,21 @@ const ASSIGNMENT_ATTEMPTS_DB_KEY = 'assignment_attempts_v1';
 // Retention window in days for assignment attempts
 const ASSIGNMENT_ATTEMPTS_RETENTION_DAYS = 31;
 
+// Key for weekend reversion storage
+const WEEKEND_REVERSIONS_DB_KEY = 'weekend_reversions_v1';
+
+// Retention window in days for weekend reversions
+const WEEKEND_REVERSIONS_RETENTION_DAYS = 90;
+
+// Status mappings for weekend reversion
+const STATUS_MAPPINGS = {
+  'Follow-up Required': {
+    'Waiting on Customer': 6,
+    'Awaiting Internal Review': 36,
+    'Pending': 3
+  }
+};
+
 // Helper function to get existing logs
 async function getExistingLogs() {
   // Return in-memory logs
@@ -100,25 +115,25 @@ async function addLog(type, message, details = {}) {
 exports = {
   // Handler for the app installation
   onAppInstallHandler: async function (payload) {
-    console.log('App installation started - CREATING 5-MINUTE SCHEDULE');
+    console.log('App installation started - CREATING COMBINED SCHEDULE');
     console.log('Installation payload:', JSON.stringify(payload));
 
     try {
       // Try to delete any existing schedule first
       try {
         await $schedule.delete({
-          name: "ticket_assignment_schedule"
+          name: "auto_assign_schedule"
         });
         console.log('Deleted existing schedule');
       } catch (deleteError) {
         console.log('No existing schedule to delete:', deleteError.message);
       }
 
-      // Create the schedule with hardcoded 5-minute interval
+      // Create a single schedule that handles both ticket assignment and weekend reversion
       const schedule = await $schedule.create({
-        name: "ticket_assignment_schedule",
+        name: "auto_assign_schedule",
         data: {
-          operation: "assign_tickets"
+          operation: "combined_operations"
         },
         schedule_at: new Date(Date.now() + 60000).toISOString(), // Start 1 minute from now
         repeat: {
@@ -127,8 +142,8 @@ exports = {
         }
       });
 
-      console.log('Schedule created successfully:', JSON.stringify(schedule));
-      console.log('App installed successfully with 5-minute schedule');
+      console.log('Combined schedule created successfully:', JSON.stringify(schedule));
+      console.log('App installed successfully with combined schedule (ticket assignment + weekend reversion)');
 
       // Call renderData() to complete the installation
       renderData();
@@ -145,41 +160,101 @@ exports = {
 
 
 
-  // Handler for scheduled events - assigns unassigned tickets
-  onScheduledEventHandler: async function () {
-    console.log('Running scheduled ticket assignment');
-    await addLog('info', 'Scheduled ticket assignment started');
+  // Handler for scheduled events - handles both ticket assignment and weekend status reversion
+  onScheduledEventHandler: async function (payload) {
+    console.log('Running scheduled event handler');
+    console.log('Event payload:', JSON.stringify(payload));
 
-    try {
-      // Purge old assignment attempts monthly (lightweight every run)
-      await purgeOldAssignmentAttempts();
+    const operation = payload?.data?.operation || 'combined_operations';
 
-      if (!await isServiceEnabled()) {
-        await addLog('info', 'Service is disabled, skipping ticket assignment');
-        return;
+    if (operation === 'combined_operations') {
+      console.log('Running combined operations (ticket assignment + weekend reversion)');
+      await addLog('info', 'Combined operations scheduled event started');
+
+      try {
+        // Get all tickets once for both operations
+        const allTickets = await getUnassignedTickets();
+        if (!allTickets || allTickets.length === 0) {
+          await addLog('info', 'No tickets found');
+          return;
+        }
+
+        const now = new Date();
+        const isWeekend = isWeekendTime(now);
+
+        console.log(`Current time: ${now.toISOString()}, Weekend mode: ${isWeekend}`);
+        await addLog('info', `Processing ${allTickets.length} total tickets - Weekend mode: ${isWeekend}`);
+
+        // Run weekend reversion check first (if it's weekend time)
+        if (isWeekend) {
+          await addLog('info', 'Weekend detected - checking for Follow-up Required tickets to revert');
+          await handleWeekendStatusReversion(allTickets);
+        } else {
+          await addLog('info', 'Not weekend time, skipping weekend status reversion');
+        }
+
+        // Then run ticket assignment (if service is enabled)
+        await addLog('info', 'Starting ticket assignment process');
+
+        // Purge old assignment attempts monthly (lightweight every run)
+        await purgeOldAssignmentAttempts();
+
+        if (!await isServiceEnabled()) {
+          await addLog('info', 'Service is disabled, skipping ticket assignment');
+          return;
+        }
+
+        // Filter for unassigned tickets for assignment
+        // Status 2 = "Open", Status 29 = "Triage" in Freshdesk
+        console.log(`Filtering ${allTickets.length} tickets for assignment eligibility...`);
+
+        const unassignedTickets = allTickets.filter(ticket => {
+          const isUnassigned = !ticket.responder_id;
+          const hasCorrectStatus = ticket.status === 2 || ticket.status === 29;
+          const isEligible = isUnassigned && hasCorrectStatus;
+
+          // Debug logging for ticket #315751 specifically
+          if (ticket.id === 315751) {
+            console.log(`DEBUG - Assignment filtering for #315751: responder_id=${ticket.responder_id}, status=${ticket.status}, isUnassigned=${isUnassigned}, hasCorrectStatus=${hasCorrectStatus}, isEligible=${isEligible}`);
+          }
+
+          if (!isEligible) {
+            console.log(`Skipping ticket #${ticket.id} for assignment - unassigned: ${isUnassigned}, status: ${ticket.status} (needs 2 or 29)`);
+          }
+          return isEligible;
+        });
+
+        if (!unassignedTickets || unassignedTickets.length === 0) {
+          console.log('No tickets eligible for assignment found. Sample tickets:');
+          allTickets.slice(0, 5).forEach(ticket => {
+            console.log(`  Ticket #${ticket.id}: responder_id=${ticket.responder_id}, status=${ticket.status}, group_id=${ticket.group_id}`);
+          });
+          await addLog('info', 'No unassigned tickets with Open (2) or Triage (29) status found for assignment');
+          return;
+        }
+
+        console.log(`Found ${unassignedTickets.length} tickets eligible for assignment:`, unassignedTickets.map(t => `#${t.id} (status: ${t.status})`));
+
+        const allAgentsWithGroups = await getActiveAgents();
+        if (!allAgentsWithGroups || allAgentsWithGroups.length === 0) {
+          await addLog('error', 'No agents available for assignment');
+          return;
+        }
+
+        await loadAgentIndicesByGroup();
+        await assignTicketsInRoundRobin(unassignedTickets, allAgentsWithGroups);
+        await saveAgentIndicesByGroup();
+
+        await addLog('info', `Combined operations completed. Ticket assignment: ${unassignedTickets.length} tickets, Weekend reversion: ${isWeekendTime(now) ? 'checked' : 'skipped'}`);
+
+      } catch (error) {
+        console.error('Error during combined operations:', error);
+        await addLog('error', 'Error during combined operations', { error: error.message });
       }
-
-      const tickets = await getUnassignedTickets();
-      if (!tickets || tickets.length === 0) {
-        await addLog('info', 'No unassigned tickets found');
-        return;
-      }
-
-      const allAgentsWithGroups = await getActiveAgents();
-      if (!allAgentsWithGroups || allAgentsWithGroups.length === 0) {
-        await addLog('error', 'No agents available for assignment');
-        return;
-      }
-
-      await loadAgentIndicesByGroup();
-      await assignTicketsInRoundRobin(tickets, allAgentsWithGroups);
-      await saveAgentIndicesByGroup();
-
-      await addLog('info', `Ticket assignment completed. Processed ${tickets.length} tickets with ${allAgentsWithGroups.length} total agents`);
-
-    } catch (error) {
-      console.error('Error during ticket assignment:', error);
-      await addLog('error', 'Error during ticket assignment', { error: error.message });
+    } else {
+      // Fallback for legacy operations
+      console.log('Running legacy operation:', operation);
+      await addLog('info', `Legacy operation: ${operation}`);
     }
   },
 
@@ -291,6 +366,117 @@ exports = {
       console.error('Error in clearAssignmentActivity:', error);
       return { success: false, error: error.message };
     }
+  },
+
+  // Return weekend reversion activity with optional filters
+  getWeekendReversions: async function (args) {
+    try {
+      const filters = args || {};
+      const data = await getWeekendReversionsData();
+      let reversions = data.reversions || [];
+
+      // Apply filters
+      if (filters.ticket_id) {
+        reversions = reversions.filter(r => String(r.ticket_id) === String(filters.ticket_id));
+      }
+      if (filters.agent_name) {
+        reversions = reversions.filter(r => (r.agent_name || '').toLowerCase() === String(filters.agent_name).toLowerCase());
+      }
+      if (filters.previous_status) {
+        reversions = reversions.filter(r => r.previous_status === filters.previous_status);
+      }
+      if (filters.date_from) {
+        const from = new Date(filters.date_from).getTime();
+        reversions = reversions.filter(r => new Date(r.reverted_at).getTime() >= from);
+      }
+      if (filters.date_to) {
+        const to = new Date(filters.date_to).getTime();
+        reversions = reversions.filter(r => new Date(r.reverted_at).getTime() <= to);
+      }
+
+      // Sort by reverted_at desc by default
+      reversions.sort((a, b) => new Date(b.reverted_at) - new Date(a.reverted_at));
+
+      return { success: true, reversions, total: reversions.length };
+    } catch (error) {
+      console.error('Error in getWeekendReversions:', error);
+      return { success: false, error: error.message, reversions: [], total: 0 };
+    }
+  },
+
+  // Clear weekend reversion storage manually
+  clearWeekendReversions: async function () {
+    try {
+      await $db.set(WEEKEND_REVERSIONS_DB_KEY, { reversions: [], updated_at: new Date().toISOString() });
+      return { success: true };
+    } catch (error) {
+      console.error('Error in clearWeekendReversions:', error);
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Test function for weekend reversion (for testing purposes)
+  testWeekendReversion: async function () {
+    try {
+      console.log('Manual test of weekend reversion started');
+      await addLog('info', 'Manual test of weekend reversion started');
+
+      // Get tickets for testing
+      const allTickets = await getUnassignedTickets();
+      if (!allTickets || allTickets.length === 0) {
+        await addLog('info', 'No tickets found for testing');
+        return { success: false, message: 'No tickets found for testing' };
+      }
+
+      // Force weekend reversion regardless of time
+      await handleWeekendStatusReversion(allTickets);
+
+      return { success: true, message: 'Weekend reversion test completed' };
+    } catch (error) {
+      console.error('Error in testWeekendReversion:', error);
+      await addLog('error', 'Error in testWeekendReversion', { error: error.message });
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Debug function to check specific ticket
+  checkSpecificTicket: async function (args) {
+    try {
+      const ticketId = args?.ticket_id || 315751;
+      console.log(`Checking specific ticket #${ticketId}...`);
+
+      const response = await $request.invokeTemplate('getSpecificTicket', {
+        context: { ticket_id: ticketId }
+      });
+
+      if (response.status >= 400) {
+        console.error(`Failed to fetch ticket #${ticketId}:`, response.response);
+        return { success: false, error: `API returned status ${response.status}` };
+      }
+
+      const ticket = JSON.parse(response.response);
+      console.log(`Ticket #${ticketId} details:`, {
+        id: ticket.id,
+        responder_id: ticket.responder_id,
+        status: ticket.status,
+        group_id: ticket.group_id,
+        subject: ticket.subject
+      });
+
+      return {
+        success: true,
+        ticket: {
+          id: ticket.id,
+          responder_id: ticket.responder_id,
+          status: ticket.status,
+          group_id: ticket.group_id,
+          subject: ticket.subject
+        }
+      };
+    } catch (error) {
+      console.error('Error in checkSpecificTicket:', error);
+      return { success: false, error: error.message };
+    }
   }
 };
 
@@ -312,39 +498,107 @@ async function isServiceEnabled() {
 // Helper function to get unassigned tickets
 async function getUnassignedTickets() {
   try {
-    console.log('Calling getUnassignedTickets API...');
-    const ticketsResponse = await $request.invokeTemplate('getUnassignedTickets', {});
-    console.log('API Response status:', ticketsResponse.status);
-    console.log('Full API Response:', JSON.stringify(ticketsResponse));
+    console.log('Calling getUnassignedTickets API with pagination...');
 
-    if (ticketsResponse.status >= 400) {
-      console.error('API Error Response body:', ticketsResponse.response);
-      console.error('API Error headers:', ticketsResponse.headers);
-      throw new Error(`API returned status ${ticketsResponse.status}: ${ticketsResponse.response}`);
+    // Calculate date from 7 days ago for updated_since filter
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const updatedSince = sevenDaysAgo.toISOString();
+
+    console.log(`Using updated_since filter: ${updatedSince}`);
+
+    let allTickets = [];
+    let page = 1;
+    let hasMore = true;
+    const maxPages = 50; // Limit to prevent infinite loops
+
+    while (hasMore && page <= maxPages) {
+      console.log(`Fetching page ${page}...`);
+
+      const ticketsResponse = await $request.invokeTemplate('getUnassignedTickets', {
+        context: {
+          updated_since: updatedSince,
+          page: page
+        }
+      });
+      console.log(`Page ${page} API Response status:`, ticketsResponse.status);
+
+      if (ticketsResponse.status >= 400) {
+        console.error('API Error Response body:', ticketsResponse.response);
+        console.error('API Error headers:', ticketsResponse.headers);
+        throw new Error(`API returned status ${ticketsResponse.status}: ${ticketsResponse.response}`);
+      }
+
+      const pageTickets = JSON.parse(ticketsResponse.response);
+      console.log(`Page ${page}: fetched ${pageTickets.length} tickets`);
+
+      if (pageTickets && pageTickets.length > 0) {
+        allTickets = allTickets.concat(pageTickets);
+
+        // Check if we found our target ticket
+        const targetTicket = pageTickets.find(ticket => ticket.id === 315751);
+        if (targetTicket) {
+          console.log(`Found target ticket #315751 on page ${page}: responder_id=${targetTicket.responder_id}, status=${targetTicket.status}, group_id=${targetTicket.group_id}, updated_at=${targetTicket.updated_at}`);
+          hasMore = false; // Stop searching once we find it
+        } else if (pageTickets.length < 100) {
+          // If we got less than a full page, we've reached the end
+          hasMore = false;
+        } else {
+          page++;
+        }
+      } else {
+        hasMore = false;
+      }
     }
 
-    const tickets = JSON.parse(ticketsResponse.response);
-    console.log('Total tickets returned:', tickets.length);
+    console.log(`Total tickets fetched across ${page} pages: ${allTickets.length}`);
 
-    if (!tickets || tickets.length === 0) {
+    // Show date range of tickets for debugging
+    if (allTickets.length > 0) {
+      const oldestTicket = allTickets[allTickets.length - 1];
+      const newestTicket = allTickets[0];
+      console.log(`Ticket date range: Newest updated ${newestTicket.updated_at} (ID: ${newestTicket.id}), Oldest updated ${oldestTicket.updated_at} (ID: ${oldestTicket.id})`);
+    }
+
+    // Final check if ticket #315751 is in the combined batch
+    const targetTicket = allTickets.find(ticket => ticket.id === 315751);
+    if (!targetTicket) {
+      console.log('Target ticket #315751 NOT found in any of the fetched pages');
+      console.log('Target ticket #315751 was last updated on 2025-08-22T14:29:09Z');
+    }
+
+    if (!allTickets || allTickets.length === 0) {
       console.log('No tickets found');
       return null;
     }
 
     // Filter for unassigned tickets with status 2 (Open) or 29 (Triage)
-    const unassignedTickets = tickets.filter(ticket => {
+    console.log('Starting ticket filtering process...');
+
+    const unassignedTickets = allTickets.filter(ticket => {
       const isUnassigned = !ticket.responder_id || ticket.responder_id === null;
       const hasCorrectStatus = ticket.status === 2 || ticket.status === 29;
-      return isUnassigned && hasCorrectStatus;
+      const isEligible = isUnassigned && hasCorrectStatus;
+
+      // Debug logging for ticket #315751 specifically
+      if (ticket.id === 315751) {
+        console.log(`DEBUG - Ticket #315751: responder_id=${ticket.responder_id}, status=${ticket.status}, isUnassigned=${isUnassigned}, hasCorrectStatus=${hasCorrectStatus}, isEligible=${isEligible}`);
+      }
+
+      return isEligible;
     });
 
     if (unassignedTickets.length === 0) {
       console.log('No unassigned tickets with Open or Triage status found');
+      console.log('Sample tickets for debugging:');
+      allTickets.slice(0, 5).forEach(ticket => {
+        console.log(`  Ticket #${ticket.id}: responder_id=${ticket.responder_id}, status=${ticket.status}, group_id=${ticket.group_id}`);
+      });
       return null;
     }
 
-    console.log(`Found ${unassignedTickets.length} unassigned tickets with Open/Triage status out of ${tickets.length} total tickets`);
-    return unassignedTickets;
+    console.log(`Found ${unassignedTickets.length} unassigned tickets with Open/Triage status out of ${allTickets.length} total tickets`);
+    return allTickets; // Return all tickets for use by both operations (weekend reversion needs access to all tickets)
   } catch (error) {
     console.error('Error in getUnassignedTickets:', error);
     throw error;
@@ -373,17 +627,20 @@ async function getActiveAgents() {
         allAgents = allAgents.concat(pageAgents);
         console.log(`Page ${page}: fetched ${pageAgents.length} agents (total so far: ${allAgents.length})`);
 
-        // If we got 100 agents, there might be more
-        if (pageAgents.length === 100) {
+        // If we got a full page of agents, there might be more
+        // Freshdesk returns 30 agents per page by default
+        if (pageAgents.length >= 30) {
           page++;
         } else {
           hasMore = false;
         }
       } else {
+        console.log(`Page ${page} returned no agents, stopping pagination`);
         hasMore = false;
       }
     } catch (error) {
-      console.log(`No more agent pages or error on page ${page}:`, error.message);
+      console.log(`Error fetching page ${page}:`, error.message);
+      console.log(`Full error:`, error);
       hasMore = false;
     }
   }
@@ -590,8 +847,20 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
 
       console.log(`✅ Ticket #${ticket.id} assigned to ${agent.contact.name} (ID: ${agent.id}) in group ${ticketGroupId}`);
 
+      // Add "overnight" tag to the ticket after successful assignment
+      try {
+        await $request.invokeTemplate('addTicketTag', {
+          context: { ticket_id: ticket.id },
+          body: JSON.stringify({ tags: ['overnight'] })
+        });
+        console.log(`✅ Added "overnight" tag to ticket #${ticket.id}`);
+      } catch (tagError) {
+        console.warn(`⚠️ Failed to add "overnight" tag to ticket #${ticket.id}:`, tagError.message);
+        // Don't fail the assignment if tag addition fails
+      }
+
       // Log the ticket assignment with detailed information
-      await addLog('ticket_assigned', `Ticket #${ticket.id} assigned to agent in correct group`, {
+      await addLog('ticket_assigned', `Ticket #${ticket.id} assigned to agent in correct group and tagged with "overnight"`, {
         ticket_id: ticket.id,
         ticket_subject: ticket.subject,
         ticket_priority: ticket.priority,
@@ -602,7 +871,8 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         group_id: ticketGroupId,
         assignment_time: new Date().toISOString(),
         round_robin_index: agentIndex,
-        total_agents_in_group: groupAgents.length
+        total_agents_in_group: groupAgents.length,
+        tag_added: 'overnight'
       });
 
       // Record assignment attempt (success)
@@ -612,7 +882,8 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         agent_name: agent.contact?.name || 'Unknown',
         group_id: ticketGroupId,
         result: 'Success',
-        error_message: null
+        error_message: null,
+        tag_added: 'overnight'
       });
 
     } catch (error) {
@@ -670,7 +941,7 @@ async function getAssignmentAttemptsData() {
   return { attempts: [] };
 }
 
-async function addAssignmentAttemptEntry({ ticket_id, ticket_subject, agent_name, group_id, result, error_message }) {
+async function addAssignmentAttemptEntry({ ticket_id, ticket_subject, agent_name, group_id, result, error_message, tag_added }) {
   try {
     const data = await getAssignmentAttemptsData();
     const attempts = Array.isArray(data.attempts) ? data.attempts : [];
@@ -683,7 +954,8 @@ async function addAssignmentAttemptEntry({ ticket_id, ticket_subject, agent_name
       group_name: GROUP_NAMES_BY_ID[group_id] || `Group ${group_id}`,
       attempted_at: new Date().toISOString(),
       result: result === 'Success' ? 'Success' : 'Failed',
-      error_message: result === 'Failed' ? (error_message || 'Unknown error') : null
+      error_message: result === 'Failed' ? (error_message || 'Unknown error') : null,
+      tag_added: tag_added || null
     };
 
     attempts.push(entry);
@@ -730,7 +1002,7 @@ async function createSchedule(interval) {
     // Delete existing schedule if any
     try {
       await $schedule.delete({
-        name: "ticket_assignment_schedule"
+        name: "auto_assign_schedule"
       });
       console.log('Deleted existing schedule');
     } catch (error) {
@@ -739,9 +1011,9 @@ async function createSchedule(interval) {
 
     // Create new schedule
     const schedule = await $schedule.create({
-      name: "ticket_assignment_schedule",
+      name: "auto_assign_schedule",
       data: {
-        operation: "assign_tickets"
+        operation: "combined_operations"
       },
       schedule_at: new Date().toISOString(),
       repeat: {
@@ -750,11 +1022,303 @@ async function createSchedule(interval) {
       }
     });
 
-    console.log('Created new schedule:', schedule);
+    console.log('Created new combined schedule:', schedule);
     return schedule;
   } catch (error) {
     console.error('Error creating schedule:', error);
     throw error;
+  }
+}
+
+// ----- Weekend Status Reversion Helpers -----
+
+// Check if current time is during weekend hours (Friday 6 PM EST to Monday 7 AM EST)
+function isWeekendTime(date) {
+  // TEMPORARY: Set to true for testing - REMOVE THIS LINE AFTER TESTING
+  const TESTING_MODE = false; // Set to true to force weekend mode for testing
+
+  if (TESTING_MODE) {
+    return false;
+  }
+
+  // Convert to EST timezone
+  const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
+  const day = estDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday
+  const hour = estDate.getHours();
+
+  // Friday after 6 PM (18:00)
+  if (day === 5 && hour >= 18) return true;
+  // Saturday (all day)
+  if (day === 6) return true;
+  // Sunday (all day)
+  if (day === 0) return true;
+  // Monday before 7 AM (07:00)
+  if (day === 1 && hour < 7) return true;
+
+  return false;
+}
+
+// Get weekend reversion data from database
+async function getWeekendReversionsData() {
+  try {
+    const existing = await $db.get(WEEKEND_REVERSIONS_DB_KEY);
+    if (existing && Array.isArray(existing.reversions)) {
+      return existing;
+    }
+  } catch (e) {
+    // Ignore missing key errors
+  }
+  return { reversions: [] };
+}
+
+// Add weekend reversion entry to database
+async function addWeekendReversionEntry({ ticket_id, ticket_subject, agent_name, previous_status, reverted_to_status, reversion_reason }) {
+  try {
+    const data = await getWeekendReversionsData();
+    const reversions = Array.isArray(data.reversions) ? data.reversions : [];
+
+    const entry = {
+      ticket_id,
+      ticket_subject: ticket_subject || 'Unknown Subject',
+      agent_name: agent_name || 'Unknown',
+      previous_status,
+      reverted_to_status,
+      reversion_reason,
+      reverted_at: new Date().toISOString()
+    };
+
+    reversions.push(entry);
+
+    // Keep a reasonable upper bound to prevent unbounded growth
+    const MAX_ENTRIES = 5000;
+    if (reversions.length > MAX_ENTRIES) {
+      reversions.splice(0, reversions.length - MAX_ENTRIES);
+    }
+
+    await $db.set(WEEKEND_REVERSIONS_DB_KEY, { reversions, updated_at: new Date().toISOString() });
+  } catch (error) {
+    console.error('Error saving weekend reversion entry:', error);
+  }
+}
+
+// Purge old weekend reversion entries
+async function purgeOldWeekendReversions() {
+  try {
+    const data = await getWeekendReversionsData();
+    const reversions = Array.isArray(data.reversions) ? data.reversions : [];
+    if (reversions.length === 0) return;
+
+    const now = Date.now();
+    const cutoffMs = WEEKEND_REVERSIONS_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+    const cutoffTime = now - cutoffMs;
+
+    const filtered = reversions.filter(r => {
+      const t = new Date(r.reverted_at).getTime();
+      return !Number.isNaN(t) && t >= cutoffTime;
+    });
+
+    if (filtered.length !== reversions.length) {
+      await $db.set(WEEKEND_REVERSIONS_DB_KEY, { reversions: filtered, updated_at: new Date().toISOString() });
+      console.log(`Purged ${reversions.length - filtered.length} old weekend reversions; kept ${filtered.length}`);
+    }
+  } catch (error) {
+    console.error('Error purging old weekend reversions:', error);
+  }
+}
+
+
+
+// Get ticket history to determine previous status
+async function getTicketHistory(ticketId) {
+  try {
+    console.log(`Fetching history for ticket #${ticketId}...`);
+    const response = await $request.invokeTemplate('getTicketHistory', {
+      context: { ticket_id: ticketId }
+    });
+
+    if (response.status >= 400) {
+      console.error('API Error Response:', response.response);
+      throw new Error(`API returned status ${response.status}: ${response.response}`);
+    }
+
+    const history = JSON.parse(response.response);
+    console.log(`Found ${history.length} history entries for ticket #${ticketId}`);
+    return history;
+  } catch (error) {
+    console.error(`Error fetching history for ticket #${ticketId}:`, error);
+    throw error;
+  }
+}
+
+// Determine previous status from ticket history
+function determinePreviousStatus() {
+  console.log('Using default status: "Waiting on Customer" for weekend reversion');
+  return 'Waiting on Customer';
+}
+
+// Revert ticket status and add note
+async function revertTicketStatus(ticket, previousStatus) {
+  try {
+    const ticketId = ticket.id;
+    const newStatusId = STATUS_MAPPINGS['Follow-up Required'][previousStatus];
+
+    if (!newStatusId) {
+      console.log(`No status mapping found for ${previousStatus}, skipping ticket #${ticketId}`);
+      return false;
+    }
+
+    console.log(`Reverting ticket #${ticketId} from "Follow-up Required" back to "${previousStatus}" (ID: ${newStatusId})`);
+
+    // Update ticket status
+    const updateResponse = await $request.invokeTemplate('updateTicketStatus', {
+      context: { ticket_id: ticketId },
+      body: JSON.stringify({ status: newStatusId })
+    });
+
+    if (updateResponse.status >= 400) {
+      console.error(`Failed to update ticket #${ticketId} status:`, updateResponse.response);
+      return false;
+    }
+
+    // Add note explaining the reversion
+    const noteBody = `🔄 **Weekend Status Reversion**\n\nThis ticket was automatically reverted from "Follow-up Required" back to "${previousStatus}" because the status change occurred during weekend hours (Friday 6 PM EST to Monday 7 AM EST).`;
+
+    const noteResponse = await $request.invokeTemplate('addTicketNote', {
+      context: { ticket_id: ticketId },
+      body: JSON.stringify({
+        body: noteBody,
+        private: true
+      })
+    });
+
+    if (noteResponse.status >= 400) {
+      console.error(`Failed to add note to ticket #${ticketId}:`, noteResponse.response);
+      // Don't fail the whole operation if note fails
+    }
+
+    console.log(`✅ Successfully reverted ticket #${ticketId} to "${previousStatus}"`);
+    return true;
+  } catch (error) {
+    console.error(`Error reverting ticket #${ticket.id}:`, error);
+    return false;
+  }
+}
+
+// Main weekend status reversion handler
+async function handleWeekendStatusReversion(allTickets) {
+  try {
+    console.log('Starting weekend status reversion process...');
+    await addLog('info', 'Weekend status reversion process started');
+
+    // Purge old weekend reversion entries
+    await purgeOldWeekendReversions();
+
+    // STRICT FILTERING: Only process tickets with "Follow-up Required" status (23)
+    // This is critical to prevent interference with the assignment system
+    const tickets = allTickets.filter(ticket => {
+      const isFollowUpRequired = ticket.status === 23;
+      if (!isFollowUpRequired) {
+        console.log(`Skipping ticket #${ticket.id} for weekend reversion - status ${ticket.status} is not "Follow-up Required" (23)`);
+      }
+      return isFollowUpRequired;
+    });
+
+    if (!tickets || tickets.length === 0) {
+      await addLog('info', 'No tickets with Follow-up Required status (23) found for weekend reversion');
+      return;
+    }
+
+    console.log(`Found ${tickets.length} tickets with Follow-up Required status (23). Checking for supported groups...`);
+
+    // Check which tickets are in supported groups
+    const supportedGroupIds = [67000578161, 67000578164, 67000578163, 67000578162, 67000578235, 67000570681]; // West, Central SE, Northeast, Central SW, Triage, Support Ops
+    const supportedTickets = tickets.filter(ticket => supportedGroupIds.includes(ticket.group_id));
+    console.log(`Found ${supportedTickets.length} tickets in supported groups for weekend reversion:`, supportedTickets.map(t => `#${t.id}`));
+
+    if (supportedTickets.length === 0) {
+      await addLog('info', 'No tickets with Follow-up Required status in supported groups for weekend reversion');
+      return;
+    }
+
+    console.log(`Processing ${supportedTickets.length} tickets with Follow-up Required status for weekend reversion`);
+
+    let revertedCount = 0;
+    let errorCount = 0;
+
+    for (const ticket of supportedTickets) {
+      try {
+        // Check if ticket is in one of the supported groups
+        if (!supportedGroupIds.includes(ticket.group_id)) {
+          console.log(`Skipping ticket #${ticket.id} - not in supported group (group_id: ${ticket.group_id})`);
+          continue;
+        }
+
+        console.log(`Processing ticket #${ticket.id} from group ${ticket.group_id}`);
+
+        // Use default previous status for weekend reversion
+        const previousStatus = determinePreviousStatus();
+
+        if (!previousStatus) {
+          console.log(`Could not determine previous status for ticket #${ticket.id}, skipping`);
+          continue;
+        }
+
+        // Check if this is a valid status to revert from
+        if (!STATUS_MAPPINGS['Follow-up Required'][previousStatus]) {
+          console.log(`Previous status "${previousStatus}" is not in our mapping for ticket #${ticket.id}, skipping`);
+          continue;
+        }
+
+        // Revert the ticket status
+        const success = await revertTicketStatus(ticket, previousStatus);
+
+        if (success) {
+          revertedCount++;
+
+          // Log the reversion
+          await addWeekendReversionEntry({
+            ticket_id: ticket.id,
+            ticket_subject: ticket.subject,
+            agent_name: ticket.responder_id ? 'Agent ID: ' + ticket.responder_id : 'Unassigned',
+            previous_status: previousStatus,
+            reverted_to_status: previousStatus,
+            reversion_reason: 'Weekend hours - customer should not be penalized for non-business hours'
+          });
+
+          await addLog('weekend_reversion', `Ticket #${ticket.id} reverted from Follow-up Required to ${previousStatus}`, {
+            ticket_id: ticket.id,
+            ticket_subject: ticket.subject,
+            previous_status: previousStatus,
+            reversion_reason: 'Weekend hours'
+          });
+        } else {
+          errorCount++;
+        }
+
+        // Small delay to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+      } catch (error) {
+        console.error(`Error processing ticket #${ticket.id}:`, error);
+        errorCount++;
+        await addLog('error', `Error processing ticket #${ticket.id} for weekend reversion`, {
+          ticket_id: ticket.id,
+          error: error.message
+        });
+      }
+    }
+
+    await addLog('info', `Weekend status reversion completed. Reverted: ${revertedCount}, Errors: ${errorCount}`, {
+      total_processed: tickets.length,
+      reverted_count: revertedCount,
+      error_count: errorCount
+    });
+
+    console.log(`Weekend status reversion completed. Reverted: ${revertedCount}, Errors: ${errorCount}`);
+
+  } catch (error) {
+    console.error('Error in weekend status reversion:', error);
+    await addLog('error', 'Error in weekend status reversion process', { error: error.message });
   }
 }
 

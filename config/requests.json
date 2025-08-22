@@ -5,7 +5,24 @@
       "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/tickets",
       "query": {
-        "per_page": "100"
+        "per_page": "100",
+        "updated_since": "<%= context.updated_since %>",
+        "page": "<%= context.page %>"
+      },
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getTicketsPage": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets",
+      "query": {
+        "per_page": "100",
+        "page": "<%= context.page %>"
       },
       "headers": {
         "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
@@ -32,7 +49,7 @@
       "query": {
         "query": "(status:2 OR status:29) AND agent_id:null",
         "page": "<%= context.page %>",
-        "per_page": "30"
+        "per_page": "100"
       },
       "headers": {
         "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
@@ -58,7 +75,7 @@
       "path": "/api/v2/agents",
       "query": {
         "page": "<%= context.page %>",
-        "per_page": "100"
+        "per_page": "30"
       },
       "headers": {
         "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
@@ -126,6 +143,76 @@
       "method": "GET",
       "host": "benchmarkeducationcompany.freshdesk.com",
       "path": "/api/v2/groups/67000570681",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getFollowUpRequiredTickets": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/search/tickets",
+      "query": {
+        "query": "status:23",
+        "per_page": "100"
+      },
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "updateTicketStatus": {
+    "schema": {
+      "method": "PUT",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "addTicketNote": {
+    "schema": {
+      "method": "POST",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>/notes",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getTicketHistory": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>/conversations",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "getSpecificTicket": {
+    "schema": {
+      "method": "GET",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>",
+      "headers": {
+        "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "addTicketTag": {
+    "schema": {
+      "method": "PUT",
+      "host": "benchmarkeducationcompany.freshdesk.com",
+      "path": "/api/v2/tickets/<%= context.ticket_id %>",
       "headers": {
         "Authorization": "Basic NVRNZ2JjWmRSRlk3MGhTcEVkajpY",
         "Content-Type": "application/json"
