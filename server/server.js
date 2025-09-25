@@ -31,6 +31,11 @@ const WEEKEND_REVERSIONS_DB_KEY = 'weekend_reversions_v1';
 // Retention window in days for weekend reversions
 const WEEKEND_REVERSIONS_RETENTION_DAYS = 90;
 
+// Key for consolidated activity storage
+const ACTIVITY_LOG_DB_KEY = 'activity_log_v1';
+
+
+
 // Status mappings for weekend reversion
 const STATUS_MAPPINGS = {
   'Follow-up Required': {
@@ -138,7 +143,7 @@ exports = {
         schedule_at: new Date(Date.now() + 60000).toISOString(), // Start 1 minute from now
         repeat: {
           time_unit: "minutes",
-          frequency: 5
+          frequency: 10
         }
       });
 
@@ -162,89 +167,55 @@ exports = {
 
   // Handler for scheduled events - handles both ticket assignment and weekend status reversion
   onScheduledEventHandler: async function (payload) {
-    console.log('Running scheduled event handler');
-    console.log('Event payload:', JSON.stringify(payload));
-
+    const now = new Date();
     const operation = payload?.data?.operation || 'combined_operations';
 
     if (operation === 'combined_operations') {
-      console.log('Running combined operations (ticket assignment + weekend reversion)');
-      await addLog('info', 'Combined operations scheduled event started');
-
       try {
         // Get all tickets once for both operations
         const allTickets = await getUnassignedTickets();
         if (!allTickets || allTickets.length === 0) {
-          await addLog('info', 'No tickets found');
+          await addLog('info', 'No tickets found to process');
           return;
         }
 
-        const now = new Date();
         const isWeekend = isWeekendTime(now);
-
-        console.log(`Current time: ${now.toISOString()}, Weekend mode: ${isWeekend}`);
-        await addLog('info', `Processing ${allTickets.length} total tickets - Weekend mode: ${isWeekend}`);
-
-        // Check if it's the morning window for overnight ticket reassignment (7:02 AM - 7:15 AM EST)
-        const estDate = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
-        const estHour = estDate.getHours();
-        const estMinute = estDate.getMinutes();
-        const isOvernightReassignmentWindow = (estHour === 7 && estMinute >= 2 && estMinute < 15);
-
-        if (isOvernightReassignmentWindow) {
-          await addLog('info', 'Morning reassignment window detected (7:02 AM - 7:15 AM EST) - checking for overnight tickets with unavailable agents');
-          await handleOvernightTicketReassignment(allTickets);
-        }
+        let revertedCount = 0;
+        let assignedCount = 0;
+        let skippedCount = 0;
+        let errorCount = 0;
 
         // Run weekend reversion check (if it's weekend time)
         if (isWeekend) {
-          await addLog('info', 'Weekend detected - checking for Follow-up Required tickets to revert');
-          await handleWeekendStatusReversion(allTickets);
-        } else {
-          await addLog('info', 'Not weekend time, skipping weekend status reversion');
+          revertedCount = await handleWeekendStatusReversion(allTickets);
         }
 
-        // Then run ticket assignment (if service is enabled)
-        await addLog('info', 'Starting ticket assignment process');
+        // Then run ticket assignment (if service is enabled and within time window)
+        const withinWindow = isWithinAssignmentWindow(now);
+        if (!withinWindow) {
+          await addLog('info', 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment');
+          return;
+        }
 
         // Purge old assignment attempts monthly (lightweight every run)
         await purgeOldAssignmentAttempts();
 
         if (!await isServiceEnabled()) {
-          await addLog('info', 'Service is disabled, skipping ticket assignment');
+          await addLog('info', 'Service disabled, skipping ticket assignment');
           return;
         }
 
         // Filter for unassigned tickets for assignment
-        // Status 2 = "Open", Status 29 = "Triage" in Freshdesk
-        console.log(`Filtering ${allTickets.length} tickets for assignment eligibility...`);
-
         const unassignedTickets = allTickets.filter(ticket => {
           const isUnassigned = !ticket.responder_id;
           const hasCorrectStatus = ticket.status === 2 || ticket.status === 29;
-          const isEligible = isUnassigned && hasCorrectStatus;
-
-          // Debug logging for ticket #315751 specifically
-          if (ticket.id === 315751) {
-            console.log(`DEBUG - Assignment filtering for #315751: responder_id=${ticket.responder_id}, status=${ticket.status}, isUnassigned=${isUnassigned}, hasCorrectStatus=${hasCorrectStatus}, isEligible=${isEligible}`);
-          }
-
-          if (!isEligible) {
-            console.log(`Skipping ticket #${ticket.id} for assignment - unassigned: ${isUnassigned}, status: ${ticket.status} (needs 2 or 29)`);
-          }
-          return isEligible;
+          return isUnassigned && hasCorrectStatus;
         });
 
         if (!unassignedTickets || unassignedTickets.length === 0) {
-          console.log('No tickets eligible for assignment found. Sample tickets:');
-          allTickets.slice(0, 5).forEach(ticket => {
-            console.log(`  Ticket #${ticket.id}: responder_id=${ticket.responder_id}, status=${ticket.status}, group_id=${ticket.group_id}`);
-          });
-          await addLog('info', 'No unassigned tickets with Open (2) or Triage (29) status found for assignment');
+          await addLog('info', 'No unassigned tickets found for assignment');
           return;
         }
-
-        console.log(`Found ${unassignedTickets.length} tickets eligible for assignment:`, unassignedTickets.map(t => `#${t.id} (status: ${t.status})`));
 
         const allAgentsWithGroups = await getActiveAgents();
         if (!allAgentsWithGroups || allAgentsWithGroups.length === 0) {
@@ -253,18 +224,28 @@ exports = {
         }
 
         await loadAgentIndicesByGroup();
-        await assignTicketsInRoundRobin(unassignedTickets, allAgentsWithGroups);
+        const results = await assignTicketsInRoundRobin(unassignedTickets, allAgentsWithGroups);
         await saveAgentIndicesByGroup();
 
-        await addLog('info', `Combined operations completed. Ticket assignment: ${unassignedTickets.length} tickets, Weekend reversion: ${isWeekendTime(now) ? 'checked' : 'skipped'}`);
+        assignedCount = results.assigned;
+        skippedCount = results.skipped;
+        errorCount = results.errors;
+
+        // Final summary log
+        await addLog('info', `Run completed: ${assignedCount} assigned, ${skippedCount} skipped, ${errorCount} errors${isWeekend ? `, ${revertedCount} reverted` : ''}`, {
+          total_tickets: allTickets.length,
+          assigned: assignedCount,
+          skipped: skippedCount,
+          errors: errorCount,
+          reverted: revertedCount,
+          weekend_mode: isWeekend
+        });
 
       } catch (error) {
         console.error('Error during combined operations:', error);
         await addLog('error', 'Error during combined operations', { error: error.message });
       }
     } else {
-      // Fallback for legacy operations
-      console.log('Running legacy operation:', operation);
       await addLog('info', `Legacy operation: ${operation}`);
     }
   },
@@ -301,6 +282,78 @@ exports = {
     } catch (error) {
       console.error('Error retrieving logs:', error);
       return { success: false, error: error.message, logs: [] };
+    }
+  },
+
+  // Get consolidated activity with server-side filtering
+  getActivityLog: async function (args) {
+    try {
+      const params = args || {};
+      const data = await getActivityLogData();
+      let entries = Array.isArray(data.entries) ? data.entries : [];
+
+      // Date range filter (inclusive)
+      if (params.date_from || params.date_to) {
+        const from = params.date_from ? new Date(params.date_from).getTime() : null;
+        const to = params.date_to ? new Date(params.date_to).getTime() : null;
+        entries = entries.filter(e => {
+          const ts = new Date(e.created_at || e.assigned_at || e.status_reverted_at).getTime();
+          if (from && ts < from) return false;
+          if (to && ts > to) return false;
+          return true;
+        });
+      }
+
+      // Column filters
+      if (params.ticket_id) entries = entries.filter(e => String(e.ticket_id) === String(params.ticket_id));
+      if (params.ticket_subject) entries = entries.filter(e => (e.ticket_subject || '').toLowerCase().includes(String(params.ticket_subject).toLowerCase()));
+      if (params.ticket_status) entries = entries.filter(e => String(e.ticket_status) === String(params.ticket_status));
+      if (params.assigned_to) entries = entries.filter(e => (e.assigned_to || '') === params.assigned_to);
+      if (params.group_name) entries = entries.filter(e => (e.group_name || '') === params.group_name);
+      if (params.activity_type) entries = entries.filter(e => (e.activity_type || '') === params.activity_type);
+
+      // Sort newest first
+      entries.sort((a, b) => new Date(b.created_at || b.assigned_at || b.status_reverted_at) - new Date(a.created_at || a.assigned_at || a.status_reverted_at));
+
+      // Optional limit
+      const limit = params.limit ? parseInt(params.limit, 10) : 1000;
+      const result = entries.slice(0, isNaN(limit) ? 1000 : limit);
+
+      return { success: true, entries: result, total: entries.length };
+    } catch (error) {
+      console.error('Error in getActivityLog:', error);
+      return { success: false, error: error.message, entries: [], total: 0 };
+    }
+  },
+
+  // Clear all consolidated activity entries
+  clearActivityLog: async function () {
+    try {
+      await $db.set(ACTIVITY_LOG_DB_KEY, { entries: [], updated_at: new Date().toISOString() });
+      return { success: true };
+    } catch (error) {
+      console.error('Error in clearActivityLog:', error);
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Add demo data for UI testing
+  addDemoActivityData: async function () {
+    try {
+      const now = Date.now();
+      const demo = [
+        { ticket_id: 1001, ticket_subject: 'Demo: Login issue', ticket_status: 2, assigned_to: 'Alice Johnson', group_name: 'Triage', assigned_at: new Date(now - 2 * 60 * 60 * 1000).toISOString(), status_reverted_at: null, activity_type: 'assignment' },
+        { ticket_id: 1002, ticket_subject: 'Demo: Order not received', ticket_status: 'Waiting on Customer', assigned_to: null, group_name: 'West Region', assigned_at: null, status_reverted_at: new Date(now - 90 * 60 * 1000).toISOString(), activity_type: 'status_reversion' },
+        { ticket_id: 1003, ticket_subject: 'Demo: Payment failed', ticket_status: 29, assigned_to: 'Bob Smith', group_name: 'Support Ops', assigned_at: new Date(now - 45 * 60 * 1000).toISOString(), status_reverted_at: null, activity_type: 'assignment' }
+      ];
+
+      for (const e of demo) {
+        await addActivityEntry(e);
+      }
+      return { success: true, added: demo.length };
+    } catch (error) {
+      console.error('Error in addDemoActivityData:', error);
+      return { success: false, error: error.message };
     }
   },
 
@@ -450,6 +503,29 @@ exports = {
     }
   },
 
+  // Test function for overnight tagging (for testing purposes)
+  testOvernightTagging: async function (args) {
+    try {
+      const ticketId = args?.ticket_id || 318402; // Use the ticket from the file as default
+      console.log(`Testing overnight tagging on ticket #${ticketId}...`);
+      await addLog('info', `Testing overnight tagging on ticket #${ticketId}`);
+
+      const success = await addOvernightTag(ticketId);
+
+      if (success) {
+        await addLog('info', `Successfully added overnight tag to ticket #${ticketId}`);
+        return { success: true, message: `Overnight tag added to ticket #${ticketId}` };
+      } else {
+        await addLog('error', `Failed to add overnight tag to ticket #${ticketId}`);
+        return { success: false, message: `Failed to add overnight tag to ticket #${ticketId}` };
+      }
+    } catch (error) {
+      console.error('Error in testOvernightTagging:', error);
+      await addLog('error', 'Error in testOvernightTagging', { error: error.message });
+      return { success: false, error: error.message };
+    }
+  },
+
   // Debug function to check specific ticket
   checkSpecificTicket: async function (args) {
     try {
@@ -511,10 +587,10 @@ async function getUnassignedTickets() {
   try {
     console.log('Calling getUnassignedTickets API with pagination...');
 
-    // Calculate date from 1 day ago for updated_since filter
-    const oneDayAgo = new Date();
-    oneDayAgo.setDate(oneDayAgo.getDate() - 1);
-    const updatedSince = oneDayAgo.toISOString();
+    // Calculate date from 24h ago for updated_since filter
+    const since = new Date();
+    since.setHours(since.getHours() - 24);
+    const updatedSince = since.toISOString();
 
     console.log(`Using updated_since filter: ${updatedSince}`);
 
@@ -607,8 +683,7 @@ async function getUnassignedTickets() {
       allTickets.slice(0, 5).forEach(ticket => {
         console.log(`  Ticket #${ticket.id}: responder_id=${ticket.responder_id}, status=${ticket.status}, group_id=${ticket.group_id}`);
       });
-      // Still return all tickets for other operations like overnight reassignment
-      console.log('Returning all tickets for processing by other operations');
+      console.log('Returning all tickets for processing by weekend reversion');
       return allTickets;
     }
 
@@ -622,8 +697,6 @@ async function getUnassignedTickets() {
 
 // Helper function to get all agents with their group memberships
 async function getActiveAgents() {
-  console.log('Fetching agents and groups sequentially to avoid rate limiting...');
-
   // Fetch all pages of agents
   let allAgents = [];
   let page = 1;
@@ -631,7 +704,6 @@ async function getActiveAgents() {
 
   while (hasMore) {
     try {
-      console.log(`Fetching agents page ${page}...`);
       const agentsResponse = page === 1
         ? await $request.invokeTemplate('getAgents', {})
         : await $request.invokeTemplate('getAgentsPage', { context: { page: page } });
@@ -640,45 +712,29 @@ async function getActiveAgents() {
 
       if (pageAgents && pageAgents.length > 0) {
         allAgents = allAgents.concat(pageAgents);
-        console.log(`Page ${page}: fetched ${pageAgents.length} agents (total so far: ${allAgents.length})`);
+        console.log(`Fetched ${pageAgents.length} agents from page ${page} (total: ${allAgents.length})`);
 
         // If we got a full page of agents, there might be more
-        // Freshdesk returns 30 agents per page by default
         if (pageAgents.length >= 30) {
           page++;
         } else {
           hasMore = false;
         }
       } else {
-        console.log(`Page ${page} returned no agents, stopping pagination`);
         hasMore = false;
       }
     } catch (error) {
-      console.log(`Error fetching page ${page}:`, error.message);
-      console.log(`Full error:`, error);
+      console.log(`Error fetching agents page ${page}:`, error.message);
       hasMore = false;
     }
   }
 
-  console.log(`Total agents fetched: ${allAgents.length}`);
-
   // Fetch groups sequentially to avoid rate limiting
-  console.log('Fetching group 1/6: West Region');
   const westGroup = await $request.invokeTemplate('getWestRegionGroup', {});
-
-  console.log('Fetching group 2/6: Central Southeast');
   const southeastGroup = await $request.invokeTemplate('getCentralSoutheastGroup', {});
-
-  console.log('Fetching group 3/6: Northeast');
   const northeastGroup = await $request.invokeTemplate('getNortheastRegionGroup', {});
-
-  console.log('Fetching group 4/6: Central Southwest');
   const southwestGroup = await $request.invokeTemplate('getCentralSouthwestGroup', {});
-
-  console.log('Fetching group 5/6: Triage');
   const triageGroup = await $request.invokeTemplate('getTriageGroup', {});
-
-  console.log('Fetching group 6/6: Support Ops');
   const supportOpsGroup = await $request.invokeTemplate('getSupportOpsGroup', {});
 
   const agents = allAgents;
@@ -691,15 +747,11 @@ async function getActiveAgents() {
     JSON.parse(supportOpsGroup.response)
   ];
 
-  console.log(`Fetched ${agents.length} agents and ${groups.length} groups (4 regional + 1 triage + 1 support ops)`);
-
   // Create a mapping of agent_id to group_ids
   const agentGroupMap = {};
 
   // Go through each regional group and add its members to the map
   for (const group of groups) {
-    console.log(`Group "${group.name}" (ID: ${group.id}) has ${group.agent_ids ? group.agent_ids.length : 0} members:`, group.agent_ids);
-
     if (group.agent_ids && group.agent_ids.length > 0) {
       for (const agentId of group.agent_ids) {
         if (!agentGroupMap[agentId]) {
@@ -710,20 +762,42 @@ async function getActiveAgents() {
     }
   }
 
-  // Add group_ids to each agent
+  // Add group_ids to each agent and enrich with current availability
+  let availableCount = 0;
+  let unavailableCount = 0;
+
   for (const agent of agents) {
     agent.group_ids = agentGroupMap[agent.id] || [];
+    // Ensure 'available' field is present if missing by fetching details (best-effort)
+    if (typeof agent.available === 'undefined') {
+      try {
+        const detailResp = await $request.invokeTemplate('getAgentDetails', { context: { agent_id: agent.id } });
+        if (detailResp.status < 400) {
+          const detail = JSON.parse(detailResp.response);
+          agent.available = !!detail.available;
+        }
+      } catch (e) {
+        // ignore errors; leave availability as-is
+      }
+    }
+
+    // Count availability
+    if (agent.available) {
+      availableCount++;
+    } else {
+      unavailableCount++;
+    }
   }
 
-  // Return all agents with group information - no filtering
-  console.log(`Fetched all ${agents.length} agents with group information`);
-  console.log('Sample agents with their groups:', agents.slice(0, 5).map(a => ({
-    id: a.id,
+  console.log(`Agent availability: ${availableCount} available, ${unavailableCount} unavailable (total: ${agents.length})`);
+
+  // Log only agents that have groups assigned
+  const agentsWithGroups = agents.filter(a => a.group_ids && a.group_ids.length > 0).map(a => ({
     name: a.contact?.name || 'Unknown',
-    group_ids: a.group_ids,
-    occasional: a.occasional,
-    deactivated: a.deactivated
-  })));
+    available: a.available,
+    groups: a.group_ids.map(gid => GROUP_NAMES_BY_ID[gid] || `Group ${gid}`).join(', ')
+  }));
+  console.log(`Agents with groups (${agentsWithGroups.length}):`, agentsWithGroups);
 
   return agents;
 }
@@ -731,26 +805,22 @@ async function getActiveAgents() {
 // Helper function to load current agent indices by group
 async function loadAgentIndicesByGroup() {
   try {
-    // Try to load from persistent storage
     const storedData = await $db.get('agent_indices_by_group');
     if (storedData && storedData.indices) {
       agentIndexByGroup = storedData.indices;
-      console.log('Loaded agent indices from storage:', agentIndexByGroup);
     } else {
-      // Initialize if no stored data
       agentIndexByGroup = {};
-      console.log('No stored agent indices found, starting fresh');
     }
   } catch (error) {
-    console.log('Error loading agent indices, using empty object:', error.message);
     agentIndexByGroup = {};
   }
 }
 
 // Helper function to assign tickets in round-robin fashion
 async function assignTicketsInRoundRobin(tickets, allAgents) {
-  // No filtering - use all agents in the group for assignment
-  console.log(`Processing ${tickets.length} tickets with ${allAgents.length} total agents`);
+  let assignedCount = 0;
+  let skippedCount = 0;
+  let errorCount = 0;
 
   // Define the 6 group IDs we handle (4 regional + 1 triage + 1 support ops)
   const supportedGroups = [67000578161, 67000578164, 67000578163, 67000578162, 67000578235, 67000570681];
@@ -759,12 +829,7 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
     const ticketGroupId = ticket.group_id;
 
     if (!ticketGroupId) {
-      console.log(`Ticket #${ticket.id} has no group assigned, skipping for manual assignment`);
-      await addLog('info', `Ticket has no group - requires manual assignment`, {
-        ticket_id: ticket.id,
-        ticket_subject: ticket.subject
-      });
-      // Record attempt as failed (no group)
+      await addLog('info', `Ticket #${ticket.id} skipped: no group assigned`, { ticket_id: ticket.id });
       await addAssignmentAttemptEntry({
         ticket_id: ticket.id,
         ticket_subject: ticket.subject,
@@ -773,17 +838,12 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         result: 'Failed',
         error_message: 'Ticket has no group assigned'
       });
+      skippedCount++;
       continue;
     }
 
     if (!supportedGroups.includes(ticketGroupId)) {
-      console.log(`Ticket #${ticket.id} is in unsupported group ${ticketGroupId}, skipping for manual assignment`);
-      await addLog('info', `Ticket in unsupported group - requires manual assignment`, {
-        ticket_id: ticket.id,
-        group_id: ticketGroupId,
-        ticket_subject: ticket.subject
-      });
-      // Record attempt as failed (unsupported group)
+      await addLog('info', `Ticket #${ticket.id} skipped: unsupported group ${ticketGroupId}`, { ticket_id: ticket.id, group_id: ticketGroupId });
       await addAssignmentAttemptEntry({
         ticket_id: ticket.id,
         ticket_subject: ticket.subject,
@@ -792,39 +852,20 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         result: 'Failed',
         error_message: 'Unsupported group for auto-assignment'
       });
+      skippedCount++;
       continue;
     }
 
-    // Find all agents that belong to the same group as the ticket - NO FILTERING
+    // Find all agents that belong to the same group as the ticket and are available
     const groupAgents = allAgents.filter(agent =>
-      agent.group_ids && agent.group_ids.includes(ticketGroupId)
+      agent.group_ids && agent.group_ids.includes(ticketGroupId) && agent.available === true
     );
 
-    // Special logging for Support Ops group to debug the issue
-    if (ticketGroupId === 67000570681) {
-      console.log(`\n=== Support Ops Group Debug Info ===`);
-      console.log(`All agents in Support Ops group:`,
-        groupAgents.map(a => ({
-          id: a.id,
-          name: a.contact?.name,
-          occasional: a.occasional,
-          deactivated: a.deactivated,
-          email: a.contact?.email
-        }))
-      );
-      console.log(`Total agents in Support Ops: ${groupAgents.length}`);
-      console.log(`=== End Support Ops Debug ===\n`);
-    }
-
     if (!groupAgents || groupAgents.length === 0) {
-      console.log(`No agents found in group ${ticketGroupId} for ticket #${ticket.id}, skipping`);
-      await addLog('error', `No agents available in ticket's group`, {
+      await addLog('info', `Ticket #${ticket.id} skipped: no available agents in ${GROUP_NAMES_BY_ID[ticketGroupId] || `group ${ticketGroupId}`}`, {
         ticket_id: ticket.id,
-        group_id: ticketGroupId,
-        ticket_subject: ticket.subject,
-        total_agents_in_group: 0
+        group_id: ticketGroupId
       });
-      // Record attempt as failed (no agents available)
       await addAssignmentAttemptEntry({
         ticket_id: ticket.id,
         ticket_subject: ticket.subject,
@@ -833,25 +874,19 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         result: 'Failed',
         error_message: 'No agents available in group'
       });
+      skippedCount++;
       continue;
     }
 
-    console.log(`Found ${groupAgents.length} agents in group ${ticketGroupId}:`,
-      groupAgents.map(a => a.contact?.name).join(', '));
-
-    // Get or initialize the agent index for this group
-    if (!agentIndexByGroup[ticketGroupId]) {
-      // Randomize the starting index to avoid same agents getting tickets from multiple groups
-      agentIndexByGroup[ticketGroupId] = Math.floor(Math.random() * groupAgents.length);
-      console.log(`Initializing round-robin index for group ${ticketGroupId} to ${agentIndexByGroup[ticketGroupId]} (randomized from 0-${groupAgents.length - 1})`);
+    // Get or initialize the agent index for this group (ensure within bounds after availability filtering)
+    const currentIndex = agentIndexByGroup[ticketGroupId];
+    if (currentIndex === null || typeof currentIndex === 'undefined' || currentIndex >= groupAgents.length) {
+      agentIndexByGroup[ticketGroupId] = 0;
     }
 
     // Get the next agent in rotation for this group
     const agentIndex = agentIndexByGroup[ticketGroupId];
     const agent = groupAgents[agentIndex];
-
-    console.log(`Round-robin state for group ${ticketGroupId}: index=${agentIndex}, next agent=${agent.contact?.name} (ID: ${agent.id})`);
-
 
     try {
       // Assign the ticket to the agent
@@ -860,34 +895,28 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         body: JSON.stringify({ responder_id: agent.id })
       });
 
-      console.log(`✅ Ticket #${ticket.id} assigned to ${agent.contact.name} (ID: ${agent.id}) in group ${ticketGroupId}`);
+      // Always add overnight tag to assigned tickets
+      const overnightTagAdded = await addOvernightTag(ticket.id);
 
-      // Add "overnight" tag to the ticket after successful assignment
-      try {
-        await $request.invokeTemplate('addTicketTag', {
-          context: { ticket_id: ticket.id },
-          body: JSON.stringify({ tags: ['overnight'] })
-        });
-        console.log(`✅ Added "overnight" tag to ticket #${ticket.id}`);
-      } catch (tagError) {
-        console.warn(`⚠️ Failed to add "overnight" tag to ticket #${ticket.id}:`, tagError.message);
-        // Don't fail the assignment if tag addition fails
-      }
+      // Log successful assignment
+      await addLog('info', `Ticket #${ticket.id} assigned to ${agent.contact.name} (${GROUP_NAMES_BY_ID[ticketGroupId] || `Group ${ticketGroupId}`})${overnightTagAdded ? ' + overnight tag' : ''}`, {
+        ticket_id: ticket.id,
+        agent_name: agent.contact.name,
+        group_name: GROUP_NAMES_BY_ID[ticketGroupId],
+        overnight_tagged: overnightTagAdded
+      });
 
-      // Log the ticket assignment with detailed information
-      await addLog('ticket_assigned', `Ticket #${ticket.id} assigned to agent in correct group and tagged with "overnight"`, {
+      // Write consolidated activity entry for assignment
+      await addActivityEntry({
         ticket_id: ticket.id,
         ticket_subject: ticket.subject,
-        ticket_priority: ticket.priority,
         ticket_status: ticket.status,
-        agent_id: agent.id,
-        agent_name: agent.contact.name,
-        agent_email: agent.contact.email,
-        group_id: ticketGroupId,
-        assignment_time: new Date().toISOString(),
-        round_robin_index: agentIndex,
-        total_agents_in_group: groupAgents.length,
-        tag_added: 'overnight'
+        assigned_to: agent.contact?.name || null,
+        group_name: GROUP_NAMES_BY_ID[ticketGroupId] || `Group ${ticketGroupId}`,
+        assigned_at: new Date().toISOString(),
+        status_reverted_at: null,
+        activity_type: 'assignment',
+        overnight_tagged: overnightTagAdded
       });
 
       // Record assignment attempt (success)
@@ -898,17 +927,16 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         group_id: ticketGroupId,
         result: 'Success',
         error_message: null,
-        tag_added: 'overnight'
+        tag_added: overnightTagAdded ? 'overnight' : null
       });
 
+      assignedCount++;
+
     } catch (error) {
-      console.error(`❌ Error assigning ticket #${ticket.id}:`, error);
-      await addLog('error', `Failed to assign ticket #${ticket.id}`, {
+      await addLog('error', `Ticket #${ticket.id} assignment failed: ${error.message}`, {
         ticket_id: ticket.id,
-        agent_id: agent.id,
         agent_name: agent.contact.name,
-        group_id: ticketGroupId,
-        error: error.message || 'Unknown error'
+        error: error.message
       });
 
       // Record assignment attempt (failure)
@@ -920,24 +948,25 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
         result: 'Failed',
         error_message: error.message || 'Unknown error'
       });
+
+      errorCount++;
     }
 
     // Update the agent index for round-robin for this group
     agentIndexByGroup[ticketGroupId] = (agentIndex + 1) % groupAgents.length;
   }
+
+  return { assigned: assignedCount, skipped: skippedCount, errors: errorCount };
 }
 
 // Helper function to save agent indices by group
 async function saveAgentIndicesByGroup() {
   try {
-    // Save to persistent storage
     await $db.set('agent_indices_by_group', {
       indices: agentIndexByGroup,
       last_updated: new Date().toISOString()
     });
-    console.log('Agent indices saved to storage:', agentIndexByGroup);
   } catch (error) {
-    console.error('Error saving agent indices:', error.message);
     // Continue execution even if save fails
   }
 }
@@ -1011,6 +1040,49 @@ async function purgeOldAssignmentAttempts() {
   }
 }
 
+// ----- Activity Log Storage Helpers -----
+
+async function getActivityLogData() {
+  try {
+    const existing = await $db.get(ACTIVITY_LOG_DB_KEY);
+    if (existing && Array.isArray(existing.entries)) return existing;
+  } catch (e) {
+    // ignore missing key
+  }
+  return { entries: [] };
+}
+
+async function addActivityEntry({ ticket_id, ticket_subject, ticket_status, assigned_to, group_name, assigned_at, status_reverted_at, activity_type, overnight_tagged }) {
+  try {
+    const data = await getActivityLogData();
+    const entries = Array.isArray(data.entries) ? data.entries : [];
+
+    const entry = {
+      ticket_id,
+      ticket_subject: ticket_subject || 'Unknown Subject',
+      ticket_status: ticket_status || null,
+      assigned_to: assigned_to || null,
+      group_name: group_name || null,
+      assigned_at: assigned_at || null,
+      status_reverted_at: status_reverted_at || null,
+      activity_type: activity_type || (assigned_at ? 'assignment' : (status_reverted_at ? 'status_reversion' : null)),
+      overnight_tagged: overnight_tagged || false,
+      created_at: new Date().toISOString()
+    };
+
+    entries.push(entry);
+
+    const MAX_ENTRIES = 10000;
+    if (entries.length > MAX_ENTRIES) {
+      entries.splice(0, entries.length - MAX_ENTRIES);
+    }
+
+    await $db.set(ACTIVITY_LOG_DB_KEY, { entries, updated_at: new Date().toISOString() });
+  } catch (error) {
+    console.error('Error saving activity entry:', error);
+  }
+}
+
 // Helper function to create or update the schedule
 async function createSchedule(interval) {
   try {
@@ -1045,114 +1117,7 @@ async function createSchedule(interval) {
   }
 }
 
-// ----- Overnight Ticket Reassignment Helpers -----
-
-// Handle overnight ticket reassignment for unavailable agents
-async function handleOvernightTicketReassignment(allTickets) {
-  try {
-    console.log('Starting overnight ticket reassignment process...');
-    await addLog('info', 'Overnight ticket reassignment process started');
-
-    // Filter tickets with "overnight" tag
-    const overnightTickets = allTickets.filter(ticket => {
-      return ticket.tags && ticket.tags.includes('overnight') && ticket.responder_id;
-    });
-
-    if (!overnightTickets || overnightTickets.length === 0) {
-      await addLog('info', 'No tickets with overnight tag and assigned agent found');
-      return;
-    }
-
-    console.log(`Found ${overnightTickets.length} tickets with overnight tag and assigned agents`);
-
-    let reassignedCount = 0;
-    let errorCount = 0;
-
-    for (const ticket of overnightTickets) {
-      try {
-        console.log(`Checking agent availability for ticket #${ticket.id} (Agent ID: ${ticket.responder_id})`);
-
-        // Fetch agent details to check availability
-        const agentResponse = await $request.invokeTemplate('getAgentDetails', {
-          context: { agent_id: ticket.responder_id }
-        });
-
-        if (agentResponse.status >= 400) {
-          console.error(`Failed to fetch agent ${ticket.responder_id} details:`, agentResponse.response);
-          errorCount++;
-          continue;
-        }
-
-        const agent = JSON.parse(agentResponse.response);
-        console.log(`Agent ${agent.contact.name} availability: ${agent.available}`);
-
-        // Check if agent is unavailable
-        if (agent.available === false) {
-          console.log(`Agent ${agent.contact.name} is unavailable, unassigning from ticket #${ticket.id}`);
-
-          // Unassign the ticket (keep the group, set agent to null)
-          const updateResponse = await $request.invokeTemplate('assignTicket', {
-            context: { ticket_id: ticket.id },
-            body: JSON.stringify({
-              responder_id: null,
-              group_id: ticket.group_id // Keep the existing group
-            })
-          });
-
-          if (updateResponse.status >= 400) {
-            console.error(`Failed to unassign ticket #${ticket.id}:`, updateResponse.response);
-            errorCount++;
-            continue;
-          }
-
-          // Add note explaining the reassignment
-          const noteBody = `🌙 **Overnight Ticket Reassignment** This ticket was automatically unassigned from ${agent.contact.name} because the agent is unavailable.`;
-
-          await $request.invokeTemplate('addTicketNote', {
-            context: { ticket_id: ticket.id },
-            body: JSON.stringify({
-              body: noteBody,
-              private: true
-            })
-          });
-
-          reassignedCount++;
-
-          await addLog('overnight_reassignment', `Ticket #${ticket.id} unassigned from unavailable agent`, {
-            ticket_id: ticket.id,
-            ticket_subject: ticket.subject,
-            agent_id: ticket.responder_id,
-            agent_name: agent.contact.name,
-            agent_available: false,
-            group_id: ticket.group_id
-          });
-
-          console.log(`✅ Successfully unassigned ticket #${ticket.id} from unavailable agent ${agent.contact.name}`);
-        }
-
-      } catch (error) {
-        console.error(`Error processing ticket #${ticket.id}:`, error);
-        errorCount++;
-        await addLog('error', `Error processing ticket #${ticket.id} for overnight reassignment`, {
-          ticket_id: ticket.id,
-          error: error.message
-        });
-      }
-    }
-
-    await addLog('info', `Overnight ticket reassignment completed. Reassigned: ${reassignedCount}, Errors: ${errorCount}`, {
-      total_processed: overnightTickets.length,
-      reassigned_count: reassignedCount,
-      error_count: errorCount
-    });
-
-    console.log(`Overnight ticket reassignment completed. Reassigned: ${reassignedCount}, Errors: ${errorCount}`);
-
-  } catch (error) {
-    console.error('Error in overnight ticket reassignment:', error);
-    await addLog('error', 'Error in overnight ticket reassignment process', { error: error.message });
-  }
-}
+// (Overnight reassignment functionality removed)
 
 // ----- Weekend Status Reversion Helpers -----
 
@@ -1180,6 +1145,64 @@ function isWeekendTime(date) {
   if (day === 1 && hour < 7) return true;
 
   return false;
+}
+
+// Check if current time is between 7:01 AM and 8:01 AM Eastern Time (inclusive of 8:01)
+function isWithinAssignmentWindow(date) {
+  // Convert to America/New_York timezone to account for DST
+  const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
+  const hour = estDate.getHours();
+  const minute = estDate.getMinutes();
+
+  // 7:01-7:59 -> run, 8:00-8:01 -> run, else -> skip
+  if (hour === 7 && minute >= 1) return true;
+  if (hour === 8 && minute <= 1) return true;
+  return false;
+}
+
+// Helper function to add overnight tag to a ticket
+async function addOvernightTag(ticketId) {
+  try {
+    console.log(`Adding overnight tag to ticket #${ticketId}`);
+
+    // Fetch current ticket to retrieve existing tags
+    const getResp = await $request.invokeTemplate('getSpecificTicket', {
+      context: { ticket_id: ticketId }
+    });
+    if (getResp.status >= 400) {
+      console.error(`Failed to fetch ticket #${ticketId} to read tags:`, getResp.response);
+      return false;
+    }
+
+    const ticket = JSON.parse(getResp.response);
+    const existingTags = Array.isArray(ticket.tags) ? ticket.tags : [];
+
+    // If tag already present, nothing to do
+    if (existingTags.includes('overnight')) {
+      console.log(`Tag 'overnight' already present on ticket #${ticketId}`);
+      return true;
+    }
+
+    // Create updated tag set preserving all existing
+    const updatedTags = Array.from(new Set([...existingTags, 'overnight']));
+
+    // Update tags by sending the full list (Freshdesk replaces tags with provided array)
+    const response = await $request.invokeTemplate('addTicketTag', {
+      context: { ticket_id: ticketId },
+      body: JSON.stringify({ tags: updatedTags })
+    });
+
+    if (response.status >= 400) {
+      console.error(`Failed to update tags on ticket #${ticketId}:`, response.response);
+      return false;
+    }
+
+    console.log(`✅ Successfully ensured 'overnight' tag on ticket #${ticketId} (tags now: ${JSON.stringify(updatedTags)})`);
+    return true;
+  } catch (error) {
+    console.error(`Error adding overnight tag to ticket #${ticketId}:`, error);
+    return false;
+  }
 }
 
 // Get weekend reversion data from database
@@ -1331,53 +1354,30 @@ async function revertTicketStatus(ticket, previousStatus) {
 // Main weekend status reversion handler
 async function handleWeekendStatusReversion(allTickets) {
   try {
-    console.log('Starting weekend status reversion process...');
-    await addLog('info', 'Weekend status reversion process started');
-
     // Purge old weekend reversion entries
     await purgeOldWeekendReversions();
 
     // STRICT FILTERING: Only process tickets with "Follow-up Required" status (23)
-    // This is critical to prevent interference with the assignment system
-    const tickets = allTickets.filter(ticket => {
-      const isFollowUpRequired = ticket.status === 23;
-      if (!isFollowUpRequired) {
-        console.log(`Skipping ticket #${ticket.id} for weekend reversion - status ${ticket.status} is not "Follow-up Required" (23)`);
-      }
-      return isFollowUpRequired;
-    });
-
+    const tickets = allTickets.filter(ticket => ticket.status === 23);
     if (!tickets || tickets.length === 0) {
-      await addLog('info', 'No tickets with Follow-up Required status (23) found for weekend reversion');
-      return;
+      return 0;
     }
-
-    console.log(`Found ${tickets.length} tickets with Follow-up Required status (23). Checking for supported groups...`);
 
     // Check which tickets are in supported groups
-    const supportedGroupIds = [67000578161, 67000578164, 67000578163, 67000578162, 67000578235, 67000570681]; // West, Central SE, Northeast, Central SW, Triage, Support Ops
+    const supportedGroupIds = [67000578161, 67000578164, 67000578163, 67000578162, 67000578235, 67000570681];
     const supportedTickets = tickets.filter(ticket => supportedGroupIds.includes(ticket.group_id));
-    console.log(`Found ${supportedTickets.length} tickets in supported groups for weekend reversion:`, supportedTickets.map(t => `#${t.id}`));
-
     if (supportedTickets.length === 0) {
-      await addLog('info', 'No tickets with Follow-up Required status in supported groups for weekend reversion');
-      return;
+      return 0;
     }
 
-    console.log(`Processing ${supportedTickets.length} tickets with Follow-up Required status for weekend reversion`);
-
     let revertedCount = 0;
-    let errorCount = 0;
 
     for (const ticket of supportedTickets) {
       try {
         // Check if ticket is in one of the supported groups
         if (!supportedGroupIds.includes(ticket.group_id)) {
-          console.log(`Skipping ticket #${ticket.id} - not in supported group (group_id: ${ticket.group_id})`);
           continue;
         }
-
-        console.log(`Processing ticket #${ticket.id} from group ${ticket.group_id}`);
 
         // Use default previous status for weekend reversion
         const previousStatus = determinePreviousStatus();
@@ -1409,40 +1409,40 @@ async function handleWeekendStatusReversion(allTickets) {
             reversion_reason: 'Weekend hours - customer should not be penalized for non-business hours'
           });
 
-          await addLog('weekend_reversion', `Ticket #${ticket.id} reverted from Follow-up Required to ${previousStatus}`, {
+          await addLog('info', `Ticket #${ticket.id} reverted from Follow-up Required to ${previousStatus}`, {
+            ticket_id: ticket.id,
+            group_name: GROUP_NAMES_BY_ID[ticket.group_id]
+          });
+
+          // Write consolidated activity entry for status reversion
+          await addActivityEntry({
             ticket_id: ticket.id,
             ticket_subject: ticket.subject,
-            previous_status: previousStatus,
-            reversion_reason: 'Weekend hours'
+            ticket_status: previousStatus,
+            assigned_to: null,
+            group_name: GROUP_NAMES_BY_ID[ticket.group_id] || `Group ${ticket.group_id}`,
+            assigned_at: null,
+            status_reverted_at: new Date().toISOString(),
+            activity_type: 'status_reversion'
           });
-        } else {
-          errorCount++;
         }
 
         // Small delay to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 1000));
 
       } catch (error) {
-        console.error(`Error processing ticket #${ticket.id}:`, error);
-        errorCount++;
-        await addLog('error', `Error processing ticket #${ticket.id} for weekend reversion`, {
+        await addLog('error', `Ticket #${ticket.id} reversion failed: ${error.message}`, {
           ticket_id: ticket.id,
           error: error.message
         });
       }
     }
 
-    await addLog('info', `Weekend status reversion completed. Reverted: ${revertedCount}, Errors: ${errorCount}`, {
-      total_processed: tickets.length,
-      reverted_count: revertedCount,
-      error_count: errorCount
-    });
-
-    console.log(`Weekend status reversion completed. Reverted: ${revertedCount}, Errors: ${errorCount}`);
+    return revertedCount;
 
   } catch (error) {
-    console.error('Error in weekend status reversion:', error);
-    await addLog('error', 'Error in weekend status reversion process', { error: error.message });
+    await addLog('error', 'Weekend reversion process failed', { error: error.message });
+    return 0;
   }
 }
 

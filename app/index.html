@@ -36,2604 +36,395 @@
             font-size: 16px;
         }
 
+        /* Card/section styling */
         .info-section {
-            background: white;
+            background: #fff;
             border-radius: 8px;
-            padding: 25px;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         }
 
         .info-section h2 {
-            margin: 0 0 20px 0;
+            margin: 0 0 16px 0;
             font-size: 20px;
-            color: #333;
-            border-bottom: 2px solid #1abc9c;
+            border-bottom: 3px solid #1abc9c;
             padding-bottom: 10px;
         }
 
-        .info-section h3 {
-            margin: 20px 0 10px 0;
-            font-size: 16px;
-            color: #555;
-        }
-
-        .feature-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .feature-list li {
-            padding: 10px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .feature-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #1abc9c;
-            font-weight: bold;
-        }
-
-        .group-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .group-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #e9ecef;
-        }
-
-        .group-card h4 {
-            margin: 0 0 5px 0;
-            font-size: 14px;
-            color: #1abc9c;
-        }
-
-        .group-card p {
-            margin: 0;
-            font-size: 13px;
-            color: #666;
-        }
-
-        .status-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px;
-            background: #e8f8f5;
-            border-radius: 6px;
-            margin: 15px 0;
-        }
-
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #1abc9c;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .code-block {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 4px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 13px;
-            overflow-x: auto;
-            margin: 10px 0;
-        }
-
-        .note {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 4px;
-            padding: 12px;
-            margin: 15px 0;
-            font-size: 14px;
-        }
-
-        .note strong {
-            color: #856404;
-        }
-
-        /* New styles for log viewer */
-        .log-viewer-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .file-upload-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .upload-btn {
-            background-color: #1abc9c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .upload-btn:hover {
-            background-color: #16a085;
-        }
-
-        .clear-file-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .clear-file-btn:hover {
-            background-color: #c0392b;
-        }
-
-        .file-name {
-            font-size: 14px;
-            color: #555;
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background-color: #f0f0f0;
-        }
-
-        .summary-stats,
-        .agent-summary,
-        .group-summary,
-        .filters-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .summary-stats h4,
-        .agent-summary h4,
-        .group-summary h4,
+        /* Filters */
         .filters-section h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
+            margin: 0 0 10px 0;
+            font-size: 16px;
             color: #333;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
         }
 
-        .stats-grid,
-        .agent-grid,
-        .group-stats-grid {
+        .filter-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            align-items: end;
         }
 
-        .stat-card,
-        .agent-card,
-        .group-card {
-            background: #fff;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #e9ecef;
+        .button-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            width: 100%;
+            grid-column: 1 / -1;
+            margin-top: 12px;
+        }
+
+        .button-container .btn {
+            flex: 1;
+            min-height: 44px;
+        }
+
+        .filter-group {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        select {
+            padding: 10px 12px;
+            border: 1px solid #dcdfe3;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-primary {
+            background: #3498db;
+        }
+
+        .btn-secondary {
+            background: #7f8c8d;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-success {
+            background: #27ae60;
+        }
+
+        /* Summary bar */
+        .summary-stats {
+            background: #f8fbff;
+            border: 1px solid #e6eef8;
+            border-radius: 8px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .stat {
             text-align: center;
         }
 
-        .stat-number,
-        .agent-name,
-        .group-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1abc9c;
-            margin-bottom: 5px;
-        }
-
-        .stat-label,
-        .agent-label,
-        .group-label {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .filters-section .filter-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .filters-section .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filters-section label {
-            font-size: 14px;
-            color: #555;
-            font-weight: 600;
-        }
-
-        .filters-section select,
-        .filters-section input[type="date"] {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-            color: #333;
-            background-color: #fff;
-        }
-
-        .filters-section select:focus,
-        .filters-section input[type="date"]:focus {
-            outline: none;
-            border-color: #1abc9c;
-            box-shadow: 0 0 0 2px #1abc9c;
-        }
-
-        .clear-filters-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .clear-filters-btn:hover {
-            background-color: #c0392b;
-        }
-
-        .timeline-container {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 15px;
-            background: #f0f0f0;
-            border-radius: 8px;
-            overflow-y: auto;
-            max-height: 400px;
-            /* Adjust as needed */
-        }
-
-        .timeline-event {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: #fff;
-            border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-
-        .timeline-event .event-type {
-            font-weight: bold;
-            color: #1abc9c;
-            font-size: 14px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background-color: #e8f8f5;
-        }
-
-        .timeline-event .event-details {
-            flex-grow: 1;
-        }
-
-        .timeline-event .event-time {
+        .stat .label {
             font-size: 12px;
-            color: #888;
-            margin-bottom: 3px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: .04em;
         }
 
-        .timeline-event .event-message {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.4;
+        .stat .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 4px;
         }
 
-        .timeline-event .event-details .event-time {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .timeline-event .event-details .event-message {
-            font-style: italic;
-            color: #666;
-        }
-
-        .date-range-display {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .date-range-display h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .date-range-info {
-            display: flex;
-            gap: 30px;
-            font-size: 16px;
-        }
-
-        .date-range-info span {
-            color: #555;
-        }
-
-        .date-range-info strong {
-            color: #333;
-        }
-
-        /* Tabs */
-        .tabs {
-            margin-top: 10px;
-        }
-
-        .tab-headers {
-            display: flex;
-            gap: 8px;
-            border-bottom: 1px solid #e9ecef;
-            margin-bottom: 16px;
-        }
-
-        .tab-btn {
-            background: #f4f6f7;
-            border: 1px solid #e1e8eb;
-            border-bottom: none;
-            padding: 10px 14px;
-            border-top-left-radius: 6px;
-            border-top-right-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .tab-btn.active {
-            background: #ffffff;
-            color: #1abc9c;
-            border-color: #dfe6e9;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Activity table */
-        .activity-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .activity-controls .filter {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .activity-controls select,
-        .activity-controls input[type="date"] {
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        .purge-btn {
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .purge-btn:hover {
-            background-color: #c0392b;
-        }
-
-        .weekend-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .weekend-controls .filter {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .weekend-controls input[type="text"] {
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
+        /* Table */
         .activity-table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         }
 
         .activity-table th,
         .activity-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #eee;
+            padding: 12px;
+            border-bottom: 1px solid #eef2f6;
             font-size: 14px;
+            text-align: left;
+            white-space: nowrap;
         }
 
         .activity-table th {
             background: #1abc9c;
             color: #fff;
-            text-align: left;
-            cursor: pointer;
+            font-weight: 700;
             user-select: none;
         }
 
-        .activity-table tr:hover {
-            background: #f8f9fa;
-        }
-
-        .result-pill {
-            padding: 4px 8px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 12px;
-        }
-
-        .result-success {
-            background: #e8f8f5;
-            color: #27ae60;
-        }
-
-        .result-failed {
-            background: #fdecea;
-            color: #c0392b;
-        }
-
-        /* Carousel Styles */
-        .carousel-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .feature-card {
-            min-width: 100%;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            opacity: 0.7;
-            transform: scale(0.9);
-            transition: all 0.5s ease-in-out;
-        }
-
-        .feature-card.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .card-header {
-            padding: 25px 30px 20px;
-            color: white;
-            text-align: center;
-        }
-
-        .card-header h3 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-content {
-            padding: 25px 30px 30px;
-        }
-
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .nav-btn {
-            background: #1abc9c;
-            color: white;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(26, 188, 156, 0.3);
-        }
-
-        .nav-btn:hover {
-            background: #16a085;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 188, 156, 0.4);
-        }
-
-        .nav-btn:active {
-            transform: translateY(0);
-        }
-
-        .carousel-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: #1abc9c;
-            transform: scale(1.2);
-        }
-
-        .dot:hover {
-            background: #1abc9c;
-            transform: scale(1.1);
+        .activity-table tr:hover td {
+            background: #fafcfd;
         }
     </style>
 </head>
 
 <body>
-    <div class="tabs">
-        <div class="tab-headers">
-            <button class="tab-btn active" data-tab="overview">App Overview</button>
-            <button class="tab-btn" data-tab="analyze">Analyze Logs</button>
-            <button class="tab-btn" data-tab="weekend">Weekend Reversions</button>
-            <!-- Activity tab hidden for now -->
-            <!-- <button class="tab-btn" data-tab="activity">Activity</button> -->
-        </div>
+    <div class="header">
+        <img src="autoassign_logo.svg" alt="Auto-Assign"
+            style="width: 64px; height: 64px; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
+        <h1>Auto-Assign Ticket Manager</h1>
+        <p>Automated ticket assignment and weekend status management for Freshdesk</p>
+    </div>
 
-        <div id="tab-overview" class="tab-content active">
-            <div class="header">
-                <img src="autoassign_logo.svg" alt="Auto-Assign"
-                    style="width: 64px; height: 64px; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
-                <h1>Auto-Assign Ticket Manager</h1>
-                <p>Automated ticket assignment and weekend status management for Freshdesk</p>
-            </div>
-
-            <div class="info-section">
-                <h2>📋 Overview</h2>
-                <p>The Auto-Assign Ticket Manager provides three key automated services for Freshdesk ticket management:
-                </p>
-
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
-                    <div
-                        style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #1abc9c;">
-                        <h3 style="margin-top: 0; color: #1abc9c;">🎯 Round-Robin Assignment</h3>
-                        <p style="margin: 0; font-size: 14px;">Automatically distributes unassigned tickets to agents
-                            using a fair round-robin algorithm. Runs every 5 minutes and ensures equal distribution
-                            across all agents in each group. Adds "overnight" tag to assigned tickets.</p>
-                    </div>
-                    <div
-                        style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
-                        <h3 style="margin-top: 0; color: #e74c3c;">🔄 Weekend Status Reversion</h3>
-                        <p style="margin: 0; font-size: 14px;">Automatically reverts "Follow-up Required" tickets back
-                            to their previous status during weekend hours (Friday 6 PM - Monday 7 AM EST) to ensure fair
-                            customer service.</p>
-                    </div>
-                    <div
-                        style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #9b59b6;">
-                        <h3 style="margin-top: 0; color: #9b59b6;">🌙 Overnight Ticket Reassignment</h3>
-                        <p style="margin: 0; font-size: 14px;">Daily during 7:00-7:15 AM EST, automatically unassigns
-                            tickets with "overnight" tag from unavailable agents, allowing them to be reassigned during
-                            business hours.</p>
-                    </div>
-                </div>
-
-                <div class="status-info">
-                    <div class="status-indicator"></div>
-                    <span><strong>Status:</strong> The app is currently active and running on a 5-minute schedule</span>
-                </div>
-
-                <div class="note" style="margin-top: 15px;">
-                    <strong>Assignment Requirements:</strong> Tickets must be both <strong>unassigned</strong> AND in
-                    <strong>"Open" or "Triage" status</strong> to be eligible for automatic assignment.
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2>✨ Key Features</h2>
-
-                <!-- Carousel Container -->
-                <div class="carousel-container">
-                    <div class="carousel-track" id="featuresCarousel">
-                        <!-- Card 1: Round-Robin Assignment -->
-                        <div class="feature-card active" data-card="1">
-                            <div class="card-header"
-                                style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
-                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🎯 Round-Robin Assignment</h3>
-                            </div>
-                            <div class="card-content">
-                                <ul class="feature-list">
-                                    <li>Automatic round-robin ticket assignment across all Regions/Groups</li>
-                                    <li>Persistent assignment tracking - remembers where it left off</li>
-                                    <li>Randomized starting positions for each group to prevent clustering</li>
-                                    <li>Filters for tickets in "Open" or "Triage" status only</li>
-                                    <li>Assigns unassigned tickets to ALL agents in a group (no agent filtering)</li>
-                                    <li>Automatically adds "overnight" tag to assigned tickets</li>
-                                    <li>Runs automatically every 5 minutes</li>
-                                    <li>Fair distribution ensures every agent gets equal ticket load</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: Weekend Status Reversion -->
-                        <div class="feature-card" data-card="2">
-                            <div class="card-header"
-                                style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
-                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🔄 Weekend Status Reversion</h3>
-                            </div>
-                            <div class="card-content">
-                                <ul class="feature-list">
-                                    <li>Automatically detects weekend hours (Friday 6 PM - Monday 7 AM EST)</li>
-                                    <li>Every 5 minutes, it finds tickets with "Follow-up Required" status during
-                                        weekends</li>
-                                    <li>Reverts tickets back to "Waiting on Customer" status</li>
-                                    <li>Adds explanatory notes to tickets explaining the reversion</li>
-                                    <li>Allows customers sufficient time to respond to the ticket</li>
-                                    <li>Comprehensive logging and tracking of all reversions</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Card 3: Overnight Ticket Reassignment -->
-                        <div class="feature-card" data-card="3">
-                            <div class="card-header"
-                                style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
-                                <h3 style="color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🌙 Overnight Ticket Reassignment</h3>
-                            </div>
-                            <div class="card-content">
-                                <ul class="feature-list">
-                                    <li>Every morning at ~7:00 AM EST, checks for tickets tagged with "overnight"</li>
-                                    <li>Fetches agent availability status via Freshdesk API</li>
-                                    <li>Automatically unassigns tickets from unavailable agents</li>
-                                    <li>Maintains group assignment for seamless reassignment</li>
-                                    <li>Adds explanatory private notes to unassigned tickets</li>
-                                    <li>Comprehensive logging and tracking of all reassignments</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Card 4: Monitoring & Analytics -->
-                        <div class="feature-card" data-card="4">
-                            <div class="card-header"
-                                style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
-                                <h3>📊 Monitoring & Analytics</h3>
-                            </div>
-                            <div class="card-content">
-                                <ul class="feature-list">
-                                    <li>Detailed logging for audit and troubleshooting</li>
-                                    <li>Real-time weekend status indicator</li>
-                                    <li>Comprehensive activity tracking and reporting</li>
-                                    <li>Filterable logs and reversion history</li>
-                                    <li>Manual testing capabilities for all features</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Carousel Navigation -->
-                    <div class="carousel-nav">
-                        <button class="nav-btn prev-btn" onclick="moveCarousel(-1)">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15,18 9,12 15,6"></polyline>
-                            </svg>
-                        </button>
-
-                        <div class="carousel-dots">
-                            <span class="dot active" onclick="goToCard(1)"></span>
-                            <span class="dot" onclick="goToCard(2)"></span>
-                            <span class="dot" onclick="goToCard(3)"></span>
-                            <span class="dot" onclick="goToCard(4)"></span>
-                        </div>
-
-                        <button class="nav-btn next-btn" onclick="moveCarousel(1)">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9,18 15,12 9,6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2>👥 Supported Groups</h2>
-                <p>The app handles ticket assignment for these 6 groups:</p>
-
-                <div class="group-grid">
-                    <div class="group-card">
-                        <h4>West Region</h4>
-                        <p>ID: 67000578161</p>
-                    </div>
-                    <div class="group-card">
-                        <h4>Central Southeast</h4>
-                        <p>ID: 67000578164</p>
-                    </div>
-                    <div class="group-card">
-                        <h4>Northeast Region</h4>
-                        <p>ID: 67000578163</p>
-                    </div>
-                    <div class="group-card">
-                        <h4>Central Southwest</h4>
-                        <p>ID: 67000578162</p>
-                    </div>
-                    <div class="group-card">
-                        <h4>Triage</h4>
-                        <p>ID: 67000578235</p>
-                    </div>
-                    <div class="group-card">
-                        <h4>Support Ops</h4>
-                        <p>ID: 67000570681</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2>⚙️ How It Works</h2>
-
-                <h3>🎯 Assignment Process:</h3>
-                <ol>
-                    <li>Every 5 minutes, the app checks for tickets that are:
-                        <ul>
-                            <li>Unassigned (no agent currently assigned)</li>
-                            <li>In "Open" or "Triage" status</li>
-                            <li>Assigned to one of the 6 supported groups</li>
-                        </ul>
-                    </li>
-                    <li>For each eligible ticket, it identifies the assigned group</li>
-                    <li>It assigns the ticket to the next agent in that group's rotation</li>
-                    <li>The round-robin index is saved and persists across runs</li>
-                </ol>
-
-                <h3>🔄 Weekend Reversion Process:</h3>
-                <ol>
-                    <li>Every 5 minutes, the app checks if it's currently weekend hours (Friday 6 PM - Monday 7 AM EST)
-                    </li>
-                    <li>If it's weekend time, it searches for tickets with "Follow-up Required" status</li>
-                    <li>For each found ticket, it determines the previous status (defaults to "Waiting on Customer")
-                    </li>
-                    <li>It reverts the ticket back to the previous status</li>
-                    <li>Adds a private note explaining the reversion and why it occurred</li>
-                    <li>Logs the action for audit and tracking purposes</li>
-                </ol>
-
-                <h3>🌙 Overnight Reassignment Process:</h3>
-                <ol>
-                    <li>Daily between 7:00 AM - 7:15 AM EST, the app checks for tickets tagged with "overnight"</li>
-                    <li>For each overnight ticket with an assigned agent, it fetches the agent's availability status
-                    </li>
-                    <li>If the agent's "available" field is false, the ticket is automatically unassigned</li>
-                    <li>The ticket's group assignment is maintained to allow normal reassignment processes</li>
-                    <li>A private note is added explaining why the ticket was unassigned</li>
-                    <li>All reassignments are logged for tracking and audit purposes</li>
-                </ol>
-
-                <h3>Randomized Starting Positions:</h3>
-                <p>When a group first receives tickets, the app randomly selects which agent to start with. This
-                    prevents agents
-                    who belong to multiple groups from receiving multiple tickets at once. For example:</p>
-                <ul>
-                    <li>If Brad is in both Triage and West Region groups</li>
-                    <li>Triage might start at index 3 (Kristi)</li>
-                    <li>West Region might start at index 1 (Dayna)</li>
-                    <li>This way Brad doesn't get the first ticket from both groups</li>
-                </ul>
-
-                <h3>Round-Robin Example:</h3>
-                <div class="code-block">
-                    Group: Support Ops (4 agents) - Starting at random index 2
-                    - Ticket 1 → Agent C (index 2) ← Random start
-                    - Ticket 2 → Agent D (index 3)
-                    - Ticket 3 → Agent A (index 0) ← Wraps around
-                    - Ticket 4 → Agent B (index 1)
-                    - Ticket 5 → Agent C (index 2)
-                    - Ticket 6 → Agent D (index 3)
-                    ...
-
-                    Note: Each group starts at a random position to prevent agents
-                    in multiple groups from getting tickets simultaneously.</div>
-
-                <h3>Weekend Hours Definition:</h3>
-                <div class="code-block">
-                    Weekend Hours: Friday 6:00 PM EST → Monday 7:00 AM EST
-
-                    During these hours:
-                    - "Follow-up Required" tickets are automatically reverted
-                    - Customers are not penalized for non-business hours
-                    - The 48-hour timer effectively pauses during weekends
-                    - Business hours resume Monday at 7:00 AM EST</div>
-
-                <h3>Overnight Reassignment Window:</h3>
-                <div class="code-block">
-                    Reassignment Window: Daily 7:00 AM - 7:15 AM EST
-
-                    During this window:
-                    - Tickets with "overnight" tag are checked for agent availability
-                    - Unavailable agents have their tickets automatically unassigned
-                    - Group assignments are maintained for seamless reassignment
-                    - Private notes explain the reassignment reason
-                    - Process runs early morning before business hours begin</div>
-
-                <div class="note">
-                    <strong>Note:</strong> The assignment process only processes tickets that are both
-                    <strong>unassigned</strong> AND
-                    in <strong>"Open" or "Triage" status</strong>. Tickets in other statuses (New, Pending, Resolved,
-                    Closed) will not be automatically assigned.
-                </div>
-            </div>
-
-            <!-- Overview continues after Analyze Logs tab definition -->
-
-            <div class="info-section">
-                <h2>🔧 Troubleshooting</h2>
-
-                <h3>Assignment Issues:</h3>
-                <ul>
-                    <li><strong>Tickets not being assigned:</strong> Check if tickets have the correct group ID</li>
-                    <li><strong>Uneven distribution:</strong> The app maintains separate round-robin counters for each
-                        group</li>
-                    <li><strong>Missing agents:</strong> Ensure agents are properly added to their groups in Freshdesk
-                    </li>
-                </ul>
-
-                <h3>Weekend Reversion Issues:</h3>
-                <ul>
-                    <li><strong>Tickets not being reverted:</strong> Check if it's currently weekend hours (Friday 6 PM
-                        - Monday 7 AM EST)</li>
-                    <li><strong>Wrong status after reversion:</strong> The app defaults to "Waiting on Customer" if
-                        previous status cannot be determined</li>
-                    <li><strong>No reversions in logs:</strong> Verify tickets have "Follow-up Required" status and are
-                        in supported groups</li>
-                </ul>
-
-                <h3>Overnight Reassignment Issues:</h3>
-                <ul>
-                    <li><strong>Tickets not being reassigned:</strong> Check if tickets have the "overnight" tag and if
-                        it's during the 7:00-7:15 AM EST window</li>
-                    <li><strong>Agent still assigned:</strong> Verify the agent's "available" field is set to false in
-                        Freshdesk</li>
-                    <li><strong>No reassignments in logs:</strong> Ensure tickets are assigned to agents (not
-                        unassigned) and tagged with "overnight"</li>
-                    <li><strong>API errors:</strong> Check agent permissions and API access for fetching agent
-                        availability status</li>
-                </ul>
-
-                <div class="note">
-                    <strong>Important:</strong> Only tickets assigned to one of the 6 supported groups will be
-                    auto-assigned. Tickets without a group or in unsupported groups require manual assignment.
-                </div>
-
-
-            </div>
-        </div> <!-- end tab-overview -->
-
-        <div id="tab-analyze" class="tab-content">
-            <div class="info-section">
-                <h2>📊 Analyze Logs</h2>
-                <p>Upload and analyze log files downloaded from Freshdesk to view detailed ticket assignment activity
-                    and system events.</p>
-
-                <div class="note"
-                    style="margin: 20px 0; padding: 20px; background: #e8f8f5; border-left: 4px solid #1abc9c;">
-                    <h3 style="margin-top: 0; color: #1abc9c;">📋 How to Download Logs from Freshdesk</h3>
-                    <ol style="margin: 15px 0; padding-left: 20px;">
-                        <li><strong>Go to Admin Settings:</strong> Click on <strong>Admin</strong> in the left side
-                            navigation panel
-                        </li>
-                        <li><strong>Navigate to Apps:</strong> Click <strong>Apps</strong> → <strong>Manage
-                                Apps</strong> → <strong>Custom Apps</strong> tab</li>
-                        <li><strong>Find Auto-Assign:</strong> In the list of Custom Apps, locate
-                            <strong>Auto-Assign</strong>
-                        </li>
-                        <li><strong>Access Auto-Assign Settings:</strong> Click the <strong>Settings</strong> dropdown
-                        </li>
-                        <li><strong>Select Log:</strong> Click <strong>View Log</strong></li>
-                        <li><strong>Select Time Range:</strong> Choose your desired date range</li>
-                        <li><strong>Wait for Logs:</strong> Allow the logs to load and display</li>
-                        <li><strong>Export Logs:</strong> Click the <strong>Export icon (📥)</strong> at the top right
-                            of the logs panel to initiate the download</li>
-                    </ol>
-                    <p style="margin: 15px 0 0 0; font-style: italic; color: #666;">
-                        <strong>Note:</strong> The exported file will contain all log entries for the selected time
-                        period in JSON format.
-                    </p>
-                </div>
-
-                <h3>📈 What You Can Analyze</h3>
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
-                    <div
-                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #27ae60;">
-                        <h4 style="margin: 0 0 10px 0; color: #27ae60;">✅ Successful Assignments</h4>
-                        <p style="margin: 0; font-size: 14px;">Track which tickets were successfully assigned to agents
-                            and when</p>
-                    </div>
-                    <div
-                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #e74c3c;">
-                        <h4 style="margin: 0 0 10px 0; color: #e74c3c;">❌ Assignment Errors</h4>
-                        <p style="margin: 0; font-size: 14px;">Identify failed assignments and their error messages</p>
-                    </div>
-                    <div
-                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #3498db;">
-                        <h4 style="margin: 0 0 10px 0; color: #3498db;">📊 Agent Performance</h4>
-                        <p style="margin: 0; font-size: 14px;">See which agents received the most assignments</p>
-                    </div>
-                    <div
-                        style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #f39c12;">
-                        <h4 style="margin: 0 0 10px 0; color: #f39c12;">🏢 Group Activity</h4>
-                        <p style="margin: 0; font-size: 14px;">Analyze assignment patterns across different groups</p>
-                    </div>
-                </div>
-
-                <h3>📁 Upload and Analyze Log Files</h3>
-                <p>Once you have downloaded your log file from Freshdesk, upload it here to analyze ticket assignments
-                    and system activity:</p>
-
-                <div class="file-upload-container">
-                    <input type="file" id="logFileInput" accept=".txt" style="display: none;">
-                    <button id="uploadBtn" class="upload-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7,10 12,15 17,10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Choose Log File
-                    </button>
-                    <button id="clearFileBtn" class="clear-file-btn" style="display: none;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
-                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                        Clear File
-                    </button>
-                    <span id="fileName" class="file-name"></span>
-                </div>
-
-                <!-- Date Range Display -->
-                <div id="dateRangeDisplay" class="date-range-display" style="display: none;">
-                    <h4>📅 Log Date Range</h4>
-                    <div class="date-range-info">
-                        <span><strong>From:</strong> <span id="minDate">-</span></span>
-                        <span><strong>To:</strong> <span id="maxDate">-</span></span>
-                    </div>
-                </div>
-
-                <!-- Summary Statistics -->
-                <div id="summaryStats" class="summary-stats" style="display: none;">
-                    <h4>📈 Summary Statistics</h4>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number" id="totalLogs">0</div>
-                            <div class="stat-label">Total Log Entries</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="ticketsAssigned">0</div>
-                            <div class="stat-label">Tickets Assigned</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="uniqueAgents">0</div>
-                            <div class="stat-label">Unique Agents</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="uniqueGroups">0</div>
-                            <div class="stat-label">Groups Involved</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="totalErrors">0</div>
-                            <div class="stat-label">Errors</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Assignment Summary -->
-                <div id="agentSummary" class="agent-summary" style="display: none;">
-                    <h4>👥 Agent Assignment Summary</h4>
-                    <div class="agent-grid" id="agentGrid"></div>
-                </div>
-
-                <!-- Group Assignment Summary -->
-                <div id="groupSummary" class="group-summary" style="display: none;">
-                    <h4>🏢 Group Assignment Summary</h4>
-                    <div class="group-stats-grid" id="groupStatsGrid"></div>
-                </div>
-
-                <!-- Filters -->
-                <div id="filters" class="filters-section" style="display: none;">
-                    <h4>🔍 Filters</h4>
-                    <div class="filter-controls">
-                        <div class="filter-group">
-                            <label for="logTypeFilter">Log Type:</label>
-                            <select id="logTypeFilter">
-                                <option value="">All Types</option>
-                                <option value="info">Info</option>
-                                <option value="ticket_assigned">Ticket Assigned</option>
-                                <option value="error">Error</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="agentFilter">Agent:</label>
-                            <select id="agentFilter">
-                                <option value="">All Agents</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="groupFilter">Group:</label>
-                            <select id="groupFilter">
-                                <option value="">All Groups</option>
-                            </select>
-                        </div>
-
-                        <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <div id="timeline" class="timeline-container" style="display: none;">
-                    <h4>⏰ Event Timeline</h4>
-                    <div class="timeline" id="timelineContent"></div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end tab-analyze -->
-
-    <div id="tab-weekend" class="tab-content">
-        <div class="info-section">
-            <h2>🔄 Weekend Status Reversions</h2>
-            <p>View all tickets that were automatically reverted from "Follow-up Required" status during weekend hours
-                (Friday 6 PM EST to Monday 7 AM EST). This ensures customers are not penalized for not responding during
-                non-business hours.</p>
-
-            <!-- Weekend Status Indicator -->
-            <div class="weekend-status-indicator">
-                <div class="status-dot" id="weekendStatusDot"></div>
-                <span class="status-text" id="weekendStatusText">Checking weekend status...</span>
-                <span class="status-time" id="weekendStatusTime"></span>
-            </div>
-
-            <div class="note"
-                style="margin: 20px 0; padding: 20px; background: #e8f8f5; border-left: 4px solid #1abc9c;">
-                <h3 style="margin-top: 0; color: #1abc9c;">📋 How Weekend Reversion Works</h3>
-                <ol style="margin: 15px 0; padding-left: 20px;">
-                    <li><strong>Automatic Detection:</strong> The app runs every 5 minutes and checks if it's currently
-                        weekend time</li>
-                    <li><strong>Ticket Identification:</strong> Finds all tickets with "Follow-up Required" status</li>
-                    <li><strong>History Analysis:</strong> Examines ticket history to determine the previous status</li>
-                    <li><strong>Status Reversion:</strong> Reverts tickets back to their previous status (Waiting on
-                        Customer, Awaiting Internal Review, or Pending)</li>
-                    <li><strong>Documentation:</strong> Adds a private note explaining the reversion and why it occurred
-                    </li>
-                </ol>
-                <p style="margin: 15px 0 0 0; font-style: italic; color: #666;">
-                    <strong>Note:</strong> This process ensures fair customer service by not penalizing customers for
-                    not responding during non-business hours.
-                </p>
-            </div>
-
-            <div class="weekend-controls">
-                <button id="testWeekendBtn" class="purge-btn" style="background-color: #3498db;">Test Weekend
-                    Reversion</button>
-                <button id="devTestBtn" class="purge-btn" style="background-color: #f39c12;">Dev Mode Test</button>
-                <button id="purgeWeekendBtn" class="purge-btn">Clear Stored Reversions</button>
-                <div class="filter">
-                    <label>Ticket ID</label>
-                    <input type="text" id="weekendTicketFilter" placeholder="Enter ticket ID" />
-                </div>
-                <div class="filter">
-                    <label>Agent</label>
-                    <select id="weekendAgentFilter">
+    <div class="info-section" id="activityReport">
+        <h2>📊 Activity Report</h2>
+        <div class="filters-section">
+            <h4>Filters</h4>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="activityTypeFilter">Activity Type</label>
+                    <select id="activityTypeFilter">
                         <option value="">All</option>
+                        <option value="assignment">Assignment</option>
+                        <option value="status_reversion">Status Reversion</option>
                     </select>
                 </div>
-                <div class="filter">
-                    <label>Previous Status</label>
-                    <select id="weekendStatusFilter">
-                        <option value="">All</option>
-                        <option value="Waiting on Customer">Waiting on Customer</option>
-                        <option value="Awaiting Internal Review">Awaiting Internal Review</option>
-                        <option value="Pending">Pending</option>
-                    </select>
+                <div class="filter-group">
+                    <label for="dateFrom">From</label>
+                    <input type="datetime-local" id="dateFrom">
                 </div>
-                <div class="filter">
-                    <label>From</label>
-                    <input type="date" id="weekendFromDate" />
+                <div class="filter-group">
+                    <label for="dateTo">To</label>
+                    <input type="datetime-local" id="dateTo">
                 </div>
-                <div class="filter">
-                    <label>To</label>
-                    <input type="date" id="weekendToDate" />
+                <div class="filter-group">
+                    <label for="ticketIdFilter">Ticket ID</label>
+                    <input type="text" id="ticketIdFilter" placeholder="e.g. 318402">
+                </div>
+                <div class="filter-group">
+                    <label for="subjectFilter">Subject</label>
+                    <input type="text" id="subjectFilter" placeholder="contains...">
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Ticket Status</label>
+                    <input type="text" id="statusFilter" placeholder="e.g. 2 or Waiting">
+                </div>
+                <div class="filter-group">
+                    <label for="assigneeFilter">Assigned To</label>
+                    <input type="text" id="assigneeFilter" placeholder="agent name">
+                </div>
+                <div class="filter-group">
+                    <label for="groupFilter">Group</label>
+                    <input type="text" id="groupFilter" placeholder="group name">
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+                    <button class="btn btn-secondary" id="clearFiltersBtn">Clear Filters</button>
+                    <button class="btn btn-success" id="refreshBtn">Refresh Data</button>
+                    <button class="btn btn-danger" id="clearAllBtn">Clear All Records</button>
+                    <button class="btn btn-secondary" id="addDemoBtn">Add Demo Data</button>
                 </div>
             </div>
-            <div style="overflow-x:auto;">
-                <table class="activity-table" id="weekendTable">
-                    <thead>
-                        <tr>
-                            <th data-sort="reverted_at">Date/Time</th>
-                            <th data-sort="ticket_id">Ticket ID</th>
-                            <th data-sort="ticket_subject">Subject</th>
-                            <th data-sort="agent_name">Agent</th>
-                            <th data-sort="previous_status">Previous Status</th>
-                            <th data-sort="reverted_to_status">Reverted To</th>
-                            <th>Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody id="weekendTbody">
-                    </tbody>
-                </table>
-            </div>
-            <div style="margin-top:8px; color:#666;" id="weekendMeta"></div>
         </div>
-    </div> <!-- end tab-weekend -->
 
-    <!-- Activity tab content hidden for now -->
-    <!-- <div id="tab-activity" class="tab-content">
-            <div class="info-section">
-                <h2>🗂️ Activity</h2>
-                <p>View all ticket assignment attempts stored by the app. Data is retained for one month and can be
-                    cleared manually.</p>
-                <div class="activity-controls">
-                    <button id="purgeActivityBtn" class="purge-btn">Clear Stored Activity</button>
-                    <div class="filter">
-                        <label>Agent</label>
-                        <select id="activityAgentFilter">
-                            <option value="">All</option>
-                        </select>
-                    </div>
-                    <div class="filter">
-                        <label>Group</label>
-                        <select id="activityGroupFilter">
-                            <option value="">All</option>
-                        </select>
-                    </div>
-                    <div class="filter">
-                        <label>Result</label>
-                        <select id="activityResultFilter">
-                            <option value="">All</option>
-                            <option value="Success">Success</option>
-                            <option value="Failed">Failed</option>
-                        </select>
-                    </div>
-                    <div class="filter">
-                        <label>From</label>
-                        <input type="date" id="activityFromDate" />
-                    </div>
-                    <div class="filter">
-                        <label>To</label>
-                        <input type="date" id="activityToDate" />
-                    </div>
-                </div>
-                <div style="overflow-x:auto;">
-                    <table class="activity-table" id="activityTable">
-                        <thead>
-                            <tr>
-                                <th data-sort="attempted_at">Date/Time</th>
-                                <th data-sort="ticket_id">Ticket ID</th>
-                                <th data-sort="ticket_subject">Subject</th>
-                                <th data-sort="agent_name">Agent</th>
-                                <th data-sort="group_name">Group</th>
-                                <th data-sort="result">Result</th>
-                                <th>Error Message</th>
-                            </tr>
-                        </thead>
-                        <tbody id="activityTbody">
-                        </tbody>
-                    </table>
-                </div>
-                <div style="margin-top:8px; color:#666;" id="activityMeta"></div>
+        <div class="summary-stats" id="activitySummary" style="margin-top: 12px;">
+            <div class="stat">
+                <div class="label">Total Records</div>
+                <div class="value" id="totalRecords">-</div>
             </div>
-        </div> --> <!-- end tab-activity -->
-    </div> <!-- end tabs -->
+            <div class="stat">
+                <div class="label">Filtered Records</div>
+                <div class="value" id="filteredRecords">-</div>
+            </div>
+            <div class="stat">
+                <div class="label">Date Range</div>
+                <div class="value" id="dateRangeLabel">-</div>
+            </div>
+        </div>
 
-</body>
+        <div style="overflow-x:auto; margin-top: 12px;">
+            <table class="activity-table" id="activityTable">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Ticket ID</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Group</th>
+                    </tr>
+                </thead>
+                <tbody id="activityTbody"></tbody>
+            </table>
+        </div>
+        <div id="activityMeta" style="margin-top:8px; color:#666;"></div>
+    </div>
 
-<script>
-    // Freshdesk client init and Tab handling + Log Viewer + Activity Viewer
-    let client = null;
-    let clientInitPromise = null;
+    <script>
+        let client = null;
 
-    async function initFreshdeskClient() {
-        // Check if client is already initialized
-        if (client) return client;
-
-        // Check if client is already initialized by app.js
-        if (window.client) {
-            console.log('Using already initialized client from window.client');
-            client = window.client;
-            return client;
-        }
-
-        // Prevent multiple initialization attempts
-        if (clientInitPromise) {
-            return clientInitPromise;
-        }
-
-        clientInitPromise = (async () => {
-            try {
-                // Wait for app.js to potentially set window.client
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                if (window.client) {
-                    console.log('Client initialized by app.js after wait');
-                    client = window.client;
+        async function initFreshdeskClient() {
+            if (client) return client;
+            if (window.client) { client = window.client; return client; }
+            if (window.app && typeof window.app.initialized === 'function') {
+                try {
+                    client = await window.app.initialized();
+                    window.client = client;
                     return client;
-                }
-
-                // Try standard Freshdesk app initialization
-                if (window.app && typeof window.app.initialized === 'function') {
-                    console.log('Initializing Freshdesk client...');
-                    const _client = await window.app.initialized();
-                    console.log('Client initialized successfully');
-                    client = _client;
-                    window.client = _client; // Make it available globally
-                    return client;
-                }
-            } catch (e) {
-                console.error('Failed to initialize Freshdesk client:', e);
+                } catch (e) { console.warn('FD client init failed', e); }
             }
-
-            console.warn('Freshdesk client not available. Activity tab functionality will be limited.');
             return null;
-        })();
+        }
 
-        return clientInitPromise;
-    }
-
-    function setupTabs() {
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                btn.classList.add('active');
-                const tab = btn.getAttribute('data-tab');
-                document.getElementById(`tab-${tab}`).classList.add('active');
-            });
-        });
-    }
-
-    async function invokeServer(functionName, args) {
-        if (!client) {
-            console.log('Client not set, attempting to initialize...');
+        async function invokeServer(functionName, args) {
             await initFreshdeskClient();
-        }
-        if (!client) {
-            console.error('Client still not initialized after init attempt');
-            return { success: false, error: 'Client not initialized' };
-        }
-        try {
-            console.log(`Invoking server function: ${functionName} with args:`, args);
-            const result = await client.request.invoke(functionName, args || {});
-            console.log(`Server function ${functionName} result:`, result);
-            return result;
-        } catch (e) {
-            console.error(`invokeServer error for ${functionName}:`, e);
-            return { success: false, error: e.message };
-        }
-    }
-
-    // Log Viewer Functionality
-    class LogViewer {
-        constructor() {
-            this.logs = [];
-            this.filteredLogs = [];
-            this.agents = new Map();
-            this.groups = new Map();
-            this.groupNames = {
-                '67000578161': 'West Region',
-                '67000578164': 'Central Southeast',
-                '67000578163': 'Northeast Region',
-                '67000578162': 'Central Southwest',
-                '67000578235': 'Triage',
-                '67000570681': 'Support Ops'
-            };
-
-            this.initializeEventListeners();
-        }
-
-        initializeEventListeners() {
-            const uploadBtn = document.getElementById('uploadBtn');
-            const logFileInput = document.getElementById('logFileInput');
-            const clearFiltersBtn = document.getElementById('clearFilters');
-            const clearFileBtn = document.getElementById('clearFileBtn');
-
-            uploadBtn.addEventListener('click', () => logFileInput.click());
-            logFileInput.addEventListener('change', (e) => this.handleFileUpload(e));
-            clearFiltersBtn.addEventListener('click', () => this.clearFilters());
-            clearFileBtn.addEventListener('click', () => this.clearFile());
-
-            // Filter event listeners
-            document.getElementById('logTypeFilter').addEventListener('change', () => this.applyFilters());
-            document.getElementById('agentFilter').addEventListener('change', () => this.applyFilters());
-            document.getElementById('groupFilter').addEventListener('change', () => this.applyFilters());
-        }
-
-        async handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            document.getElementById('fileName').textContent = file.name;
-            document.getElementById('clearFileBtn').style.display = 'inline-block'; // Show clear button
-
+            if (!client || !client.request) return { success: false, error: 'Client not initialized' };
             try {
-                const text = await file.text();
-                this.parseLogFile(text);
-                this.displayResults();
-            } catch (error) {
-                console.error('Error reading file:', error);
-                alert('Error reading the log file. Please make sure it\'s a valid text file.');
-            }
-        }
-
-        parseLogFile(text) {
-            try {
-                // Parse the JSON array
-                const logArray = JSON.parse(text);
-                this.logs = logArray.filter(log => log && log.timestamp && log.type);
-
-                // Extract ticket assignment details and agent/group information
-                this.extractAssignmentData();
-
-                console.log(`Parsed ${this.logs.length} log entries`);
-            } catch (error) {
-                console.error('Error parsing log file:', error);
-                alert('Error parsing the log file. Please make sure it\'s a valid JSON format.');
-            }
-        }
-
-        extractAssignmentData() {
-            this.agents.clear();
-            this.groups.clear();
-
-            console.log('Starting to extract assignment data from', this.logs.length, 'logs');
-
-            this.logs.forEach((log, index) => {
-                if (log.message && log.message.text) {
-                    // Look for ticket assignments in the message text
-                    this.extractAssignmentFromMessage(log, index);
-                }
-            });
-
-            console.log('Extraction complete. Found agents:', this.agents.size, 'groups:', this.groups.size);
-        }
-
-        extractAssignmentFromMessage(log, index) {
-            const messageText = log.message.text;
-
-            // Look for the embedded JSON data in "Creating log entry:" messages
-            if (messageText.includes('Creating log entry:')) {
-                // Find the start of the JSON object
-                const startIndex = messageText.indexOf('Creating log entry: {');
-                if (startIndex !== -1) {
-                    // Find the matching closing brace by counting braces
-                    let braceCount = 0;
-                    let endIndex = startIndex + 'Creating log entry: '.length;
-                    let jsonStart = endIndex;
-
-                    for (let i = jsonStart; i < messageText.length; i++) {
-                        if (messageText[i] === '{') {
-                            braceCount++;
-                        } else if (messageText[i] === '}') {
-                            braceCount--;
-                            if (braceCount === 0) {
-                                endIndex = i + 1;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (endIndex > jsonStart) {
-                        // Raw object-literal string from the log
-                        const rawObjectLiteral = messageText.substring(jsonStart, endIndex);
-
-                        try {
-                            // First, attempt strict JSON parse after transforming to valid JSON
-                            let jsonStr = rawObjectLiteral;
-                            // Quote keys at object boundaries only
-                            jsonStr = jsonStr.replace(/([\{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:/g, '$1"$2":');
-                            // Replace single quotes with double quotes
-                            jsonStr = jsonStr.replace(/'/g, '"');
-                            // Escape newlines
-                            jsonStr = jsonStr.replace(/\n/g, '\\n');
-                            // Remove trailing commas
-                            jsonStr = jsonStr.replace(/,(\s*[}\]])/g, '$1');
-
-                            console.log('After transformation, JSON string:', jsonStr);
-
-                            const logEntry = JSON.parse(jsonStr);
-                            this._handleParsedEmbeddedEntry(logEntry, log, index);
-                        } catch (e) {
-                            console.warn('Failed strict JSON parse at index', index, ':', e);
-                            console.warn('Attempting tolerant parse of object literal...');
-                            try {
-                                // Tolerant fallback: parse as JS object literal
-                                // Note: This runs in the page context. Only use with trusted local log files.
-                                // Wrap in parentheses to ensure expression context
-                                // eslint-disable-next-line no-new-func
-                                const logEntry = (new Function('"use strict"; return (' + rawObjectLiteral + ')'))();
-                                this._handleParsedEmbeddedEntry(logEntry, log, index);
-                            } catch (err) {
-                                console.warn('Fallback parse failed at index', index, ':', err);
-                                console.warn('JSON string was:', rawObjectLiteral);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        _handleParsedEmbeddedEntry(logEntry, log, index) {
-            try {
-                console.log('Parsed log entry at index', index, ':', logEntry.type, logEntry.message);
-                if (logEntry.type === 'ticket_assigned' && logEntry.details) {
-                    const details = logEntry.details;
-                    const ticketId = details.ticket_id;
-                    const agentName = details.agent_name;
-                    const groupId = details.group_id;
-                    const subject = details.ticket_subject || 'Unknown Subject';
-
-                    console.log('Found ticket assignment:', { ticketId, agentName, groupId, subject });
-
-                    if (ticketId && agentName && groupId) {
-                        if (!this.agents.has(agentName)) {
-                            this.agents.set(agentName, { count: 0, tickets: [] });
-                        }
-                        this.agents.get(agentName).count++;
-                        this.agents.get(agentName).tickets.push({
-                            id: ticketId,
-                            subject: subject,
-                            timestamp: log.timestamp,
-                            groupId: groupId
-                        });
-
-                        if (!this.groups.has(groupId)) {
-                            this.groups.set(groupId, { count: 0, tickets: [] });
-                        }
-                        this.groups.get(groupId).count++;
-                        this.groups.get(groupId).tickets.push({
-                            id: ticketId,
-                            subject: subject,
-                            timestamp: log.timestamp,
-                            agentName: agentName
-                        });
-
-                        console.log('Successfully tracked assignment for', agentName, 'in group', groupId);
-                    }
-                }
+                return await client.request.invoke(functionName, args || {});
             } catch (e) {
-                console.warn('Error handling parsed entry at index', index, ':', e);
+                console.error('invokeServer error', e);
+                return { success: false, error: e.message };
             }
         }
 
-        displayResults() {
-            this.updateDateRange();
-            this.updateSummaryStats();
-            this.updateAgentSummary();
-            this.updateGroupSummary();
-            this.updateFilters();
-
-            // Set default filter to "Ticket Assigned"
-            document.getElementById('logTypeFilter').value = 'ticket_assigned';
-
-            this.updateTimeline();
-
-            // Show all sections
-            document.getElementById('dateRangeDisplay').style.display = 'block';
-            document.getElementById('summaryStats').style.display = 'block';
-            document.getElementById('agentSummary').style.display = 'block';
-            document.getElementById('groupSummary').style.display = 'block';
-            document.getElementById('filters').style.display = 'block';
-            document.getElementById('timeline').style.display = 'block';
+        function setDefaultDateRange48h() {
+            const to = new Date();
+            const from = new Date(to.getTime() - 48 * 60 * 60 * 1000);
+            const fmt = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+            document.getElementById('dateFrom').value = fmt(from);
+            document.getElementById('dateTo').value = fmt(to);
         }
 
-        updateDateRange() {
-            if (this.logs.length === 0) return;
-
-            // Find min and max dates
-            let minDate = new Date(this.logs[0].timestamp);
-            let maxDate = new Date(this.logs[0].timestamp);
-
-            this.logs.forEach(log => {
-                const logDate = new Date(log.timestamp);
-                if (logDate < minDate) minDate = logDate;
-                if (logDate > maxDate) maxDate = logDate;
-            });
-
-            // Format dates for display
-            const formatDate = (date) => {
-                return date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-            };
-
-            document.getElementById('minDate').textContent = formatDate(minDate);
-            document.getElementById('maxDate').textContent = formatDate(maxDate);
-
-            console.log('Date range:', formatDate(minDate), 'to', formatDate(maxDate));
+        function readFilters() {
+            const df = document.getElementById('dateFrom').value;
+            const dt = document.getElementById('dateTo').value;
+            const params = {};
+            if (df) params.date_from = new Date(df).toISOString();
+            if (dt) params.date_to = new Date(dt).toISOString();
+            const ticketId = document.getElementById('ticketIdFilter').value.trim();
+            const subject = document.getElementById('subjectFilter').value.trim();
+            const status = document.getElementById('statusFilter').value.trim();
+            const assignee = document.getElementById('assigneeFilter').value.trim();
+            const group = document.getElementById('groupFilter').value.trim();
+            const act = document.getElementById('activityTypeFilter').value;
+            if (ticketId) params.ticket_id = ticketId;
+            if (subject) params.ticket_subject = subject;
+            if (status) params.ticket_status = status;
+            if (assignee) params.assigned_to = assignee;
+            if (group) params.group_name = group;
+            if (act) params.activity_type = act;
+            params.limit = 1000;
+            return params;
         }
 
-        updateSummaryStats() {
-            const ticketAssignments = this.agents.size > 0 ?
-                Array.from(this.agents.values()).reduce((sum, agent) => sum + agent.count, 0) : 0;
-            const errors = this.logs.filter(log => log.type === 'error').length;
-
-            console.log('Updating summary stats:', {
-                totalLogs: this.logs.length,
-                ticketAssignments: ticketAssignments,
-                uniqueAgents: this.agents.size,
-                uniqueGroups: this.groups.size,
-                errors: errors
-            });
-
-            document.getElementById('totalLogs').textContent = this.logs.length;
-            document.getElementById('ticketsAssigned').textContent = ticketAssignments;
-            document.getElementById('uniqueAgents').textContent = this.agents.size;
-            document.getElementById('uniqueGroups').textContent = this.groups.size;
-            document.getElementById('totalErrors').textContent = errors;
+        function escapeHtml(text) {
+            const d = document.createElement('div');
+            d.textContent = text == null ? '' : String(text);
+            return d.innerHTML;
         }
 
-        updateAgentSummary() {
-            const agentGrid = document.getElementById('agentGrid');
-            agentGrid.innerHTML = '';
-
-            if (this.agents.size === 0) {
-                agentGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">No ticket assignments found</div>';
-                return;
-            }
-
-            // Sort agents by assignment count
-            const sortedAgents = Array.from(this.agents.entries())
-                .sort((a, b) => b[1].count - a[1].count)
-                .slice(0, 10); // Show top 10 agents
-
-            sortedAgents.forEach(([agentName, data]) => {
-                const agentCard = document.createElement('div');
-                agentCard.className = 'agent-card';
-                agentCard.innerHTML = `
-                    <div class="agent-name">${data.count}</div>
-                    <div class="agent-label">${agentName}</div>
-                `;
-                agentGrid.appendChild(agentCard);
-            });
-        }
-
-        updateGroupSummary() {
-            const groupStatsGrid = document.getElementById('groupStatsGrid');
-            groupStatsGrid.innerHTML = '';
-
-            if (this.groups.size === 0) {
-                groupStatsGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 20px;">No group assignments found</div>';
-                return;
-            }
-
-            this.groups.forEach((data, groupId) => {
-                const groupName = this.groupNames[groupId] || `Group ${groupId}`;
-                const groupCard = document.createElement('div');
-                groupCard.className = 'group-card';
-                groupCard.innerHTML = `
-                    <div class="group-name">${data.count}</div>
-                    <div class="group-label">${groupName}</div>
-                `;
-                groupStatsGrid.appendChild(groupCard);
-            });
-        }
-
-        updateFilters() {
-            // Update agent filter
-            const agentFilter = document.getElementById('agentFilter');
-            agentFilter.innerHTML = '<option value="">All Agents</option>';
-            this.agents.forEach((data, agentName) => {
-                const option = document.createElement('option');
-                option.value = agentName;
-                option.textContent = `${agentName} (${data.count})`;
-                agentFilter.appendChild(option);
-            });
-
-            // Update group filter
-            const groupFilter = document.getElementById('groupFilter');
-            groupFilter.innerHTML = '<option value="">All Groups</option>';
-            this.groups.forEach((data, groupId) => {
-                const groupName = this.groupNames[groupId] || `Group ${groupId}`;
-                const option = document.createElement('option');
-                option.value = groupId;
-                option.textContent = `${groupName} (${data.count})`;
-                groupFilter.appendChild(option);
-            });
-        }
-
-        updateTimeline() {
-            this.applyFilters();
-        }
-
-        applyFilters() {
-            const logTypeFilter = document.getElementById('logTypeFilter').value;
-            const agentFilter = document.getElementById('agentFilter').value;
-            const groupFilter = document.getElementById('groupFilter').value;
-
-            this.filteredLogs = this.logs.filter(log => {
-                // Only show meaningful events (ticket assignments, errors, and important info)
-                if (!this.isMeaningfulEvent(log)) return false;
-
-                // Log type filter
-                if (logTypeFilter) {
-                    if (logTypeFilter === 'ticket_assigned') {
-                        // For ticket_assigned filter, check if this is a ticket assignment
-                        if (!this.isTicketAssignment(log)) return false;
-                    } else if (log.type !== logTypeFilter) {
-                        return false;
-                    }
-                }
-
-                // Agent filter (for ticket assignments)
-                if (agentFilter && this.isTicketAssignment(log)) {
-                    const messageText = log.message?.text || '';
-                    if (!messageText.includes(`agent_name: '${agentFilter}'`)) return false;
-                }
-
-                // Group filter (for ticket assignments)
-                if (groupFilter && this.isTicketAssignment(log)) {
-                    const messageText = log.message?.text || '';
-                    if (!messageText.includes(`group_id: ${groupFilter}`)) return false;
-                }
-
-                return true;
-            });
-
-            this.renderTimeline();
-        }
-
-        isMeaningfulEvent(log) {
-            // Only show ticket assignments, errors, and important info messages
-            if (log.type === 'error') return true;
-            if (log.type === 'ticket_assigned') return true;
-
-            // For info messages, only show ticket assignments and important events
-            if (log.type === 'info' && log.message?.text) {
-                const messageText = log.message.text;
-
-                // Show ticket assignments
-                if (messageText.includes('Creating log entry:') && messageText.includes('ticket_assigned')) {
-                    return true;
-                }
-
-                // Show errors
-                if (messageText.includes('error') || messageText.includes('Error')) {
-                    return true;
-                }
-
-                // Show important completion messages
-                if (messageText.includes('Ticket assignment completed') ||
-                    messageText.includes('TICKET_ASSIGNED:')) {
-                    return true;
-                }
-
-                return false;
-            }
-
-            return false;
-        }
-
-        isTicketAssignment(log) {
-            if (log.type === 'ticket_assigned') return true;
-            if (log.type === 'info' && log.message?.text) {
-                return log.message.text.includes('Creating log entry:') &&
-                    log.message.text.includes('ticket_assigned');
-            }
-            return false;
-        }
-
-        renderTimeline() {
-            const timelineContent = document.getElementById('timelineContent');
-            timelineContent.innerHTML = '';
-
-            if (this.filteredLogs.length === 0) {
-                timelineContent.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No events match the current filters</div>';
-                return;
-            }
-
-            // Check if we're filtering for ticket assignments
-            const logTypeFilter = document.getElementById('logTypeFilter').value;
-            const isTicketAssignmentView = logTypeFilter === 'ticket_assigned';
-
-            if (isTicketAssignmentView) {
-                // Render as a table for ticket assignments
-                this.renderTicketAssignmentTable(timelineContent);
-            } else {
-                // Render as timeline for other views
-                this.renderTimelineEvents(timelineContent);
-            }
-        }
-
-        renderTicketAssignmentTable(container) {
-            // Extract ticket assignment details from filtered logs
-            const ticketAssignments = [];
-
-            this.filteredLogs.forEach(log => {
-                if (this.isTicketAssignment(log) && log.message?.text) {
-                    const messageText = log.message.text;
-                    if (messageText.includes('Creating log entry:')) {
-                        const startIndex = messageText.indexOf('Creating log entry: {');
-                        if (startIndex !== -1) {
-                            const jsonStart = startIndex + 'Creating log entry: '.length;
-                            let braceCount = 0;
-                            let endIndex = jsonStart;
-
-                            for (let i = jsonStart; i < messageText.length; i++) {
-                                if (messageText[i] === '{') braceCount++;
-                                else if (messageText[i] === '}') {
-                                    braceCount--;
-                                    if (braceCount === 0) {
-                                        endIndex = i + 1;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (endIndex > jsonStart) {
-                                try {
-                                    const rawObjectLiteral = messageText.substring(jsonStart, endIndex);
-                                    // eslint-disable-next-line no-new-func
-                                    const logEntry = (new Function('"use strict"; return (' + rawObjectLiteral + ')'))();
-
-                                    if (logEntry.type === 'ticket_assigned' && logEntry.details) {
-                                        ticketAssignments.push({
-                                            ticketId: logEntry.details.ticket_id,
-                                            subject: logEntry.details.ticket_subject || 'No subject',
-                                            agentName: logEntry.details.agent_name,
-                                            groupId: logEntry.details.group_id,
-                                            groupName: this.groupNames[logEntry.details.group_id] || `Group ${logEntry.details.group_id}`,
-                                            timestamp: log.timestamp
-                                        });
-                                    }
-                                } catch (e) {
-                                    console.warn('Failed to parse ticket assignment:', e);
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Sort by timestamp (newest first)
-            ticketAssignments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-            // Create table
-            const tableHtml = `
-                <style>
-                    .ticket-table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        background: white;
-                        border-radius: 8px;
-                        overflow: hidden;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                    }
-                    .ticket-table th {
-                        background: #1abc9c;
-                        color: white;
-                        padding: 12px;
-                        text-align: left;
-                        font-weight: 600;
-                    }
-                    .ticket-table td {
-                        padding: 12px;
-                        border-bottom: 1px solid #eee;
-                    }
-                    .ticket-table tr:last-child td {
-                        border-bottom: none;
-                    }
-                    .ticket-table tr:hover {
-                        background: #f8f9fa;
-                    }
-                    .ticket-id {
-                        font-weight: 600;
-                        color: #1abc9c;
-                    }
-                </style>
-                <table class="ticket-table">
-                    <thead>
-                        <tr>
-                            <th>Ticket ID</th>
-                            <th>Subject</th>
-                            <th>Agent</th>
-                            <th>Group</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${ticketAssignments.map(ticket => `
-                            <tr>
-                                <td class="ticket-id">#${ticket.ticketId}</td>
-                                <td>${this.escapeHtml(ticket.subject)}</td>
-                                <td>${this.escapeHtml(ticket.agentName)}</td>
-                                <td>${this.escapeHtml(ticket.groupName)}</td>
-                                <td>${new Date(ticket.timestamp).toLocaleString()}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
-
-            container.innerHTML = ticketAssignments.length > 0 ? tableHtml :
-                '<div style="text-align: center; color: #666; padding: 20px;">No ticket assignments found</div>';
-        }
-
-        renderTimelineEvents(container) {
-            // Sort by timestamp (newest first)
-            const sortedLogs = [...this.filteredLogs].sort((a, b) =>
-                new Date(b.timestamp) - new Date(a.timestamp)
-            );
-
-            sortedLogs.forEach(log => {
-                const eventDiv = document.createElement('div');
-                eventDiv.className = 'timeline-event';
-
-                const timestamp = new Date(log.timestamp);
-                const formattedTime = timestamp.toLocaleString();
-
-                let message = log.message?.text || 'No message';
-                let eventType = log.type;
-
-                // Clean up the message for display
-                if (message.includes('Creating log entry:')) {
-                    // Extract the actual log message from the JSON-like string
-                    const jsonMatch = message.match(/Creating log entry: ({.*})/);
-                    if (jsonMatch) {
-                        try {
-                            const logEntry = JSON.parse(jsonMatch[1].replace(/'/g, '"'));
-                            message = logEntry.message || message;
-                            eventType = logEntry.type || eventType;
-                        } catch (e) {
-                            // If parsing fails, use the original message
-                        }
-                    }
-                }
-
-                // Truncate long messages
-                if (message.length > 200) {
-                    message = message.substring(0, 200) + '...';
-                }
-
-                const typeColor = this.getTypeColor(eventType);
-
-                eventDiv.innerHTML = `
-                    <div class="event-type" style="background-color: ${typeColor}20; color: ${typeColor};">
-                        ${eventType.toUpperCase()}
-                    </div>
-                    <div class="event-details">
-                        <div class="event-time">${formattedTime}</div>
-                        <div class="event-message">${this.escapeHtml(message)}</div>
-                    </div>
-                `;
-
-                container.appendChild(eventDiv);
-            });
-        }
-
-        getTypeColor(type) {
-            switch (type) {
-                case 'ticket_assigned': return '#27ae60';
-                case 'error': return '#e74c3c';
-                case 'info': return '#3498db';
-                default: return '#95a5a6';
-            }
-        }
-
-        escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        clearFilters() {
-            document.getElementById('logTypeFilter').value = '';
-            document.getElementById('agentFilter').value = '';
-            document.getElementById('groupFilter').value = '';
-            this.applyFilters();
-        }
-
-        clearFile() {
-            // Reset data
-            this.logs = [];
-            this.filteredLogs = [];
-            this.agents.clear();
-            this.groups.clear();
-
-            // Reset UI
-            document.getElementById('fileName').textContent = '';
-            document.getElementById('clearFileBtn').style.display = 'none';
-            document.getElementById('logFileInput').value = ''; // Reset file input
-
-            // Hide all sections
-            document.getElementById('dateRangeDisplay').style.display = 'none';
-            document.getElementById('summaryStats').style.display = 'none';
-            document.getElementById('agentSummary').style.display = 'none';
-            document.getElementById('groupSummary').style.display = 'none';
-            document.getElementById('filters').style.display = 'none';
-            document.getElementById('timeline').style.display = 'none';
-
-            // Clear filters
-            this.clearFilters();
-
-            console.log('Log file cleared successfully');
-        }
-    }
-
-    // Activity Viewer Functionality
-    class ActivityViewer {
-        constructor() {
-            this.groupNames = {
-                '67000578161': 'West Region',
-                '67000578164': 'Central Southeast',
-                '67000578163': 'Northeast Region',
-                '67000578162': 'Central Southwest',
-                '67000578235': 'Triage',
-                '67000570681': 'Support Ops'
-            };
-            this.attempts = [];
-            this.sortKey = 'attempted_at';
-            this.sortDir = 'desc';
-            this.initializeEventListeners();
-        }
-
-        initializeEventListeners() {
-            const purgeBtn = document.getElementById('purgeActivityBtn');
-            purgeBtn?.addEventListener('click', async () => {
-                await initFreshdeskClient();
-                if (!client) {
-                    alert('This action requires running inside Freshdesk (client not initialized).');
-                    return;
-                }
-                if (!confirm('Clear all stored activity? This cannot be undone.')) return;
-                const res = await invokeServer('clearAssignmentActivity');
-                if (res && res.success) {
-                    await this.fetchAndRender();
-                } else {
-                    alert('Failed to clear activity: ' + (res?.error || 'Unknown error'));
-                }
-            });
-
-            ['activityAgentFilter', 'activityGroupFilter', 'activityResultFilter', 'activityFromDate', 'activityToDate']
-                .forEach(id => document.getElementById(id)?.addEventListener('change', () => this.render()));
-
-            // Sorting
-            document.querySelectorAll('#activityTable th[data-sort]')
-                .forEach(th => th.addEventListener('click', () => {
-                    const key = th.getAttribute('data-sort');
-                    if (this.sortKey === key) {
-                        this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-                    } else {
-                        this.sortKey = key;
-                        this.sortDir = 'asc';
-                    }
-                    this.render();
-                }));
-        }
-
-        async fetchAndRender() {
-            console.log('ActivityViewer.fetchAndRender() called');
-            await initFreshdeskClient();
-            const disabledUI = !client;
-            const table = document.getElementById('activityTable');
-            const meta = document.getElementById('activityMeta');
-            const purgeBtn = document.getElementById('purgeActivityBtn');
-
-            console.log('Client status:', client ? 'initialized' : 'not initialized');
-
-            if (disabledUI) {
-                console.log('Client not available, showing disabled UI');
-                this.attempts = [];
-                if (purgeBtn) purgeBtn.disabled = true;
-                if (meta) meta.textContent = 'Activity requires Freshdesk runtime. Open this app inside Freshdesk (or use fdk preview) to view and manage stored activity.';
-                if (table) table.classList.add('disabled');
-                this.render();
-                return;
-            }
-
-            if (purgeBtn) purgeBtn.disabled = false;
-
-            try {
-                console.log('Fetching assignment activity...');
-                const res = await invokeServer('getAssignmentActivity', {});
-                console.log('getAssignmentActivity response:', res);
-
-                if (!res || !res.success) {
-                    console.warn('Unable to fetch activity:', res?.error || 'Unknown error');
-                    this.attempts = [];
-                    if (meta) meta.textContent = 'Error loading activity: ' + (res?.error || 'Unknown error');
-                } else {
-                    this.attempts = Array.isArray(res.attempts) ? res.attempts : [];
-                    console.log(`Loaded ${this.attempts.length} assignment attempts`);
-                }
-            } catch (error) {
-                console.error('Error fetching activity:', error);
-                this.attempts = [];
-                if (meta) meta.textContent = 'Error loading activity: ' + error.message;
-            }
-
-            this.populateFilters();
-            this.render();
-        }
-
-        populateFilters() {
-            const agentSet = new Set();
-            const groupCounts = new Map();
-            this.attempts.forEach(a => {
-                if (a.agent_name) agentSet.add(a.agent_name);
-                const g = a.group_id != null ? String(a.group_id) : '';
-                if (!groupCounts.has(g)) groupCounts.set(g, 0);
-                groupCounts.set(g, groupCounts.get(g) + 1);
-            });
-            const agentSel = document.getElementById('activityAgentFilter');
-            const groupSel = document.getElementById('activityGroupFilter');
-            if (agentSel) {
-                const current = agentSel.value;
-                agentSel.innerHTML = '<option value="">All</option>' +
-                    Array.from(agentSet).sort().map(n => `<option value="${this.escape(n)}">${this.escape(n)}</option>`).join('');
-                agentSel.value = current || '';
-            }
-            if (groupSel) {
-                const currentG = groupSel.value;
-                const options = Array.from(groupCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]))
-                    .map(([gid]) => gid ? `<option value="${gid}">${this.escape(this.groupNames[gid] || `Group ${gid}`)}</option>` : '')
-                    .join('');
-                groupSel.innerHTML = '<option value="">All</option>' + options;
-                groupSel.value = currentG || '';
-            }
-        }
-
-        filtered() {
-            const agent = document.getElementById('activityAgentFilter')?.value || '';
-            const group = document.getElementById('activityGroupFilter')?.value || '';
-            const result = document.getElementById('activityResultFilter')?.value || '';
-            const from = document.getElementById('activityFromDate')?.value || '';
-            const to = document.getElementById('activityToDate')?.value || '';
-            const fromTs = from ? new Date(from).getTime() : null;
-            const toTs = to ? new Date(to).getTime() + (24 * 60 * 60 * 1000 - 1) : null; // end of day
-            return this.attempts.filter(a => {
-                if (agent && (a.agent_name || '') !== agent) return false;
-                if (group && String(a.group_id) !== group) return false;
-                if (result && (a.result || '') !== result) return false;
-                const ts = new Date(a.attempted_at).getTime();
-                if (fromTs && ts < fromTs) return false;
-                if (toTs && ts > toTs) return false;
-                return true;
-            });
-        }
-
-        render() {
-            console.log('ActivityViewer.render() called with', this.attempts.length, 'total attempts');
-            let rows = this.filtered();
-            const key = this.sortKey;
-            const dir = this.sortDir === 'asc' ? 1 : -1;
-            rows.sort((a, b) => {
-                const av = key === 'attempted_at' ? new Date(a.attempted_at).getTime() : (a[key] || '');
-                const bv = key === 'attempted_at' ? new Date(b.attempted_at).getTime() : (b[key] || '');
-                if (av < bv) return -1 * dir;
-                if (av > bv) return 1 * dir;
-                return 0;
-            });
-
+        function renderActivity(entries) {
             const tbody = document.getElementById('activityTbody');
             const meta = document.getElementById('activityMeta');
-            if (!tbody) {
-                console.error('Activity table tbody not found');
+            const totalEl = document.getElementById('totalRecords');
+            const filteredEl = document.getElementById('filteredRecords');
+            const rangeEl = document.getElementById('dateRangeLabel');
+            if (!Array.isArray(entries) || entries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 14px; color:#666;">No activity found for the selected range/filters</td></tr>';
+                meta.textContent = '0 entries';
+                if (filteredEl) filteredEl.textContent = '0';
                 return;
             }
-
-            if (rows.length === 0 && this.attempts.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No assignment attempts found. Attempts are recorded when the auto-assign scheduler runs.</td></tr>';
-            } else if (rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No attempts match the current filters</td></tr>';
-            } else {
-                tbody.innerHTML = rows.map(a => `
-                    <tr>
-                        <td>${new Date(a.attempted_at).toLocaleString()}</td>
-                        <td>#${this.escape(String(a.ticket_id))}</td>
-                        <td>${this.escape(a.ticket_subject || '')}</td>
-                        <td>${this.escape(a.agent_name || '')}</td>
-                        <td>${this.escape(a.group_name || (a.group_id ? 'Group ' + a.group_id : ''))}</td>
-                        <td><span class="result-pill ${a.result === 'Success' ? 'result-success' : 'result-failed'}">${a.result}</span></td>
-                        <td>${a.result === 'Failed' ? this.escape(a.error_message || '') : ''}</td>
-                    </tr>
-                `).join('');
-            }
-
-            if (meta && !meta.textContent.startsWith('Error') && !meta.textContent.includes('requires Freshdesk')) {
-                meta.textContent = `${rows.length} of ${this.attempts.length} attempts`;
+            tbody.innerHTML = entries.map(e => `
+                <tr>
+                    <td>${escapeHtml(new Date(e.created_at || e.assigned_at || e.status_reverted_at).toLocaleString())}</td>
+                    <td>${escapeHtml(e.activity_type || '')}</td>
+                    <td>#${escapeHtml(e.ticket_id)}</td>
+                    <td>${escapeHtml(e.ticket_subject || '')}</td>
+                    <td>${escapeHtml(e.ticket_status || '')}</td>
+                    <td>${escapeHtml(e.assigned_to || '')}</td>
+                    <td>${escapeHtml(e.group_name || '')}</td>
+                </tr>
+            `).join('');
+            meta.textContent = `${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}`;
+            if (filteredEl) filteredEl.textContent = String(entries.length);
+            if (window.__activityMeta) {
+                if (totalEl) totalEl.textContent = String(window.__activityMeta.total || entries.length);
+                if (rangeEl) rangeEl.textContent = window.__activityMeta.range || '-';
             }
         }
 
-        escape(text) {
-            const d = document.createElement('div');
-            d.textContent = text;
-            return d.innerHTML;
-        }
-    }
-
-    // Weekend Reversions Viewer Functionality
-    class WeekendReversionsViewer {
-        constructor() {
-            this.reversions = [];
-            this.sortKey = 'reverted_at';
-            this.sortDir = 'desc';
-            this.initializeEventListeners();
-            this.initializeWeekendStatus();
-        }
-
-        initializeWeekendStatus() {
-            this.updateWeekendStatus();
-            // Update status every minute
-            setInterval(() => this.updateWeekendStatus(), 60000);
-        }
-
-        updateWeekendStatus() {
-            const statusDot = document.getElementById('weekendStatusDot');
-            const statusText = document.getElementById('weekendStatusText');
-            const statusTime = document.getElementById('weekendStatusTime');
-
-            if (!statusDot || !statusText || !statusTime) return;
-
-            const now = new Date();
-            const isWeekend = this.isWeekendTime(now);
-
-            // Update dot
-            statusDot.className = 'status-dot ' + (isWeekend ? 'weekend' : 'business-hours');
-
-            // Update text
-            statusText.textContent = isWeekend ? '🔄 Weekend Hours Active' : '✅ Business Hours';
-
-            // Update time
-            const estTime = now.toLocaleString('en-US', {
-                timeZone: 'America/New_York',
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            statusTime.textContent = `EST: ${estTime}`;
-        }
-
-        isWeekendTime(date) {
-            // Convert to EST timezone
-            const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
-            const day = estDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday
-            const hour = estDate.getHours();
-
-            // Friday after 6 PM (18:00)
-            if (day === 5 && hour >= 18) return true;
-            // Saturday (all day)
-            if (day === 6) return true;
-            // Sunday (all day)
-            if (day === 0) return true;
-            // Monday before 7 AM (07:00)
-            if (day === 1 && hour < 7) return true;
-            // Monday before 7 AM (07:00)
-            if (day === 1 && hour < 7) return true;
-
-            return false;
-        }
-
-        initializeEventListeners() {
-            const testBtn = document.getElementById('testWeekendBtn');
-            testBtn?.addEventListener('click', async () => {
-                try {
-                    await initFreshdeskClient();
-                    if (!client) {
-                        // Try alternative approach for development
-                        console.log('Client not available, attempting direct server call...');
-                        alert('Client not initialized. This test requires the app to be running inside Freshdesk. Please deploy and install the app in Freshdesk to test the weekend reversion functionality.');
-                        return;
-                    }
-                    if (!confirm('Run manual test of weekend reversion? This will process all Follow-up Required tickets.')) return;
-                    const res = await invokeServer('testWeekendReversion');
-                    if (res && res.success) {
-                        alert('Test completed successfully! Check the logs and ticket statuses.');
-                        await this.fetchAndRender();
-                    } else {
-                        alert('Test failed: ' + (res?.error || 'Unknown error'));
-                    }
-                } catch (error) {
-                    console.error('Test button error:', error);
-                    alert('Test failed: ' + error.message);
-                }
-            });
-
-            const purgeBtn = document.getElementById('purgeWeekendBtn');
-            purgeBtn?.addEventListener('click', async () => {
-                await initFreshdeskClient();
-                if (!client) {
-                    alert('This action requires running inside Freshdesk (client not initialized).');
-                    return;
-                }
-                if (!confirm('Clear all stored weekend reversions? This cannot be undone.')) return;
-                const res = await invokeServer('clearWeekendReversions');
-                if (res && res.success) {
-                    await this.fetchAndRender();
-                } else {
-                    alert('Failed to clear weekend reversions: ' + (res?.error || 'Unknown error'));
-                }
-            });
-
-            ['weekendTicketFilter', 'weekendAgentFilter', 'weekendStatusFilter', 'weekendFromDate', 'weekendToDate']
-                .forEach(id => document.getElementById(id)?.addEventListener('change', () => this.render()));
-
-            // Real-time filtering for text input
-            document.getElementById('weekendTicketFilter')?.addEventListener('input', () => this.render());
-
-            // Sorting
-            document.querySelectorAll('#weekendTable th[data-sort]')
-                .forEach(th => th.addEventListener('click', () => {
-                    const key = th.getAttribute('data-sort');
-                    if (this.sortKey === key) {
-                        this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-                    } else {
-                        this.sortKey = key;
-                        this.sortDir = 'asc';
-                    }
-                    this.render();
-                }));
-        }
-
-        async fetchAndRender() {
-            console.log('WeekendReversionsViewer.fetchAndRender() called');
-            await initFreshdeskClient();
-            const disabledUI = !client;
-            const table = document.getElementById('weekendTable');
-            const meta = document.getElementById('weekendMeta');
-            const purgeBtn = document.getElementById('purgeWeekendBtn');
-
-            console.log('Client status:', client ? 'initialized' : 'not initialized');
-
-            if (disabledUI) {
-                console.log('Client not available, showing disabled UI');
-                this.reversions = [];
-                if (purgeBtn) purgeBtn.disabled = true;
-                if (meta) meta.textContent = 'Weekend reversions require Freshdesk runtime. Open this app inside Freshdesk (or use fdk preview) to view and manage stored weekend reversions.';
-                if (table) table.classList.add('disabled');
-                this.render();
+        async function loadActivity() {
+            const params = readFilters();
+            const res = await invokeServer('getActivityLog', params);
+            if (!res || !res.success) {
+                console.warn('Failed to load activity', res?.error);
+                renderActivity([]);
                 return;
             }
-
-            if (purgeBtn) purgeBtn.disabled = false;
-
-            try {
-                console.log('Fetching weekend reversions...');
-                const res = await invokeServer('getWeekendReversions', {});
-                console.log('getWeekendReversions response:', res);
-
-                if (!res || !res.success) {
-                    console.warn('Unable to fetch weekend reversions:', res?.error || 'Unknown error');
-                    this.reversions = [];
-                    if (meta) meta.textContent = 'Error loading weekend reversions: ' + (res?.error || 'Unknown error');
-                } else {
-                    this.reversions = Array.isArray(res.reversions) ? res.reversions : [];
-                    console.log(`Loaded ${this.reversions.length} weekend reversions`);
-                }
-            } catch (error) {
-                console.error('Error fetching weekend reversions:', error);
-                this.reversions = [];
-                if (meta) meta.textContent = 'Error loading weekend reversions: ' + error.message;
-            }
-
-            this.populateFilters();
-            this.render();
+            const df = document.getElementById('dateFrom').value;
+            const dt = document.getElementById('dateTo').value;
+            window.__activityMeta = {
+                total: res.total,
+                range: (df && dt) ? `${new Date(df).toLocaleString()} → ${new Date(dt).toLocaleString()}` : '-'
+            };
+            renderActivity(res.entries || []);
         }
 
-        populateFilters() {
-            const agentSet = new Set();
-            this.reversions.forEach(r => {
-                if (r.agent_name) agentSet.add(r.agent_name);
+        document.addEventListener('DOMContentLoaded', async () => {
+            setDefaultDateRange48h();
+            await loadActivity();
+            document.getElementById('applyFiltersBtn').addEventListener('click', loadActivity);
+            document.getElementById('refreshBtn')?.addEventListener('click', loadActivity);
+            document.getElementById('clearFiltersBtn')?.addEventListener('click', async () => {
+                document.getElementById('ticketIdFilter').value = '';
+                document.getElementById('subjectFilter').value = '';
+                document.getElementById('statusFilter').value = '';
+                document.getElementById('assigneeFilter').value = '';
+                document.getElementById('groupFilter').value = '';
+                document.getElementById('activityTypeFilter').value = '';
+                setDefaultDateRange48h();
+                await loadActivity();
             });
-            const agentSel = document.getElementById('weekendAgentFilter');
-            if (agentSel) {
-                const current = agentSel.value;
-                agentSel.innerHTML = '<option value="">All</option>' +
-                    Array.from(agentSet).sort().map(n => `<option value="${this.escape(n)}">${this.escape(n)}</option>`).join('');
-                agentSel.value = current || '';
-            }
-        }
-
-        filtered() {
-            const ticketId = document.getElementById('weekendTicketFilter')?.value || '';
-            const agent = document.getElementById('weekendAgentFilter')?.value || '';
-            const status = document.getElementById('weekendStatusFilter')?.value || '';
-            const from = document.getElementById('weekendFromDate')?.value || '';
-            const to = document.getElementById('weekendToDate')?.value || '';
-            const fromTs = from ? new Date(from).getTime() : null;
-            const toTs = to ? new Date(to).getTime() + (24 * 60 * 60 * 1000 - 1) : null; // end of day
-            return this.reversions.filter(r => {
-                if (ticketId && String(r.ticket_id) !== ticketId) return false;
-                if (agent && (r.agent_name || '') !== agent) return false;
-                if (status && (r.previous_status || '') !== status) return false;
-                const ts = new Date(r.reverted_at).getTime();
-                if (fromTs && ts < fromTs) return false;
-                if (toTs && ts > toTs) return false;
-                return true;
+            document.getElementById('clearAllBtn')?.addEventListener('click', async () => {
+                if (!confirm('Clear ALL stored activity records? This cannot be undone.')) return;
+                const res = await invokeServer('clearActivityLog', {});
+                if (!res || !res.success) alert('Failed to clear records');
+                await loadActivity();
             });
-        }
-
-        render() {
-            console.log('WeekendReversionsViewer.render() called with', this.reversions.length, 'total reversions');
-            let rows = this.filtered();
-            const key = this.sortKey;
-            const dir = this.sortDir === 'asc' ? 1 : -1;
-            rows.sort((a, b) => {
-                const av = key === 'reverted_at' ? new Date(a.reverted_at).getTime() : (a[key] || '');
-                const bv = key === 'reverted_at' ? new Date(b.reverted_at).getTime() : (b[key] || '');
-                if (av < bv) return -1 * dir;
-                if (av > bv) return 1 * dir;
-                return 0;
+            document.getElementById('addDemoBtn')?.addEventListener('click', async () => {
+                const res = await invokeServer('addDemoActivityData', {});
+                if (!res || !res.success) alert('Failed to add demo data');
+                await loadActivity();
             });
-
-            const tbody = document.getElementById('weekendTbody');
-            const meta = document.getElementById('weekendMeta');
-            if (!tbody) {
-                console.error('Weekend table tbody not found');
-                return;
-            }
-
-            if (rows.length === 0 && this.reversions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No weekend reversions found. Reversions are recorded when the app reverts tickets from "Follow-up Required" during weekend hours.</td></tr>';
-            } else if (rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">No reversions match the current filters</td></tr>';
-            } else {
-                tbody.innerHTML = rows.map(r => `
-                    <tr>
-                        <td>${new Date(r.reverted_at).toLocaleString()}</td>
-                        <td>#${this.escape(String(r.ticket_id))}</td>
-                        <td>${this.escape(r.ticket_subject || '')}</td>
-                        <td>${this.escape(r.agent_name || '')}</td>
-                        <td>${this.escape(r.previous_status || '')}</td>
-                        <td>${this.escape(r.reverted_to_status || '')}</td>
-                        <td>${this.escape(r.reversion_reason || '')}</td>
-                    </tr>
-                `).join('');
-            }
-
-            if (meta && !meta.textContent.startsWith('Error') && !meta.textContent.includes('requires Freshdesk')) {
-                meta.textContent = `${rows.length} of ${this.reversions.length} reversions`;
-            }
-        }
-
-        escape(text) {
-            const d = document.createElement('div');
-            d.textContent = text;
-            return d.innerHTML;
-        }
-    }
-
-    // Carousel functionality
-    let currentCard = 1;
-    const totalCards = 4;
-
-    function moveCarousel(direction) {
-        currentCard += direction;
-
-        if (currentCard > totalCards) {
-            currentCard = 1;
-        } else if (currentCard < 1) {
-            currentCard = totalCards;
-        }
-
-        updateCarousel();
-    }
-
-    function goToCard(cardNumber) {
-        currentCard = cardNumber;
-        updateCarousel();
-    }
-
-    function updateCarousel() {
-        const track = document.getElementById('featuresCarousel');
-        const cards = document.querySelectorAll('.feature-card');
-        const dots = document.querySelectorAll('.dot');
-
-        // Update track position
-        const offset = -(currentCard - 1) * 100;
-        track.style.transform = `translateX(${offset}%)`;
-
-        // Update active card
-        cards.forEach((card, index) => {
-            if (index + 1 === currentCard) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
+            ['dateFrom', 'dateTo', 'ticketIdFilter', 'subjectFilter', 'statusFilter', 'assigneeFilter', 'groupFilter', 'activityTypeFilter']
+                .forEach(id => document.getElementById(id)?.addEventListener('change', loadActivity));
         });
-
-        // Update active dot
-        dots.forEach((dot, index) => {
-            if (index + 1 === currentCard) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-
-
-    // Initialize when the page loads
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOMContentLoaded - initializing app UI');
-        setupTabs();
-        new LogViewer();
-        new WeekendReversionsViewer();
-
-
-
-        // Activity tab initialization commented out for now
-        /*
-        // Initialize ActivityViewer after ensuring client is ready
-        let activityViewerInitialized = false;
-        const initActivityViewer = async () => {
-            if (activityViewerInitialized) {
-                console.log('ActivityViewer already initialized, skipping');
-                return;
-            }
-            
-            console.log('Attempting to initialize ActivityViewer...');
-            try {
-                const clientReady = await initFreshdeskClient();
-                const av = new ActivityViewer();
-                activityViewerInitialized = true;
-                
-                if (clientReady) {
-                    console.log('Client is ready, fetching activity data...');
-                    await av.fetchAndRender();
-                } else {
-                    console.log('Client not available, showing limited UI');
-                    av.fetchAndRender(); // Will show disabled state
-                }
-            } catch (error) {
-                console.error('Error initializing ActivityViewer:', error);
-                activityViewerInitialized = false; // Reset on error
-            }
-        };
-
-        // Try multiple times with increasing delays
-        const tryInit = async (attempt = 1) => {
-            if (attempt > 3) {
-                console.log('Max initialization attempts reached');
-                await initActivityViewer();
-                return;
-            }
-            
-            // Check if client is already available
-            if (window.client) {
-                console.log(`Client found on attempt ${attempt}`);
-                await initActivityViewer();
-                return;
-            }
-            
-            // Wait and try again
-            const delay = attempt * 1500; // 1.5s, 3s, 4.5s
-            console.log(`Waiting ${delay}ms before attempt ${attempt + 1}`);
-            setTimeout(() => tryInit(attempt + 1), delay);
-        };
-        
-        // Start initialization attempts
-        tryInit();
-        
-        // Also listen for the custom event from app.js
-        window.addEventListener('freshdesk-client-ready', async (event) => {
-            console.log('Received freshdesk-client-ready event');
-            if (event.detail && event.detail.client) {
-                window.client = event.detail.client;
-                client = event.detail.client;
-                await initActivityViewer();
-            }
-        });
-        */
-    });
-</script>
+    </script>
+</body>
 
 </html>

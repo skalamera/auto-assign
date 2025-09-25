@@ -23,12 +23,18 @@
         "clearAssignmentActivity": {},
         "getWeekendReversions": {},
         "clearWeekendReversions": {},
-        "testWeekendReversion": {}
+        "testWeekendReversion": {},
+        "getActivityLog": {},
+        "clearActivityLog": {},
+        "addDemoActivityData": {},
+        "testOvernightTagging": {},
+        "checkSpecificTicket": {}
       },
       "requests": {
         "getUnassignedTickets": {},
         "assignTicket": {},
         "getAgents": {},
+        "getAgentsPage": {},
         "getWestRegionGroup": {},
         "getCentralSoutheastGroup": {},
         "getNortheastRegionGroup": {},

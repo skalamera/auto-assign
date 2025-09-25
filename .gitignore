@@ -145,4 +145,9 @@ config/dev.json
 # Freshdesk app specific
 # Ignore any local development files
 dev/
-local/ 
+local/
+
+# Test and report files
+.report.json
+*.report.json
+test-results/ 
