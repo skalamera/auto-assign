@@ -190,10 +190,16 @@ exports = {
           revertedCount = await handleWeekendStatusReversion(allTickets);
         }
 
-        // Then run ticket assignment (if service is enabled and within time window)
+        // Then run ticket assignment (if service is enabled, within time window, and on weekdays)
         const withinWindow = isWithinAssignmentWindow(now);
         if (!withinWindow) {
           await addLog('info', 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment');
+          return;
+        }
+
+        const isWeekday = isWeekdayTime(now);
+        if (!isWeekday) {
+          await addLog('info', 'Weekend detected, skipping ticket assignment (weekdays only)');
           return;
         }
 
@@ -582,6 +588,40 @@ async function isServiceEnabled() {
   return true;
 }
 
+// Helper function to make API calls with rate limit handling
+async function makeAPICallWithRetry(templateName, context, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await $request.invokeTemplate(templateName, context);
+
+      if (response.status === 429) {
+        // Rate limited - check retry-after header
+        const retryAfter = parseInt(response.headers['retry-after'] || '10', 10);
+        console.log(`Rate limited (attempt ${attempt}/${maxRetries}), waiting ${retryAfter} seconds...`);
+
+        if (attempt < maxRetries) {
+          await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+          continue;
+        } else {
+          throw new Error(`Rate limited after ${maxRetries} attempts`);
+        }
+      }
+
+      if (response.status >= 400) {
+        throw new Error(`API returned status ${response.status}: ${response.response}`);
+      }
+
+      return response;
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+      // Wait before retry for other errors
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+  }
+}
+
 // Helper function to get unassigned tickets
 async function getUnassignedTickets() {
   try {
@@ -602,19 +642,13 @@ async function getUnassignedTickets() {
     while (hasMore && page <= maxPages) {
       console.log(`Fetching page ${page}...`);
 
-      const ticketsResponse = await $request.invokeTemplate('getUnassignedTickets', {
+      const ticketsResponse = await makeAPICallWithRetry('getUnassignedTickets', {
         context: {
           updated_since: updatedSince,
           page: page
         }
       });
       console.log(`Page ${page} API Response status:`, ticketsResponse.status);
-
-      if (ticketsResponse.status >= 400) {
-        console.error('API Error Response body:', ticketsResponse.response);
-        console.error('API Error headers:', ticketsResponse.headers);
-        throw new Error(`API returned status ${ticketsResponse.status}: ${ticketsResponse.response}`);
-      }
 
       const pageTickets = JSON.parse(ticketsResponse.response);
       console.log(`Page ${page}: fetched ${pageTickets.length} tickets`);
@@ -639,6 +673,8 @@ async function getUnassignedTickets() {
           hasMore = false;
         } else {
           page++;
+          // Small delay between pages to avoid rate limiting
+          await new Promise(resolve => setTimeout(resolve, 500));
         }
       } else {
         hasMore = false;
@@ -705,8 +741,8 @@ async function getActiveAgents() {
   while (hasMore) {
     try {
       const agentsResponse = page === 1
-        ? await $request.invokeTemplate('getAgents', {})
-        : await $request.invokeTemplate('getAgentsPage', { context: { page: page } });
+        ? await makeAPICallWithRetry('getAgents', {})
+        : await makeAPICallWithRetry('getAgentsPage', { context: { page: page } });
 
       const pageAgents = JSON.parse(agentsResponse.response);
 
@@ -717,6 +753,8 @@ async function getActiveAgents() {
         // If we got a full page of agents, there might be more
         if (pageAgents.length >= 30) {
           page++;
+          // Small delay between pages to avoid rate limiting
+          await new Promise(resolve => setTimeout(resolve, 500));
         } else {
           hasMore = false;
         }
@@ -730,12 +768,12 @@ async function getActiveAgents() {
   }
 
   // Fetch groups sequentially to avoid rate limiting
-  const westGroup = await $request.invokeTemplate('getWestRegionGroup', {});
-  const southeastGroup = await $request.invokeTemplate('getCentralSoutheastGroup', {});
-  const northeastGroup = await $request.invokeTemplate('getNortheastRegionGroup', {});
-  const southwestGroup = await $request.invokeTemplate('getCentralSouthwestGroup', {});
-  const triageGroup = await $request.invokeTemplate('getTriageGroup', {});
-  const supportOpsGroup = await $request.invokeTemplate('getSupportOpsGroup', {});
+  const westGroup = await makeAPICallWithRetry('getWestRegionGroup', {});
+  const southeastGroup = await makeAPICallWithRetry('getCentralSoutheastGroup', {});
+  const northeastGroup = await makeAPICallWithRetry('getNortheastRegionGroup', {});
+  const southwestGroup = await makeAPICallWithRetry('getCentralSouthwestGroup', {});
+  const triageGroup = await makeAPICallWithRetry('getTriageGroup', {});
+  const supportOpsGroup = await makeAPICallWithRetry('getSupportOpsGroup', {});
 
   const agents = allAgents;
   const groups = [
@@ -771,11 +809,9 @@ async function getActiveAgents() {
     // Ensure 'available' field is present if missing by fetching details (best-effort)
     if (typeof agent.available === 'undefined') {
       try {
-        const detailResp = await $request.invokeTemplate('getAgentDetails', { context: { agent_id: agent.id } });
-        if (detailResp.status < 400) {
-          const detail = JSON.parse(detailResp.response);
-          agent.available = !!detail.available;
-        }
+        const detailResp = await makeAPICallWithRetry('getAgentDetails', { context: { agent_id: agent.id } });
+        const detail = JSON.parse(detailResp.response);
+        agent.available = !!detail.available;
       } catch (e) {
         // ignore errors; leave availability as-is
       }
@@ -890,7 +926,7 @@ async function assignTicketsInRoundRobin(tickets, allAgents) {
 
     try {
       // Assign the ticket to the agent
-      await $request.invokeTemplate('assignTicket', {
+      await makeAPICallWithRetry('assignTicket', {
         context: { ticket_id: ticket.id },
         body: JSON.stringify({ responder_id: agent.id })
       });
@@ -1160,19 +1196,25 @@ function isWithinAssignmentWindow(date) {
   return false;
 }
 
+// Check if current time is on a weekday (Monday-Friday)
+function isWeekdayTime(date) {
+  // Convert to America/New_York timezone to account for DST
+  const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
+  const day = estDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+  // Monday (1) through Friday (5) are weekdays
+  return day >= 1 && day <= 5;
+}
+
 // Helper function to add overnight tag to a ticket
 async function addOvernightTag(ticketId) {
   try {
     console.log(`Adding overnight tag to ticket #${ticketId}`);
 
     // Fetch current ticket to retrieve existing tags
-    const getResp = await $request.invokeTemplate('getSpecificTicket', {
+    const getResp = await makeAPICallWithRetry('getSpecificTicket', {
       context: { ticket_id: ticketId }
     });
-    if (getResp.status >= 400) {
-      console.error(`Failed to fetch ticket #${ticketId} to read tags:`, getResp.response);
-      return false;
-    }
 
     const ticket = JSON.parse(getResp.response);
     const existingTags = Array.isArray(ticket.tags) ? ticket.tags : [];
@@ -1187,15 +1229,10 @@ async function addOvernightTag(ticketId) {
     const updatedTags = Array.from(new Set([...existingTags, 'overnight']));
 
     // Update tags by sending the full list (Freshdesk replaces tags with provided array)
-    const response = await $request.invokeTemplate('addTicketTag', {
+    const response = await makeAPICallWithRetry('addTicketTag', {
       context: { ticket_id: ticketId },
       body: JSON.stringify({ tags: updatedTags })
     });
-
-    if (response.status >= 400) {
-      console.error(`Failed to update tags on ticket #${ticketId}:`, response.response);
-      return false;
-    }
 
     console.log(`✅ Successfully ensured 'overnight' tag on ticket #${ticketId} (tags now: ${JSON.stringify(updatedTags)})`);
     return true;
