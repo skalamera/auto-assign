@@ -193,7 +193,7 @@ exports = {
         // Then run ticket assignment (if service is enabled, within time window, and on weekdays)
         const withinWindow = isWithinAssignmentWindow(now);
         if (!withinWindow) {
-          await addLog('info', 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment');
+          await addLog('info', 'Outside assignment window (2:01-4:00 AM ET), skipping ticket assignment');
           return;
         }
 
@@ -594,13 +594,38 @@ async function makeAPICallWithRetry(templateName, context, maxRetries = 3) {
     try {
       const response = await $request.invokeTemplate(templateName, context);
 
+      // Log rate limit status for monitoring
+      const rateLimitTotal = response.headers['x-ratelimit-total'];
+      const rateLimitRemaining = response.headers['x-ratelimit-remaining'];
+      const rateLimitUsed = response.headers['x-ratelimit-used-currentrequest'];
+
+      if (rateLimitTotal && rateLimitRemaining) {
+        console.log(`Rate limit status: ${rateLimitRemaining}/${rateLimitTotal} remaining (used ${rateLimitUsed || 1} for this request)`);
+
+        // Proactive slowdown if we're getting close to the limit
+        const remaining = parseInt(rateLimitRemaining, 10);
+        if (remaining < 50) {
+          console.log(`Rate limit warning: Only ${remaining} calls remaining, adding extra delay...`);
+          const start = Date.now();
+          while (Date.now() - start < 1000) {
+            // Extra 1-second delay when approaching limit
+          }
+        }
+      }
+
       if (response.status === 429) {
         // Rate limited - check retry-after header
         const retryAfter = parseInt(response.headers['retry-after'] || '10', 10);
         console.log(`Rate limited (attempt ${attempt}/${maxRetries}), waiting ${retryAfter} seconds...`);
+        console.log(`Rate limit headers: Total=${rateLimitTotal}, Remaining=${rateLimitRemaining}, Used=${rateLimitUsed}`);
 
         if (attempt < maxRetries) {
-          await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+          // Wait using a simple loop instead of setTimeout
+          const waitMs = retryAfter * 1000;
+          const start = Date.now();
+          while (Date.now() - start < waitMs) {
+            // Busy wait - not ideal but works in serverless environment
+          }
           continue;
         } else {
           throw new Error(`Rate limited after ${maxRetries} attempts`);
@@ -617,7 +642,10 @@ async function makeAPICallWithRetry(templateName, context, maxRetries = 3) {
         throw error;
       }
       // Wait before retry for other errors
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const start = Date.now();
+      while (Date.now() - start < 2000) {
+        // Busy wait for 2 seconds
+      }
     }
   }
 }
@@ -627,12 +655,17 @@ async function getUnassignedTickets() {
   try {
     console.log('Calling getUnassignedTickets API with pagination...');
 
-    // Calculate date from 24h ago for updated_since filter
+    // Calculate lookback period - 61 hours on Monday, 24 hours other weekdays
+    const now = new Date();
+    const estDate = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+    const isMonday = estDate.getDay() === 1;
+
+    const lookbackHours = isMonday ? 61 : 24;
     const since = new Date();
-    since.setHours(since.getHours() - 24);
+    since.setHours(since.getHours() - lookbackHours);
     const updatedSince = since.toISOString();
 
-    console.log(`Using updated_since filter: ${updatedSince}`);
+    console.log(`Using ${lookbackHours}-hour lookback (${isMonday ? 'Monday' : 'Weekday'}) - updated_since filter: ${updatedSince}`);
 
     let allTickets = [];
     let page = 1;
@@ -673,8 +706,13 @@ async function getUnassignedTickets() {
           hasMore = false;
         } else {
           page++;
-          // Small delay between pages to avoid rate limiting
-          await new Promise(resolve => setTimeout(resolve, 500));
+          // Dynamic delay between pages based on rate limit status
+          // Base delay of 500ms, increased if we're making many requests
+          const delayMs = page > 5 ? 1000 : 500; // Slower after 5 pages
+          const start = Date.now();
+          while (Date.now() - start < delayMs) {
+            // Busy wait to avoid rate limiting
+          }
         }
       } else {
         hasMore = false;
@@ -754,7 +792,10 @@ async function getActiveAgents() {
         if (pageAgents.length >= 30) {
           page++;
           // Small delay between pages to avoid rate limiting
-          await new Promise(resolve => setTimeout(resolve, 500));
+          const start = Date.now();
+          while (Date.now() - start < 500) {
+            // Busy wait for 500ms
+          }
         } else {
           hasMore = false;
         }
@@ -1183,16 +1224,17 @@ function isWeekendTime(date) {
   return false;
 }
 
-// Check if current time is between 7:01 AM and 8:01 AM Eastern Time (inclusive of 8:01)
+// Check if current time is between 2:01 AM and 4:00 AM Eastern Time (inclusive of 4:00)
 function isWithinAssignmentWindow(date) {
   // Convert to America/New_York timezone to account for DST
   const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
   const hour = estDate.getHours();
   const minute = estDate.getMinutes();
 
-  // 7:01-7:59 -> run, 8:00-8:01 -> run, else -> skip
-  if (hour === 7 && minute >= 1) return true;
-  if (hour === 8 && minute <= 1) return true;
+  // 2:01-2:59 -> run, 3:00-3:59 -> run, 4:00 -> run, else -> skip
+  if (hour === 2 && minute >= 1) return true;
+  if (hour === 3) return true;
+  if (hour === 4 && minute === 0) return true;
   return false;
 }
 
@@ -1229,7 +1271,7 @@ async function addOvernightTag(ticketId) {
     const updatedTags = Array.from(new Set([...existingTags, 'overnight']));
 
     // Update tags by sending the full list (Freshdesk replaces tags with provided array)
-    const response = await makeAPICallWithRetry('addTicketTag', {
+    await makeAPICallWithRetry('addTicketTag', {
       context: { ticket_id: ticketId },
       body: JSON.stringify({ tags: updatedTags })
     });
@@ -1465,7 +1507,10 @@ async function handleWeekendStatusReversion(allTickets) {
         }
 
         // Small delay to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const start = Date.now();
+        while (Date.now() - start < 1000) {
+          // Busy wait for 1 second
+        }
 
       } catch (error) {
         await addLog('error', `Ticket #${ticket.id} reversion failed: ${error.message}`, {

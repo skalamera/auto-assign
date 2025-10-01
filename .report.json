@@ -7,67 +7,72 @@
     },
     {
       "severity": 1,
-      "value": "server\\server.js::169: Async method 'onScheduledEventHandler' has a complexity of 14. Maximum allowed is 7.",
+      "value": "server\\server.js::169: Async method 'onScheduledEventHandler' has a complexity of 15. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::222: possible deprecated API usage detected",
+      "value": "server\\server.js::228: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::289: Async method 'getActivityLog' has a complexity of 16. Maximum allowed is 7.",
+      "value": "server\\server.js::295: Async method 'getActivityLog' has a complexity of 16. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::387: Async method 'getAssignmentActivity' has a complexity of 9. Maximum allowed is 7.",
+      "value": "server\\server.js::393: Async method 'getAssignmentActivity' has a complexity of 9. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::436: Async method 'getWeekendReversions' has a complexity of 9. Maximum allowed is 7.",
+      "value": "server\\server.js::442: Async method 'getWeekendReversions' has a complexity of 9. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::586: Async function 'getUnassignedTickets' has a complexity of 14. Maximum allowed is 7.",
+      "value": "server\\server.js::592: Async function 'makeAPICallWithRetry' has a complexity of 15. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::699: Async function 'getActiveAgents' has a complexity of 18. Maximum allowed is 7.",
+      "value": "server\\server.js::654: Async function 'getUnassignedTickets' has a complexity of 17. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::820: Async function 'assignTicketsInRoundRobin' has a complexity of 19. Maximum allowed is 7.",
+      "value": "server\\server.js::773: Async function 'getActiveAgents' has a complexity of 18. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::875: possible deprecated API usage detected",
+      "value": "server\\server.js::897: Async function 'assignTicketsInRoundRobin' has a complexity of 19. Maximum allowed is 7.",
+      "type": "lint"
+    },
+    {
+      "severity": 1,
+      "value": "server\\server.js::952: possible deprecated API usage detected",
       "type": "custom-js-lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::988: Async function 'addAssignmentAttemptEntry' has a complexity of 11. Maximum allowed is 7.",
+      "value": "server\\server.js::1065: Async function 'addAssignmentAttemptEntry' has a complexity of 11. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::1055: Async function 'addActivityEntry' has a complexity of 14. Maximum allowed is 7.",
+      "value": "server\\server.js::1132: Async function 'addActivityEntry' has a complexity of 14. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::1125: Function 'isWeekendTime' has a complexity of 8. Maximum allowed is 7.",
+      "value": "server\\server.js::1202: Function 'isWeekendTime' has a complexity of 8. Maximum allowed is 7.",
       "type": "lint"
     },
     {
       "severity": 1,
-      "value": "server\\server.js::1355: Async function 'handleWeekendStatusReversion' has a complexity of 13. Maximum allowed is 7.",
+      "value": "server\\server.js::1433: Async function 'handleWeekendStatusReversion' has a complexity of 14. Maximum allowed is 7.",
       "type": "lint"
     }
   ],

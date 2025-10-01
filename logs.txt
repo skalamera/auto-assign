@@ -1,1450 +1,2186 @@
 [
 	{
-		"timestamp": "Sep 26, 2025, 6:20:02 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:06 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Calling getUnassignedTickets API with pagination..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:02 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:07 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
-			"text": "Using updated_since filter: 2025-09-25T10:20:02.938Z"
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T10:40:07.119Z"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:02 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:07 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 1..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:04 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:08 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 199/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:08 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 1 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:04 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:08 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 1: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:04 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:09 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 2..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:06 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:10 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 198/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:10 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 2 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:06 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:10 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 2: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:06 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:11 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 3..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:07 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:12 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 197/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:12 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 3 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:07 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:12 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 3: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:07 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:13 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 4..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:08 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:14 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 196/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:14 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 4 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:08 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:14 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 4: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:08 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:14 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 5..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:09 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:16 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 195/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:16 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 5 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:09 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:16 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 5: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:09 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:17 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 6..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:11 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:18 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 194/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:18 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 6 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:11 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:18 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 6: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:11 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:19 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 7..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:13 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:20 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 193/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:20 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 7 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:13 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:20 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 7: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:13 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:21 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 8..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:14 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:22 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 192/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:22 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 8 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:14 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:22 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 8: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:14 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:23 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 9..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 191/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
 		"type": "info",
 		"message": {
 			"text": "Page 9 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Page 9: fetched 15 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Total tickets fetched across 9 pages: 815"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Ticket date range: Newest updated 2025-09-30T06:12:38Z (ID: 323813), Oldest updated 2025-09-29T14:18:16Z (ID: 280920)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Starting ticket filtering process..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Found 13 unassigned tickets with Open/Triage status out of 815 total tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Creating log entry: {\n  timestamp: '2025-09-30T10:40:24.158Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Retrieved existing logs, count: 0"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-30T10:40:24.158Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:40:24 AM",
+		"id": "280af",
+		"type": "info",
+		"message": {
+			"text": "[2025-09-30T10:40:24.158Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:05 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Calling getUnassignedTickets API with pagination..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:06 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T10:50:06.315Z"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:06 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 1..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:08 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 199/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:08 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 1 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:08 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 1: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:08 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 2..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:09 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 198/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:09 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 2 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:09 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 2: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:10 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 3..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:11 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 197/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:11 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 3 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:11 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 3: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:11 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 4..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:12 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 196/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:13 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 4 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:13 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 4: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:13 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 5..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:14 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 195/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:14 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 5 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:14 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 5: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:15 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 6..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:16 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 194/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:16 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 6 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:16 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 6: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:17 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 7..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:19 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 193/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:19 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 7 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:19 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 7: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:20 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 8..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:21 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 192/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:21 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 8 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:21 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 8: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 9..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 191/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 9 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Page 9: fetched 14 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Total tickets fetched across 9 pages: 814"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Ticket date range: Newest updated 2025-09-30T06:12:38Z (ID: 323813), Oldest updated 2025-09-29T14:18:16Z (ID: 280920)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Starting ticket filtering process..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Found 13 unassigned tickets with Open/Triage status out of 814 total tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Creating log entry: {\n  timestamp: '2025-09-30T10:50:22.777Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Retrieved existing logs, count: 0"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-30T10:50:22.777Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 6:50:22 AM",
+		"id": "28f17",
+		"type": "info",
+		"message": {
+			"text": "[2025-09-30T10:50:22.777Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:14 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Calling getUnassignedTickets API with pagination..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:15 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T11:00:15.296Z"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:15 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 1..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:16 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 198/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:16 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 1 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:16 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 1: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:17 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 2..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:18 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 190/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:18 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 2 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:18 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 2: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:19 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 3..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:20 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 183/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:20 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 3 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:20 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 3: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:20 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 4..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:21 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 175/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:22 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 4 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:22 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 4: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:22 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 5..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:24 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 167/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:24 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 5 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:24 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 5: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:25 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 6..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:26 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 158/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:26 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 6 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:26 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 6: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:27 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 7..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:28 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 149/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:28 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 7 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:28 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 7: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:29 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 8..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:30 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 139/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:30 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 8 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:30 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 8: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:31 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 9..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 130/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
+		"type": "info",
+		"message": {
+			"text": "Page 9 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
 			"text": "Page 9: fetched 11 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
 			"text": "Total tickets fetched across 9 pages: 811"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
-			"text": "Ticket date range: Newest updated 2025-09-26T09:51:53Z (ID: 323314), Oldest updated 2025-09-25T15:00:24Z (ID: 302510)"
+			"text": "Ticket date range: Newest updated 2025-09-30T06:12:38Z (ID: 323813), Oldest updated 2025-09-29T14:18:16Z (ID: 280920)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
 			"text": "Starting ticket filtering process..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
-			"text": "Found 24 unassigned tickets with Open/Triage status out of 811 total tickets"
+			"text": "Found 13 unassigned tickets with Open/Triage status out of 811 total tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T10:20:15.577Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
+			"text": "Creating log entry: {\n  timestamp: '2025-09-30T11:00:32.477Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
 			"text": "Retrieved existing logs, count: 0"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T10:20:15.577Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-30T11:00:32.477Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:20:15 AM",
-		"id": "7b33f",
+		"timestamp": "Sep 30, 2025, 7:00:32 AM",
+		"id": "b234b",
 		"type": "info",
 		"message": {
-			"text": "[2025-09-26T10:20:15.577Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
+			"text": "[2025-09-30T11:00:32.477Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:08 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:07 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Calling getUnassignedTickets API with pagination..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:08 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:07 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
-			"text": "Using updated_since filter: 2025-09-25T10:30:08.198Z"
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T11:10:07.559Z"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:08 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:07 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 1..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:09 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:09 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 35/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:09 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit warning: Only 35 calls remaining, adding extra delay..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:10 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 1 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:09 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:10 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 1: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:09 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:11 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 2..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:10 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:12 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 21/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:12 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit warning: Only 21 calls remaining, adding extra delay..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:13 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 2 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:11 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:13 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 2: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:11 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:14 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 3..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:12 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:15 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 8/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:15 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Rate limit warning: Only 8 calls remaining, adding extra delay..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:16 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 3 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:12 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:16 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Page 3: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:12 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:16 AM",
+		"id": "ee382",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 4..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:13 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "error",
+		"message": {
+			"text": "Error in getUnassignedTickets: {\n  status: 429,\n  headers: {\n    date: 'Tue, 30 Sep 2025 11:10:21 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '987345fabf83081d-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '5',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': 'c7f1b149-bc61-9fc6-b93e-0bcce1c62771',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=p3mNFv56kgKXIUPIF7EoPlHjbq6w3Nd1fbZ901LuM3I-1759230621-1.0.1.1-V8Rl8UNUzEZWJ4UHg.rpxDzbSzLQhWPVU5_4yZBDQ32uk9SVxAplkGemA1m32JZL2kECozS4pxJgo4.6.HKKMNK4Ko.Ljf1gHOkqyXk0WW0; path=/; expires=Tue, 30-Sep-25 11:40:21 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "error",
+		"message": {
+			"text": "Error during combined operations: {\n  status: 429,\n  headers: {\n    date: 'Tue, 30 Sep 2025 11:10:21 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '987345fabf83081d-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '5',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': 'c7f1b149-bc61-9fc6-b93e-0bcce1c62771',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=p3mNFv56kgKXIUPIF7EoPlHjbq6w3Nd1fbZ901LuM3I-1759230621-1.0.1.1-V8Rl8UNUzEZWJ4UHg.rpxDzbSzLQhWPVU5_4yZBDQ32uk9SVxAplkGemA1m32JZL2kECozS4pxJgo4.6.HKKMNK4Ko.Ljf1gHOkqyXk0WW0; path=/; expires=Tue, 30-Sep-25 11:40:21 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Creating log entry: {\n  timestamp: '2025-09-30T11:10:22.061Z',\n  type: 'error',\n  message: 'Error during combined operations',\n  details: { error: undefined }\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Retrieved existing logs, count: 0"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-30T11:10:22.061Z',\n    type: 'error',\n    message: 'Error during combined operations',\n    details: { error: undefined }\n  }\n}"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:10:22 AM",
+		"id": "ee382",
+		"type": "info",
+		"message": {
+			"text": "[2025-09-30T11:10:22.061Z] ERROR: Error during combined operations"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:02 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Calling getUnassignedTickets API with pagination..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:03 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T11:20:03.079Z"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:03 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 1..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:04 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 199/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:04 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 1 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:04 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 1: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:05 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 2..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:06 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 198/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:06 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 2 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:06 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 2: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:07 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 3..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:09 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 197/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:09 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 3 API Response status: 200"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:09 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Page 3: fetched 100 tickets"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:09 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Fetching page 4..."
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:11 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 196/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:11 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 4 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:13 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:11 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 4: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:13 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:11 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 5..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:14 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:12 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 195/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:12 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 5 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:14 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:12 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 5: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:14 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:13 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 6..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:15 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:15 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 194/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:15 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 6 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:15 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:15 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 6: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:15 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:16 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 7..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:17 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:17 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 193/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:17 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 7 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:17 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:17 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 7: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:17 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:18 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 8..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:19 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 192/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:19 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 8 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:19 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 8: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:20 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 9..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 191/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Page 9 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Page 9: fetched 10 tickets"
+			"text": "Page 9: fetched 4 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Total tickets fetched across 9 pages: 810"
+			"text": "Total tickets fetched across 9 pages: 804"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Ticket date range: Newest updated 2025-09-26T09:51:53Z (ID: 323314), Oldest updated 2025-09-25T15:00:24Z (ID: 302510)"
+			"text": "Ticket date range: Newest updated 2025-09-30T11:00:53Z (ID: 323817), Oldest updated 2025-09-29T14:18:16Z (ID: 280920)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
 			"text": "Starting ticket filtering process..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:18 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Found 24 unassigned tickets with Open/Triage status out of 810 total tickets"
+			"text": "Found 13 unassigned tickets with Open/Triage status out of 804 total tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:19 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T10:30:19.338Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
+			"text": "Rate limit status: 688/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:19 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:21 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Retrieved existing logs, count: 0"
+			"text": "Fetched 30 agents from page 1 (total: 30)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:19 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:22 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T10:30:19.338Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
+			"text": "Rate limit status: 687/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:30:19 AM",
-		"id": "afb4b",
+		"timestamp": "Sep 30, 2025, 7:20:23 AM",
+		"id": "cb75b",
 		"type": "info",
 		"message": {
-			"text": "[2025-09-26T10:30:19.338Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
+			"text": "Fetched 18 agents from page 2 (total: 48)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:03 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:20:23 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 686/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:23 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 685/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:23 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 684/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:24 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 683/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:24 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 682/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:24 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 681/700 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:24 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Agent availability: 5 available, 43 unavailable (total: 48)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:20:24 AM",
+		"id": "cb75b",
+		"type": "info",
+		"message": {
+			"text": "Agents with groups (16): [\n  {\n    name: 'Brad Sheng',\n    available: true,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Dayna Clarke',\n    available: true,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Drita Lulgjuraj',\n    available: true,\n    groups: 'Northeast Region, Central Southwest'\n  },\n  { name: 'Felicia Wold', available: false, groups: 'Support Ops' },\n  {\n    name: 'Jordan Fields',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  { name: 'Katrina Papaj', available: false, groups: 'Support Ops' },\n  {\n    name: 'Kristi Garcia',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  {\n    name: 'Kristina Boga',\n    available: true,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  {\n    name: 'Lisa Morgan',\n    available: false,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Mohammad Azeem',\n    available: false,\n    groups: 'West Region, Central Southeast'\n  },\n  {\n    name: 'Shaima Mannino',\n    available: true,\n    groups: 'Northeast Region, Central Southwest'\n  },\n  {\n    name: 'Shanto Kapali',\n    available: false,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  { name: 'Steve Skalamera', available: false, groups: 'Support Ops' },\n  {\n    name: 'Suriya Iqbal',\n    available: false,\n    groups: 'West Region, Central Southeast'\n  },\n  {\n    name: 'Yash Patel',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  { name: 'Yu Ng', available: false, groups: 'Support Ops' }\n]"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:08 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Calling getUnassignedTickets API with pagination..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:03 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:09 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Using updated_since filter: 2025-09-25T10:40:03.452Z"
+			"text": "Using 24-hour lookback (Weekday) - updated_since filter: 2025-09-29T11:30:09.132Z"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:03 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:09 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 1..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:05 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:11 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 199/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:11 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 1 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:05 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:11 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 1: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:05 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:11 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 2..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:06 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:12 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 198/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:12 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 2 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:06 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:12 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 2: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:06 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:13 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 3..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:07 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:14 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 197/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:14 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 3 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:07 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:14 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 3: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:07 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:14 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 4..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:08 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:16 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 196/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:16 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 4 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:08 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:16 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 4: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:08 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:17 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 5..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:09 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:18 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 195/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:18 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 5 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:09 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:18 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 5: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:09 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:19 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 6..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:11 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:20 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 194/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:20 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 6 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:11 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:20 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 6: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:11 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:21 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 7..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:12 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:22 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 193/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:22 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 7 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:12 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:22 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 7: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:12 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:23 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 8..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:24 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 192/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:24 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 8 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:24 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 8: fetched 100 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:25 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Fetching page 9..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
+		"type": "info",
+		"message": {
+			"text": "Rate limit status: 191/200 remaining (used 1 for this request)"
+		}
+	},
+	{
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Page 9 API Response status: 200"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Page 9: fetched 11 tickets"
+			"text": "Page 9: fetched 4 tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Total tickets fetched across 9 pages: 811"
+			"text": "Total tickets fetched across 9 pages: 804"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Ticket date range: Newest updated 2025-09-26T10:39:02Z (ID: 323316), Oldest updated 2025-09-25T15:00:24Z (ID: 302510)"
+			"text": "Ticket date range: Newest updated 2025-09-30T11:00:53Z (ID: 323817), Oldest updated 2025-09-29T14:18:16Z (ID: 280920)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "Starting ticket filtering process..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:40:13 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "Found 25 unassigned tickets with Open/Triage status out of 811 total tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:40:14 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T10:40:14.292Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:40:14 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "Retrieved existing logs, count: 0"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:40:14 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T10:40:14.292Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:40:14 AM",
-		"id": "268c9",
-		"type": "info",
-		"message": {
-			"text": "[2025-09-26T10:40:14.292Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:05 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Calling getUnassignedTickets API with pagination..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:05 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Using updated_since filter: 2025-09-25T10:50:05.770Z"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:05 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 1..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:07 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 1 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:07 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 1: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:07 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 2..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:08 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 2 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:08 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 2: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:08 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 3..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:09 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 3 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:09 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 3: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:09 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 4..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:10 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 4 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:11 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 4: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:11 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 5..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:12 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 5 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:12 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 5: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:12 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 6..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:13 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 6 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:13 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 6: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:13 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 7..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:14 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 7 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:14 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 7: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:14 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 8..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:15 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 8 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:15 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 8: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:15 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 9..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 9 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Page 9: fetched 11 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Total tickets fetched across 9 pages: 811"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
-		"type": "info",
-		"message": {
-			"text": "Ticket date range: Newest updated 2025-09-26T10:39:02Z (ID: 323316), Oldest updated 2025-09-25T15:00:24Z (ID: 302510)"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
 			"text": "Starting ticket filtering process..."
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Found 25 unassigned tickets with Open/Triage status out of 811 total tickets"
+			"text": "Found 3 unassigned tickets with Open/Triage status out of 804 total tickets"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T10:50:16.591Z',\n  type: 'info',\n  message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n  details: {}\n}"
+			"text": "Rate limit status: 693/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:26 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Retrieved existing logs, count: 0"
+			"text": "Fetched 30 agents from page 1 (total: 30)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:27 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T10:50:16.591Z',\n    type: 'info',\n    message: 'Outside assignment window (7:01-8:01 ET), skipping ticket assignment',\n    details: {}\n  }\n}"
+			"text": "Rate limit status: 692/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 6:50:16 AM",
-		"id": "f1a1c",
+		"timestamp": "Sep 30, 2025, 7:30:27 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "[2025-09-26T10:50:16.591Z] INFO: Outside assignment window (7:01-8:01 ET), skipping ticket assignment"
+			"text": "Fetched 18 agents from page 2 (total: 48)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:08 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:28 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Calling getUnassignedTickets API with pagination..."
+			"text": "Rate limit status: 691/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:08 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:28 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Using updated_since filter: 2025-09-25T11:00:08.639Z"
+			"text": "Rate limit status: 690/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:08 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:28 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Fetching page 1..."
+			"text": "Rate limit status: 689/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
-		"type": "error",
-		"message": {
-			"text": "Error in getUnassignedTickets: {\n  status: 429,\n  headers: {\n    date: 'Fri, 26 Sep 2025 11:00:09 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '98524186e9ed05c8-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '6',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': '9122ad12-c2ce-9278-bf3d-727bcfe0a040',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=ZINTxypayp4jDqIZgPzhz.tPU2WJstNOn5y.0yY2Cq0-1758884409-1.0.1.1-K5B.VFMt.2L_Ctv08BtiQrZOL2QYu2eZ6E4sV.Y.aztfyaUXuaaxLwkSfOw_zGlDDMsNgEdDvW1PM2fcycqd.35cES_2b5bhZYGQBWFt7P8; path=/; expires=Fri, 26-Sep-25 11:30:09 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
-		"type": "error",
-		"message": {
-			"text": "Error during combined operations: {\n  status: 429,\n  headers: {\n    date: 'Fri, 26 Sep 2025 11:00:09 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '98524186e9ed05c8-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '6',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': '9122ad12-c2ce-9278-bf3d-727bcfe0a040',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=ZINTxypayp4jDqIZgPzhz.tPU2WJstNOn5y.0yY2Cq0-1758884409-1.0.1.1-K5B.VFMt.2L_Ctv08BtiQrZOL2QYu2eZ6E4sV.Y.aztfyaUXuaaxLwkSfOw_zGlDDMsNgEdDvW1PM2fcycqd.35cES_2b5bhZYGQBWFt7P8; path=/; expires=Fri, 26-Sep-25 11:30:09 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:29 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T11:00:09.540Z',\n  type: 'error',\n  message: 'Error during combined operations',\n  details: { error: undefined }\n}"
+			"text": "Rate limit status: 688/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:29 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Retrieved existing logs, count: 0"
+			"text": "Rate limit status: 687/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:30 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T11:00:09.540Z',\n    type: 'error',\n    message: 'Error during combined operations',\n    details: { error: undefined }\n  }\n}"
+			"text": "Rate limit status: 686/700 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:00:09 AM",
-		"id": "3efcf",
+		"timestamp": "Sep 30, 2025, 7:30:30 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "[2025-09-26T11:00:09.540Z] ERROR: Error during combined operations"
+			"text": "Agent availability: 5 available, 43 unavailable (total: 48)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:10:07 AM",
-		"id": "a93c0",
+		"timestamp": "Sep 30, 2025, 7:30:30 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Calling getUnassignedTickets API with pagination..."
+			"text": "Agents with groups (16): [\n  {\n    name: 'Brad Sheng',\n    available: true,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Dayna Clarke',\n    available: true,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Drita Lulgjuraj',\n    available: true,\n    groups: 'Northeast Region, Central Southwest'\n  },\n  { name: 'Felicia Wold', available: false, groups: 'Support Ops' },\n  {\n    name: 'Jordan Fields',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  { name: 'Katrina Papaj', available: false, groups: 'Support Ops' },\n  {\n    name: 'Kristi Garcia',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  {\n    name: 'Kristina Boga',\n    available: true,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  {\n    name: 'Lisa Morgan',\n    available: false,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  {\n    name: 'Mohammad Azeem',\n    available: false,\n    groups: 'West Region, Central Southeast'\n  },\n  {\n    name: 'Shaima Mannino',\n    available: true,\n    groups: 'Northeast Region, Central Southwest'\n  },\n  {\n    name: 'Shanto Kapali',\n    available: false,\n    groups: 'West Region, Central Southeast, Triage'\n  },\n  { name: 'Steve Skalamera', available: false, groups: 'Support Ops' },\n  {\n    name: 'Suriya Iqbal',\n    available: false,\n    groups: 'West Region, Central Southeast'\n  },\n  {\n    name: 'Yash Patel',\n    available: false,\n    groups: 'Northeast Region, Central Southwest, Triage'\n  },\n  { name: 'Yu Ng', available: false, groups: 'Support Ops' }\n]"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:10:07 AM",
-		"id": "a93c0",
+		"timestamp": "Sep 30, 2025, 7:30:30 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Using updated_since filter: 2025-09-25T11:10:07.335Z"
+			"text": "Rate limit status: 279/280 remaining (used 1 for this request)"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:10:07 AM",
-		"id": "a93c0",
+		"timestamp": "Sep 30, 2025, 7:30:30 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Fetching page 1..."
+			"text": "Adding overnight tag to ticket #323805"
 		}
 	},
 	{
-		"timestamp": "Sep 26, 2025, 7:10:09 AM",
-		"id": "a93c0",
+		"timestamp": "Sep 30, 2025, 7:30:31 AM",
+		"id": "27597",
 		"type": "info",
 		"message": {
-			"text": "Page 1 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:09 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 1: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:09 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 2..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:10 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 2 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:10 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 2: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:10 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 3..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:11 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 3 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:11 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 3: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:11 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 4..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:12 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 4 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:12 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 4: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:12 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 5..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:13 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 5 API Response status: 200"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:13 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Page 5: fetched 100 tickets"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:13 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Fetching page 6..."
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "error",
-		"message": {
-			"text": "Error in getUnassignedTickets: {\n  status: 429,\n  headers: {\n    date: 'Fri, 26 Sep 2025 11:10:14 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '98525049ef42056c-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '12',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': '3374e828-23d1-96ff-b2f3-dc6ebb1f36d2',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=ZTuY38dLelLtzVTdNXumDRd.LYDDPbn.h_sNGJvq4s0-1758885014-1.0.1.1-U2HX3k.FOODKrUgz7KEaf3b8WLg1alQB.V7kYoKsxR_32KxBmrifMDORd6ZtZdFuwFoySpbiFMO.8GQQFJDlX7M3OoiGleLfPncDSKI4s_k; path=/; expires=Fri, 26-Sep-25 11:40:14 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "error",
-		"message": {
-			"text": "Error during combined operations: {\n  status: 429,\n  headers: {\n    date: 'Fri, 26 Sep 2025 11:10:14 GMT',\n    'content-length': '0',\n    connection: 'close',\n    'cf-ray': '98525049ef42056c-IAD',\n    nel: '{ \"report_to\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true}',\n    'report-to': '{ \"group\": \"nel-endpoint-freshdesk\", \"max_age\": 2592000, \"include_subdomains\": true, \"endpoints\": [{\"url\": \"https://edge-admin.us-east-1.freshedge.net/nelreports/freshdesk\"}]}',\n    'x-fw-ratelimiting-managed': 'true',\n    'retry-after': '12',\n    'x-envoy-ratelimited': 'true',\n    'x-request-id': '3374e828-23d1-96ff-b2f3-dc6ebb1f36d2',\n    'cf-cache-status': 'DYNAMIC',\n    'set-cookie': [\n      '__cf_bm=ZTuY38dLelLtzVTdNXumDRd.LYDDPbn.h_sNGJvq4s0-1758885014-1.0.1.1-U2HX3k.FOODKrUgz7KEaf3b8WLg1alQB.V7kYoKsxR_32KxBmrifMDORd6ZtZdFuwFoySpbiFMO.8GQQFJDlX7M3OoiGleLfPncDSKI4s_k; path=/; expires=Fri, 26-Sep-25 11:40:14 GMT; domain=.freshdesk.com; HttpOnly; Secure'\n    ],\n    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\n    server: 'cloudflare'\n  },\n  response: '',\n  errorSource: 'APP',\n  attempts: 1\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Creating log entry: {\n  timestamp: '2025-09-26T11:10:14.116Z',\n  type: 'error',\n  message: 'Error during combined operations',\n  details: { error: undefined }\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Retrieved existing logs, count: 0"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "Logs stored in memory: {\n  count: 1,\n  latest: {\n    timestamp: '2025-09-26T11:10:14.116Z',\n    type: 'error',\n    message: 'Error during combined operations',\n    details: { error: undefined }\n  }\n}"
-		}
-	},
-	{
-		"timestamp": "Sep 26, 2025, 7:10:14 AM",
-		"id": "a93c0",
-		"type": "info",
-		"message": {
-			"text": "[2025-09-26T11:10:14.116Z] ERROR: Error during combined operations"
+			"text": "Rate limit status: 190/200 remaining (used 1 for this request)"
 		}
 	}
 ]
