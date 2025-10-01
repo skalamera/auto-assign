@@ -193,7 +193,7 @@ exports = {
         // Then run ticket assignment (if service is enabled, within time window, and on weekdays)
         const withinWindow = isWithinAssignmentWindow(now);
         if (!withinWindow) {
-          await addLog('info', 'Outside assignment window (2:01-4:00 AM ET), skipping ticket assignment');
+          await addLog('info', 'Outside assignment window (7:01-8:00 AM ET), skipping ticket assignment');
           return;
         }
 
@@ -1224,17 +1224,16 @@ function isWeekendTime(date) {
   return false;
 }
 
-// Check if current time is between 2:01 AM and 4:00 AM Eastern Time (inclusive of 4:00)
+// Check if current time is between 7:01 AM and 8:00 AM Eastern Time (inclusive of 8:00)
 function isWithinAssignmentWindow(date) {
   // Convert to America/New_York timezone to account for DST
   const estDate = new Date(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
   const hour = estDate.getHours();
   const minute = estDate.getMinutes();
 
-  // 2:01-2:59 -> run, 3:00-3:59 -> run, 4:00 -> run, else -> skip
-  if (hour === 2 && minute >= 1) return true;
-  if (hour === 3) return true;
-  if (hour === 4 && minute === 0) return true;
+  // 7:01-7:59 -> run, 8:00 -> run, else -> skip
+  if (hour === 7 && minute >= 1) return true;
+  if (hour === 8 && minute === 0) return true;
   return false;
 }
 
